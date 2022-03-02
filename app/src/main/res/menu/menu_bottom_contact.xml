@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <item android:id="@+id/trainer_cont"
+            android:title="المدربين"
+            android:icon="@drawable/ic_manage"
+            tools:ignore="MenuTitle"
+            />
+        <item android:id="@+id/courses_cont"
+            android:title="الدورات"
+            android:icon="@drawable/ic_book"
+            tools:ignore="MenuTitle"
+            />
+        <item android:id="@+id/exit_cont"
+            android:title="خروج"
+            android:icon="@drawable/ic_exit"
+            tools:ignore="MenuTitle"
+            />
+
+</menu>

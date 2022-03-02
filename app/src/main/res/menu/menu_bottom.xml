@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <item android:id="@+id/users"
+            android:icon="@drawable/ic_manage"
+            android:title="إدارة المستخدمين"
+            tools:ignore="MenuTitle" />
+        <item android:id="@+id/contactPage"
+            android:icon="@drawable/ic_comment"
+            android:title="صفحة التواصل"
+            tools:ignore="MenuTitle"
+            />
+        <item android:id="@+id/fields"
+            android:icon="@drawable/ic_widget"
+            android:title="المجالات"
+            tools:ignore="MenuTitle"
+            />
+        <item android:id="@+id/analyses"
+            android:icon="@drawable/ic_analytics"
+            android:title="الاحصائيات"
+            tools:ignore="MenuTitle"
+            />
+        <item android:id="@+id/logout"
+            android:title="خروج"
+            android:icon="@drawable/ic_exit"
+            tools:ignore="MenuTitle"
+            />
+
+</menu>
