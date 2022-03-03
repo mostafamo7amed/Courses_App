@@ -11,21 +11,22 @@ import android.view.MenuItem;
 
 import com.example.courses.Constants;
 import com.example.courses.R;
-import com.example.courses.UI.Fragments.Contacts.CoursesFragment;
-import com.example.courses.UI.Fragments.Contacts.TrainerFragment;
+import com.example.courses.UI.Fragments.Trainee.CoursesTraineeFragment;
+import com.example.courses.UI.Fragments.Trainee.MyCoursesTraineeFragment;
+import com.example.courses.UI.Fragments.Trainee.ViewContactFragment;
 import com.example.courses.UI.Fragments.Trainer.ContactPageTrainerFragment;
 import com.example.courses.UI.Fragments.Trainer.CoursesTrainerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class TrainerActivity extends AppCompatActivity {
+public class TraineeActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trainer);
-        bottomNavigationView = findViewById(R.id.bottom_nav_trainer);
+        setContentView(R.layout.activity_trainee);
+        bottomNavigationView = findViewById(R.id.bottom_nav_trainee);
         bottomNavigationView.setOnItemSelectedListener(OnSelect);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_trainer, new CoursesTrainerFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_trainee, new CoursesTraineeFragment()).commit();
         Constants.current=1;
     }
     private final BottomNavigationView.OnItemSelectedListener OnSelect = new BottomNavigationView.OnItemSelectedListener() {
@@ -36,28 +37,38 @@ public class TrainerActivity extends AppCompatActivity {
             int select=0;
 
             switch (item.getItemId()) {
-                case R.id.courses_trainer: {
-                    selected = new CoursesTrainerFragment();
+                case R.id.courses_trainee: {
+                    selected = new CoursesTraineeFragment();
                     select =1;
                 }
                 break;
-                case R.id.contactPage_trainer: {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("frame",R.id.frame_layout_trainer);
-                    selected = new ContactPageTrainerFragment();
-                    selected.setArguments(bundle);
+                case R.id.myCourses_trainee: {
+                    selected = new MyCoursesTraineeFragment();
                     select = 2;
                 }
                 break;
-                case R.id.exit_trainer: {
-                    startActivity(new Intent(TrainerActivity.this,LoginActivity.class));
+                case R.id.contactPage_trainee: {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("frame",R.id.frame_layout_trainee);
+                    selected = new ContactPageTrainerFragment();
+                    selected.setArguments(bundle);
                     select = 3;
+                }
+                break;
+                case R.id.contact_trainee: {
+                    selected = new ViewContactFragment();
+                    select = 4;
+                }
+                break;
+                case R.id.exit_trainee: {
+                    startActivity(new Intent(TraineeActivity.this,LoginActivity.class));
+                    select = 5;
                 }
                 break;
             }
             if (selected != null) {
                 if(select != Constants.current) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_trainer, selected).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_trainee, selected).commit();
                     Constants.current = select;
                 }
                 else {

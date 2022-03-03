@@ -27,7 +27,7 @@
                 android:layout_marginStart="10dp"
                 android:text="المجال : "/>
             <TextView
-                android:id="@+id/field_course"
+                android:id="@+id/field_course_trainee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
@@ -53,7 +53,7 @@
                 android:layout_marginStart="10dp"
                 android:text="المدرب : "/>
             <TextView
-                android:id="@+id/trainer_course"
+                android:id="@+id/trainer_course_trainee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="email"
@@ -65,11 +65,12 @@
 
         </LinearLayout>
         <LinearLayout
-            app:layout_constraintTop_toBottomOf="@id/liener2"
+            android:id="@+id/liener3"
+            app:layout_constraintTop_toBottomOf="@id/liener6"
             android:layout_marginTop="3dp"
+            android:paddingVertical="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingVertical="10dp"
             app:layout_constraintStart_toStartOf="parent"
             android:orientation="horizontal">
             <TextView
@@ -80,7 +81,7 @@
                 android:layout_marginStart="10dp"
                 android:text="الوصف : "/>
             <TextView
-                android:id="@+id/desciption_course"
+                android:id="@+id/desciption_course_trainee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="massage"
@@ -90,12 +91,94 @@
                 android:layout_marginLeft="8dp"
                 />
 
+
         </LinearLayout>
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/close_course"
+        <LinearLayout
+            android:id="@+id/liener4"
+            app:layout_constraintTop_toBottomOf="@id/liener2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="إغلاق"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:text="العنوان : "/>
+            <TextView
+                android:id="@+id/address_course_trainee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="massage"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/dark_text"
+                android:layout_marginLeft="8dp"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/liener5"
+            app:layout_constraintTop_toBottomOf="@id/liener4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:text="التاريخ : "/>
+            <TextView
+                android:id="@+id/date_course_trainee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="massage"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/dark_text"
+                android:layout_marginLeft="8dp"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/liener6"
+            app:layout_constraintTop_toBottomOf="@id/liener5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:text="الوقت : "/>
+            <TextView
+                android:id="@+id/time_course_trainee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="massage"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/dark_text"
+                android:layout_marginLeft="8dp"
+                />
+
+
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/register_course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="سجل الان"
             android:layout_marginEnd="3dp"
             android:textColor="@color/white"
             android:background="@drawable/custom_btu"

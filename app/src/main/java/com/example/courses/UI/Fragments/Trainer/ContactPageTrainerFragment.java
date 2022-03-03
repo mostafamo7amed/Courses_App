@@ -48,7 +48,8 @@ public class ContactPageTrainerFragment extends Fragment {
         addComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_trainer, new AddCommentFragment()).addToBackStack(null).commitAllowingStateLoss();
+
+                getParentFragmentManager().beginTransaction().replace(getArguments().getInt("frame"), new AddCommentFragment()).addToBackStack(null).commitAllowingStateLoss();
             }
         });
     }

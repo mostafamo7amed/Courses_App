@@ -7,6 +7,14 @@ public class Contacts {
     String Commercial_register;
     int Contact_number;
 
+    public Contacts(String name, String email, String region, String commercial_register, int contact_number) {
+        Name = name;
+        Email = email;
+        Region = region;
+        Commercial_register = commercial_register;
+        Contact_number = contact_number;
+    }
+
     public String getName() {
         return Name;
     }
