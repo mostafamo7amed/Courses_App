@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Activitys.TraineeActivity">
+    tools:context=".UI.Activities.TraineeActivity">
 
     <FrameLayout
         android:id="@+id/frame_layout_trainee"

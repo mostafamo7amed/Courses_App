@@ -1,4 +1,4 @@
-package com.example.courses.UI.Activitys;
+package com.example.courses.UI.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

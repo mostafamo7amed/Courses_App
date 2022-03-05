@@ -10,22 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Courses">
         <activity
-            android:name=".UI.Activitys.TraineeActivity"
+            android:name=".UI.Activities.TraineeActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.Activitys.TrainerActivity"
+            android:name=".UI.Activities.TrainerActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.Activitys.CreateContactAccountActivity"
+            android:name=".UI.Activities.CreateContactAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.Activitys.StartActivity"
+            android:name=".UI.Activities.StartActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.Activitys.ContactsActivity"
+            android:name=".UI.Activities.ContactsActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.Activitys.SplashActivity"
+            android:name=".UI.Activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,13 +34,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UI.Activitys.RegisterActivity"
+            android:name=".UI.Activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.Activitys.LoginActivity"
+            android:name=".UI.Activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.Activitys.AdminActivity"
+            android:name=".UI.Activities.EmployeeActivity"
             android:exported="true" />
     </application>
 
