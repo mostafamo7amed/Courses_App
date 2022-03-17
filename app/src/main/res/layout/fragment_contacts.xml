@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Fragments.Trainee.ViewContactFragment">
+    tools:context=".UI.Fragments.Employee.ContactsFragment">
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card2"
         android:layout_width="match_parent"
@@ -29,5 +30,17 @@
         android:layout_height="0dp"
         android:layout_below="@id/card2"
         android:layout_alignParentBottom="true" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        app:fabSize="normal"
+        android:id="@+id/add_contacts"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="15dp"
+        android:tint="@color/white"
+        app:srcCompat="@drawable/ic_add"
+
+        />
 
 </RelativeLayout>

@@ -8,19 +8,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.Models.Trainee;
 import com.example.Models.Trainer;
 import com.example.courses.R;
 
 import java.util.List;
 
-public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> {
+public class TraineeAdapter extends RecyclerView.Adapter<TraineeAdapter.ViewHolder> {
 
     private Context context;
-    private List<Trainer> list;
+    private List<Trainee> list;
 
-    public UsersAdapter(Context context, List<Trainer> list) {
+    public TraineeAdapter(Context context, List<Trainee> list) {
         this.context = context;
         this.list = list;
     }
@@ -28,14 +30,15 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.users_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.trainee_item,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(list.get(position).getName());
-        holder.type.setText(list.get(position).getEmail());
+        holder.level.setText(list.get(position).getEducationLevel());
+        holder.age.setText(String.valueOf(list.get(position).getAge()));
 
     }
     @Override
@@ -44,14 +47,16 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name ,type ;
-        ImageView trainerBlock;
+        TextView name ,level ,age;
+        AppCompatButton traineeEdit;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            name = itemView.findViewById(R.id.user_name);
-            type = itemView.findViewById(R.id.user_type);
-            trainerBlock = itemView.findViewById(R.id.user_block);
+            name = itemView.findViewById(R.id.trainee_name);
+            level = itemView.findViewById(R.id.trainee_level);
+            age = itemView.findViewById(R.id.trainee_age);
+            traineeEdit = itemView.findViewById(R.id.trainee_edit);
+
         }
     }
 }

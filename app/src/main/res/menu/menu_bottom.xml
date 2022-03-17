@@ -5,26 +5,19 @@
 
         <item android:id="@+id/users"
             android:icon="@drawable/ic_manage"
-            android:title="إدارة المستخدمين"
+            android:title="إدارة الموظفين"
             tools:ignore="MenuTitle" />
-        <item android:id="@+id/contactPage"
+        <item android:id="@+id/courses_adm"
+            android:icon="@drawable/ic_menu_book"
+            android:title="إدارة الدورات "
+            tools:ignore="MenuTitle" />
+        <item android:id="@+id/comments_adm"
             android:icon="@drawable/ic_comment"
-            android:title="صفحة التواصل"
-            tools:ignore="MenuTitle"
-            />
-        <item android:id="@+id/fields"
-            android:icon="@drawable/ic_widget"
-            android:title="المجالات"
-            tools:ignore="MenuTitle"
-            />
-        <item android:id="@+id/analyses"
-            android:icon="@drawable/ic_analytics"
-            android:title="الاحصائيات"
-            tools:ignore="MenuTitle"
-            />
-        <item android:id="@+id/logout"
-            android:title="خروج"
-            android:icon="@drawable/ic_exit"
+            android:title="إدارة التعليقات "
+            tools:ignore="MenuTitle" />
+        <item android:id="@+id/more"
+            android:title="الخيارات"
+            android:icon="@drawable/ic_menu"
             tools:ignore="MenuTitle"
             />
 

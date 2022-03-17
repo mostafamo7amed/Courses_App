@@ -34,15 +34,15 @@ public class CoursesFragment extends Fragment {
         recyclerView = getActivity().findViewById(R.id.RecyclerCourses);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         courses = new ArrayList<>();
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+
         coursesAdapter = new CoursesAdapter(getContext(),courses);
         coursesAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(coursesAdapter);
@@ -51,7 +51,7 @@ public class CoursesFragment extends Fragment {
         addCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_cont, new Add_CourseFragment()).addToBackStack(null).commitAllowingStateLoss();
+                getParentFragmentManager().beginTransaction().replace(getArguments().getInt("frame"), new Add_CourseFragment()).addToBackStack(null).commitAllowingStateLoss();
 
             }
         });

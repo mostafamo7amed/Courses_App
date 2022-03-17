@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.example.courses.Constants;
 import com.example.courses.R;
+import com.example.courses.UI.Fragments.Contacts.ContactProfileFragment;
 import com.example.courses.UI.Fragments.Contacts.CoursesFragment;
 import com.example.courses.UI.Fragments.Contacts.TrainerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -42,12 +43,18 @@ public class ContactsActivity extends AppCompatActivity {
                 break;
                 case R.id.courses_cont: {
                     selected = new CoursesFragment();
+                    select = 2;
+                }
+                break;
+                case R.id.profile_cont: {
+                    selected = new ContactProfileFragment();
                     select = 3;
                 }
                 break;
                 case R.id.exit_cont: {
                     startActivity(new Intent(ContactsActivity.this,LoginActivity.class));
-                    select = 2;
+                    finish();
+                    select = 4;
                 }
                 break;
             }

@@ -37,8 +37,10 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this,TraineeActivity.class));
         }else if(selectedID == R.id.radio_trainer_login) {
             startActivity(new Intent(LoginActivity.this,TrainerActivity.class));
-        }else if (selectedID == R.id.radio_admin_login){
+        }else if (selectedID == R.id.radio_employee_login){
             startActivity(new Intent(LoginActivity.this, EmployeeActivity.class));
+        }else {
+            startActivity(new Intent(LoginActivity.this, AdminActivity.class));
         }
     }
 }

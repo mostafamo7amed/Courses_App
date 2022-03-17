@@ -3,52 +3,90 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/apps/Courses/app/src/main/res/drawable-v24/button_shape.xml" value="0.1965" />
         <entry key="..\:/apps/Courses/app/src/main/res/drawable-v24/custom_btu.xml" value="0.147" />
         <entry key="..\:/apps/Courses/app/src/main/res/drawable-v24/custom_input.xml" value="0.147" />
+        <entry key="..\:/apps/Courses/app/src/main/res/drawable-v24/edittext_shape_profile.xml" value="0.216" />
+        <entry key="..\:/apps/Courses/app/src/main/res/drawable-v24/framecircle.xml" value="0.216" />
+        <entry key="..\:/apps/Courses/app/src/main/res/drawable-v24/frameshape.xml" value="0.216" />
         <entry key="..\:/apps/Courses/app/src/main/res/drawable-v24/ic_person.xml" value="0.147" />
+        <entry key="..\:/apps/Courses/app/src/main/res/drawable-v24/ic_person_white.xml" value="0.1965" />
         <entry key="..\:/apps/Courses/app/src/main/res/drawable/circle.xml" value="0.1365" />
         <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_add.xml" value="0.1" />
+        <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_add_person.xml" value="0.1715" />
         <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_analytics.xml" value="0.1" />
         <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_contact_page.xml" value="0.127" />
+        <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_data.xml" value="0.161" />
+        <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_delete.xml" value="0.132" />
+        <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_edit.xml" value="0.1945" />
+        <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_email.xml" value="0.216" />
         <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_exit.xml" value="0.1085" />
+        <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_exit_dark.xml" value="0.1715" />
         <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_location.xml" value="0.127" />
         <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_manage.xml" value="0.1085" />
+        <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_manage_dark.xml" value="0.1715" />
+        <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_menu.xml" value="0.1715" />
+        <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_menu_book.xml" value="0.132" />
         <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_phone.xml" value="0.127" />
         <entry key="..\:/apps/Courses/app/src/main/res/drawable/ic_widget.xml" value="0.1" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_admin.xml" value="0.15217391304347827" />
-        <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_contacts.xml" value="0.15307971014492755" />
-        <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_create_contact_account.xml" value="0.15307971014492755" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_contacts.xml" value="0.22" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_create_contact_account.xml" value="0.22" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_create_trainee_account.xml" value="0.22" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_employee.xml" value="0.16168478260869565" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_login.xml" value="0.209375" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_main.xml" value="0.209375" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_register.xml" value="0.1953125" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_splash.xml" value="0.209375" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_start.xml" value="0.15307971014492755" />
-        <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_trainer.xml" value="0.15307971014492755" />
-        <entry key="..\:/apps/Courses/app/src/main/res/layout/comment_item.xml" value="0.15307971014492755" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_trainee.xml" value="0.16576086956521738" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/activity_trainer.xml" value="0.22" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/comment_item.xml" value="0.22" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/comment_item_start.xml" value="0.15307971014492755" />
-        <entry key="..\:/apps/Courses/app/src/main/res/layout/courses_item.xml" value="0.15307971014492755" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/contacts_item.xml" value="0.16576086956521738" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/courses_item.xml" value="0.25" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/courses_item_start.xml" value="0.15307971014492755" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/courses_item_ٍstart.xml" value="0.15307971014492755" />
-        <entry key="..\:/apps/Courses/app/src/main/res/layout/courses_trainer_item.xml" value="0.15217391304347827" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/courses_trainee_item.xml" value="0.25" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/courses_trainee_unregister_item.xml" value="0.16576086956521738" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/courses_trainer_item.xml" value="0.22" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/employee_item.xml" value="0.14492753623188406" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/fields_item.xml" value="0.22" />
-        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_add__course.xml" value="0.15307971014492755" />
-        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_add__trainer.xml" value="0.18" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_add__contacts.xml" value="0.25" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_add__course.xml" value="0.25" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_add__trainer.xml" value="0.25" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_add_comment.xml" value="0.15217391304347827" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_add_comment_trainee.xml" value="0.16576086956521738" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_add_employee.xml" value="0.2" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_add_fields.xml" value="0.15307971014492755" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_add_trainee.xml" value="0.15217391304347827" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_analysis.xml" value="0.18" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_contact_admin.xml" value="0.209375" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_contact_page_admin.xml" value="0.209375" />
-        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_contact_page_trainer.xml" value="0.15217391304347827" />
-        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_courses.xml" value="0.15307971014492755" />
-        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_courses_trainer.xml" value="0.15217391304347827" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_contact_page_trainer.xml" value="0.22" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_contact_profile.xml" value="0.17753623188405798" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_contacts.xml" value="0.15217391304347827" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_courses.xml" value="0.22" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_courses_trainee.xml" value="0.16576086956521738" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_courses_trainer.xml" value="0.22" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_employee.xml" value="0.14492753623188406" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_fields.xml" value="0.15307971014492755" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_more.xml" value="0.25" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_my_courses_trainee.xml" value="0.16576086956521738" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_trainee.xml" value="0.15217391304347827" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_trainee_admin.xml" value="0.209375" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_trainee_profile.xml" value="0.15353260869565216" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_trainer.xml" value="0.22" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_trainer_admin.xml" value="0.209375" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_users_admin.xml" value="0.209375" />
-        <entry key="..\:/apps/Courses/app/src/main/res/layout/trainer_item.xml" value="0.1947463768115942" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/fragment_view_contact.xml" value="0.16576086956521738" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/trainee_item.xml" value="0.25" />
+        <entry key="..\:/apps/Courses/app/src/main/res/layout/trainer_item.xml" value="0.22" />
         <entry key="..\:/apps/Courses/app/src/main/res/layout/users_item.xml" value="0.15307971014492755" />
         <entry key="..\:/apps/Courses/app/src/main/res/menu/menu_bottom.xml" value="0.209375" />
         <entry key="..\:/apps/Courses/app/src/main/res/menu/menu_bottom_contact.xml" value="0.209375" />
+        <entry key="..\:/apps/Courses/app/src/main/res/menu/menu_bottom_employee.xml" value="0.209375" />
+        <entry key="..\:/apps/Courses/app/src/main/res/menu/menu_bottom_trainee.xml" value="0.209375" />
         <entry key="..\:/apps/Courses/app/src/main/res/menu/menu_bottom_trainer.xml" value="0.209375" />
         <entry key="..\:/apps/Courses/app/src/main/res/menu/menu_bottom_users.xml" value="0.209375" />
       </map>

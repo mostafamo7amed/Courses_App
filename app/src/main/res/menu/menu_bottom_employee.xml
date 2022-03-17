@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <item android:id="@+id/contacts_emp"
+            android:icon="@drawable/ic_manage"
+            android:title="إدارة الجهات"
+            tools:ignore="MenuTitle" />
+        <item android:id="@+id/courses_emp"
+            android:icon="@drawable/ic_menu_book"
+            android:title="إدارة الدورات "
+            tools:ignore="MenuTitle" />
+        <item android:id="@+id/comments_emp"
+            android:icon="@drawable/ic_comment"
+            android:title="إدارة التعليقات "
+            tools:ignore="MenuTitle" />
+        <item android:id="@+id/trainee_emp"
+            android:icon="@drawable/ic_person_white"
+            android:title="إدارة المتدربين "
+            tools:ignore="MenuTitle" />
+        <item android:id="@+id/logout_emp"
+            android:title="خروج"
+            android:icon="@drawable/ic_exit"
+            tools:ignore="MenuTitle"
+            />
+
+</menu>

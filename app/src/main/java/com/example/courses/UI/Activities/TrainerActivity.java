@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.example.courses.Constants;
 import com.example.courses.R;
+import com.example.courses.UI.Fragments.Trainee.MyCoursesTFragment;
 import com.example.courses.UI.Fragments.Trainer.ContactPageTrainerFragment;
 import com.example.courses.UI.Fragments.Trainer.CoursesTrainerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -49,6 +50,7 @@ public class TrainerActivity extends AppCompatActivity {
                 break;
                 case R.id.exit_trainer: {
                     startActivity(new Intent(TrainerActivity.this,LoginActivity.class));
+                    finish();
                     select = 3;
                 }
                 break;

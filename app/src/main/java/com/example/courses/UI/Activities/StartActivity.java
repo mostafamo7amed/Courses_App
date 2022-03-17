@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.courses.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class StartActivity extends AppCompatActivity {
     AppCompatButton login ,register;
@@ -18,7 +20,6 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
         login = findViewById(R.id.login_start);
         register = findViewById(R.id.register_start);
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

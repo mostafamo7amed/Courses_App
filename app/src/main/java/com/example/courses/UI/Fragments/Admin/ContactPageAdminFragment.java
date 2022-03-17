@@ -13,9 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.Adapters.ContactPageAdapter;
-import com.example.Adapters.UsersAdapter;
 import com.example.Models.Comments;
-import com.example.Models.Trainer;
 import com.example.courses.R;
 
 import java.util.ArrayList;

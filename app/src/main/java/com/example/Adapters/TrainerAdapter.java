@@ -36,6 +36,9 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(list.get(position).getName());
         holder.type.setText(list.get(position).getSpecialization());
+        holder.nationality.setText(list.get(position).getNationality());
+        holder.email.setText(list.get(position).getEmail());
+        holder.gender.setText(list.get(position).getGender());
 
     }
     @Override
@@ -44,13 +47,16 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name ,type ;
+        TextView name ,type ,nationality,gender,email;
         ImageView trainerBlock;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.trainer_name);
             type = itemView.findViewById(R.id.trainer_type);
+            nationality = itemView.findViewById(R.id.trainer_nationality);
+            gender = itemView.findViewById(R.id.trainer_gender);
+            email = itemView.findViewById(R.id.trainer_email);
             trainerBlock = itemView.findViewById(R.id.trainer_block);
 
         }

@@ -29,6 +29,23 @@
             android:background="@drawable/ic_person"
             android:layout_height="match_parent"
             />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/add_image"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="15dp"
+            android:background="@android:color/darker_gray"
+            app:cardCornerRadius="12.5dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/darker_gray"
+                android:src="@drawable/ic_add"
+                android:contentDescription="TODO" />
+        </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>
     <EditText
         android:id="@+id/cp_name"

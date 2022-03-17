@@ -3,13 +3,15 @@ package com.example.Models;
 public class Contacts {
     String Name;
     String Email;
+    String phone;
     String Region;
     String Commercial_register;
     int Contact_number;
 
-    public Contacts(String name, String email, String region, String commercial_register, int contact_number) {
+    public Contacts(String name, String email, String phone, String region, String commercial_register, int contact_number) {
         Name = name;
         Email = email;
+        this.phone = phone;
         Region = region;
         Commercial_register = commercial_register;
         Contact_number = contact_number;
@@ -29,6 +31,14 @@ public class Contacts {
 
     public void setEmail(String email) {
         Email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getRegion() {

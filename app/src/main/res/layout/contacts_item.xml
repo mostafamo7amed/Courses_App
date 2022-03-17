@@ -30,121 +30,158 @@
                 android:background="@drawable/ic_person"
                 android:scaleType="fitCenter" />
         </androidx.cardview.widget.CardView>
+
         <LinearLayout
-            android:layout_margin="5dp"
-            android:layout_toEndOf="@+id/cars1"
+            android:id="@+id/len"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/cars1"
             android:orientation="vertical">
+
             <LinearLayout
                 android:id="@+id/liner1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:orientation="horizontal">
+                app:layout_constraintTop_toTopOf="parent">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginStart="10dp"
-                    android:text="الاسم : "/>
+                    android:layout_marginTop="5dp"
+                    android:text="الاسم : "
+                    android:textSize="16sp" />
+
                 <TextView
                     android:id="@+id/contact_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp"
-                    android:textColor="@color/dark_text"
                     android:layout_marginLeft="8dp"
-                    />
+                    android:layout_marginTop="5dp"
+                    android:text="Name"
+                    android:textColor="@color/dark_text"
+                    android:textSize="16sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/lien2"
-                app:layout_constraintTop_toBottomOf="@id/liner1"
-                android:layout_marginTop="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                android:orientation="horizontal">
+                app:layout_constraintTop_toBottomOf="@id/liner1">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginStart="10dp"
-                    android:text="البريد الالكتروني : "/>
+                    android:layout_marginTop="5dp"
+                    android:text="البريد الالكتروني : "
+                    android:textSize="16sp" />
+
                 <TextView
                     android:id="@+id/email_contact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="type"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp"
-                    android:textColor="@color/dark_text"
                     android:layout_marginLeft="8dp"
-                    />
+                    android:layout_marginTop="5dp"
+                    android:text="type"
+                    android:textColor="@color/dark_text"
+                    android:textSize="16sp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/liine3"
-                app:layout_constraintTop_toBottomOf="@id/lien2"
-                android:layout_marginTop="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                android:orientation="horizontal">
+                app:layout_constraintTop_toBottomOf="@id/lien2">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginStart="10dp"
-                    android:text="المنطقة : "/>
+                    android:layout_marginTop="5dp"
+                    android:text="المنطقة : "
+                    android:textSize="16sp" />
+
                 <TextView
                     android:id="@+id/region_contact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="type"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp"
-                    android:textColor="@color/dark_text"
                     android:layout_marginLeft="8dp"
-                    />
+                    android:layout_marginTop="5dp"
+                    android:text="type"
+                    android:textColor="@color/dark_text"
+                    android:textSize="16sp" />
 
             </LinearLayout>
+
             <LinearLayout
-                app:layout_constraintTop_toBottomOf="@id/liine3"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                android:orientation="horizontal">
+                app:layout_constraintTop_toBottomOf="@id/liine3">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginStart="10dp"
-                    android:text="السجل التجاري : "/>
+                    android:layout_marginTop="5dp"
+                    android:text="السجل التجاري : "
+                    android:textSize="16sp" />
+
                 <TextView
                     android:id="@+id/commercial_contact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="type"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp"
-                    android:textColor="@color/dark_text"
                     android:layout_marginLeft="8dp"
-                    />
+                    android:layout_marginTop="5dp"
+                    android:text="type"
+                    android:textColor="@color/dark_text"
+                    android:textSize="16sp" />
 
             </LinearLayout>
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/delete_contact"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/len"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@+id/edit_contact"
+            android:src="@drawable/ic_delete" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/edit_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/len"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="10sp"
+            android:layout_toEndOf="@+id/cars1"
+            android:background="@drawable/custom_btu"
+            android:text="تعديل"
+            android:textColor="@color/white"
+
+            />
 
 
     </RelativeLayout>

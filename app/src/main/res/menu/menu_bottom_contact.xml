@@ -13,6 +13,11 @@
             android:icon="@drawable/ic_book"
             tools:ignore="MenuTitle"
             />
+        <item android:id="@+id/profile_cont"
+            android:title=" الملف الشخصي"
+            android:icon="@drawable/ic_person_white"
+            tools:ignore="MenuTitle"
+            />
         <item android:id="@+id/exit_cont"
             android:title="خروج"
             android:icon="@drawable/ic_exit"

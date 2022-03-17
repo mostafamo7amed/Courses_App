@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
             Intent intent= new Intent(RegisterActivity.this, CreateContactAccountActivity.class);
             startActivity(intent);
         }else if(selectedID == R.id.trainee_radio) {
-            startActivity(new Intent(RegisterActivity.this,TraineeActivity.class));
+            startActivity(new Intent(RegisterActivity.this,CreateTraineeAccountActivity.class));
         }
     }
 }

@@ -29,15 +29,15 @@ public class CoursesTrainerFragment extends Fragment {
         recyclerView = getActivity().findViewById(R.id.RecyclerTrainerCourses);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         courses = new ArrayList<>();
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
-        courses.add(new Course("علوم الحاسب","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
+
         coursesTrainerAdapter = new CoursesTrainerAdapter(getContext(),courses);
         coursesTrainerAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(coursesTrainerAdapter);

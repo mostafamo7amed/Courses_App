@@ -53,7 +53,6 @@ public class CoursesTrainerAdapter extends RecyclerView.Adapter<CoursesTrainerAd
             name = itemView.findViewById(R.id.field_course_trainer);
             trainer = itemView.findViewById(R.id.trainer_course_trainer);
             description = itemView.findViewById(R.id.desciption_course_trainer);
-            edit = itemView.findViewById(R.id.edit_course);
         }
     }
 }

@@ -12,8 +12,8 @@ import android.view.MenuItem;
 import com.example.courses.Constants;
 import com.example.courses.R;
 import com.example.courses.UI.Fragments.Trainee.CoursesTraineeFragment;
-import com.example.courses.UI.Fragments.Trainee.MyCoursesTraineeFragment;
-import com.example.courses.UI.Fragments.Trainee.ViewContactFragment;
+import com.example.courses.UI.Fragments.Trainee.MyCoursesTFragment;
+import com.example.courses.UI.Fragments.Trainee.TraineeProfileFragment;
 import com.example.courses.UI.Fragments.Trainer.ContactPageTrainerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -42,7 +42,7 @@ public class TraineeActivity extends AppCompatActivity {
                 }
                 break;
                 case R.id.myCourses_trainee: {
-                    selected = new MyCoursesTraineeFragment();
+                    selected = new MyCoursesTFragment();
                     select = 2;
                 }
                 break;
@@ -54,13 +54,14 @@ public class TraineeActivity extends AppCompatActivity {
                     select = 3;
                 }
                 break;
-                case R.id.contact_trainee: {
-                    selected = new ViewContactFragment();
+                case R.id.profile_trainee: {
+                    selected = new TraineeProfileFragment();
                     select = 4;
                 }
                 break;
                 case R.id.exit_trainee: {
                     startActivity(new Intent(TraineeActivity.this,LoginActivity.class));
+                    finish();
                     select = 5;
                 }
                 break;

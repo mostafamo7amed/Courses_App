@@ -4,7 +4,6 @@ public class Trainer {
     String Name;
     String Gender;
     String Email;
-    String Password;
     String Specialization;
     String Nationality;
     int contact_number;

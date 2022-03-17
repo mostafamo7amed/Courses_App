@@ -18,9 +18,9 @@
             android:icon="@drawable/ic_comment"
             tools:ignore="MenuTitle"
             />
-        <item android:id="@+id/contact_trainee"
-            android:title="الجهات"
-            android:icon="@drawable/ic_manage"
+        <item android:id="@+id/profile_trainee"
+            android:title="الملف الشخصي "
+            android:icon="@drawable/ic_person"
             tools:ignore="MenuTitle"
             />
         <item android:id="@+id/exit_trainee"

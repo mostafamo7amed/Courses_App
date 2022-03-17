@@ -39,6 +39,7 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
         holder.name.setText(list.get(position).getName());
         holder.email.setText(list.get(position).getEmail());
         holder.message.setText(list.get(position).getComment());
+        holder.time_date_comment.setText(new StringBuilder().append(list.get(position).getDate()).append(" ").append(list.get(position).getTime()).toString());
 
     }
     @Override
@@ -47,7 +48,7 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name ,email,message ;
+        TextView name ,email,message ,time_date_comment;
         Button delete;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,6 +57,7 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
             email = itemView.findViewById(R.id.comment_email);
             message = itemView.findViewById(R.id.comment_comment);
             delete = itemView.findViewById(R.id.comment_delete);
+            time_date_comment = itemView.findViewById(R.id.time_date_comment);
 
         }
     }

@@ -1,4 +1,4 @@
-package com.example.courses.UI.Fragments.Admin;
+package com.example.courses.UI.Fragments.Trainee;
 
 import android.os.Bundle;
 
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.courses.R;
 
-public class fieldsFragment extends Fragment {
+public class TraineeProfileFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -23,6 +23,6 @@ public class fieldsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fields, container, false);
+        return inflater.inflate(R.layout.fragment_trainee_profile, container, false);
     }
 }

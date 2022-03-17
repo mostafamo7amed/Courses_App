@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.Fragments.Admin.AddEmployeeFragment">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:cardBackgroundColor="@color/dark"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="إضافة موظف "
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/card1"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:text="أسم الموظف "
+                android:textColor="@color/dark_text" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/custom_input"
+                android:gravity="top"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/dark_text"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:text="رقم الموظف "
+                android:textColor="@color/dark_text" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/custom_input"
+                android:gravity="top"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/dark_text"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:text="المنصب الوظيفي "
+                android:textColor="@color/dark_text" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/custom_input"
+                android:gravity="top"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/dark_text"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:text="العمر "
+                android:textColor="@color/dark_text" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/custom_input"
+                android:gravity="top"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/dark_text"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:text="البريد الالكتروني "
+                android:textColor="@color/dark_text" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/custom_input"
+                android:gravity="top"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/dark_text"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="كلمة المرور"
+                android:textColor="@color/dark_text" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/custom_input"
+                android:gravity="top"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColor="@color/dark_text"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_btu"
+                android:text="اضافة "
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>

@@ -12,10 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.Adapters.ContactPageStartAdapter;
+import com.example.Adapters.ContactPageAdapter;
 import com.example.Models.Comments;
 import com.example.courses.R;
-import com.example.courses.UI.Fragments.Contacts.Add_CourseFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import java.util.ArrayList;
 public class ContactPageTrainerFragment extends Fragment {
 
     FloatingActionButton addComment;
-    ContactPageStartAdapter contactPageStartAdapter;
+    ContactPageAdapter contactPageStartAdapter;
     RecyclerView recyclerView;
     ArrayList<Comments> comments;
 
@@ -41,7 +40,7 @@ public class ContactPageTrainerFragment extends Fragment {
         comments.add(new Comments("alimahmoud@gmail.com","علي محمود","هل في شهادة في نهاية الدورة؟",3,4));
         comments.add(new Comments("alimahmoud@gmail.com","علي محمود","هل في شهادة في نهاية الدورة؟",3,4));
         comments.add(new Comments("alimahmoud@gmail.com","علي محمود","هل في شهادة في نهاية الدورة؟",3,4));
-        contactPageStartAdapter = new ContactPageStartAdapter(getContext(),comments);
+        contactPageStartAdapter = new ContactPageAdapter(getContext(),comments);
         contactPageStartAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(contactPageStartAdapter);
 

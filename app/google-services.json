@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "848955563508",
+    "firebase_url": "https://sana-project-ea080-default-rtdb.firebaseio.com",
+    "project_id": "sana-project-ea080",
+    "storage_bucket": "sana-project-ea080.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848955563508:android:a05db4201934c45e5feda1",
+        "android_client_info": {
+          "package_name": "com.example.courses"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848955563508-mu9o8f8l3f5sltn7ccrfugrgkqrop4uc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.courses",
+            "certificate_hash": "039ef06f56e293ea37ce067482f64951881fc267"
+          }
+        },
+        {
+          "client_id": "848955563508-u64hrlovfmlccf02op67nlre79ef25ma.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQN6IVprWPMoVDhZue5kbdZVa9Xp81VtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848955563508-u64hrlovfmlccf02op67nlre79ef25ma.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -39,7 +39,48 @@
                 android:textColor="@color/dark_text"
                 android:gravity="center"
                 android:layout_marginHorizontal="10dp"
-                android:text="عنوان المجال "/>
+                android:text="مجال الدورة "/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textSize="16sp"
+                android:textColorHint="@android:color/darker_gray"
+                android:textColor="@color/dark_text"
+                android:padding="5dp"
+                android:inputType="text"
+                android:background="@drawable/custom_input"
+                android:layout_marginHorizontal="10dp">
+            </EditText>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="@color/dark_text"
+                android:gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:text="المادة العلمية للدورة "/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textSize="16sp"
+                android:textColorHint="@android:color/darker_gray"
+                android:textColor="@color/dark_text"
+                android:padding="5dp"
+                android:inputType="text"
+                android:background="@drawable/custom_input"
+                android:layout_marginHorizontal="10dp">
+            </EditText>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="@color/dark_text"
+                android:gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:text="رقم الدورة "/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
