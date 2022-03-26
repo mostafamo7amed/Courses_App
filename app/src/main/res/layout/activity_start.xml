@@ -1,34 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/bacc"
     tools:context=".UI.Activities.StartActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/dark"
-            android:textSize="40sp"
-            android:layout_marginTop="15dp"
-            android:textAlignment="center"
-            android:text="مرحبا سفراء العلم "/>
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            app:lottie_rawRes="@raw/animation"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:src="@drawable/icon"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
+            android:gravity="center_horizontal|center_vertical"
             android:layout_height="wrap_content">
-
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/login_start"
                 android:layout_width="wrap_content"
@@ -63,4 +54,4 @@
         </RelativeLayout>
     </LinearLayout>
 
-</ScrollView>
+</RelativeLayout>

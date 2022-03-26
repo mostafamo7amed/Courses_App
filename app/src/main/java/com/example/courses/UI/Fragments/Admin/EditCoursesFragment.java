@@ -1,4 +1,4 @@
-package com.example.courses.UI.Fragments.Contacts;
+package com.example.courses.UI.Fragments.Admin;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -24,19 +24,18 @@ import android.widget.Toast;
 
 import com.example.Models.Course;
 import com.example.courses.R;
-import com.example.courses.UI.Activities.CreateTraineeAccountActivity;
-import com.example.courses.UI.Fragments.Trainer.ContactPageFragment;
+import com.example.courses.UI.Fragments.Contacts.CoursesFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentSnapshot;
 
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.Calendar;
 
-public class Add_CourseFragment extends Fragment {
-
+public class EditCoursesFragment extends Fragment {
     EditText field , description , address,material,trainer,number,contact;
     AppCompatButton addCourse;
     TextView date;
@@ -45,50 +44,55 @@ public class Add_CourseFragment extends Fragment {
     FirebaseDatabase database =FirebaseDatabase.getInstance();
     DatabaseReference databaseReference;
     Course course;
+    String child;
     int Hour ,Minute;
     DatePickerDialog.OnDateSetListener mListener;
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         initialization();
+
+        getDate();
+
         addCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadCourse();
+                editCourse();
             }
         });
-
+        getDateFromUser();
         getTimeFromUser();
-        getDateUser();
+
+
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_add__course, container, false);
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_edit_coures, container, false);
     }
-
     public void initialization(){
-        field = getActivity().findViewById(R.id.add_field_course);
-        description = getActivity().findViewById(R.id.add_description_course);
-        date = getActivity().findViewById(R.id.add_date_course);
-        time = getActivity().findViewById(R.id.add_time_course);
-        address = getActivity().findViewById(R.id.add_address_course);
-        material = getActivity().findViewById(R.id.add_material_course);
-        trainer = getActivity().findViewById(R.id.add_trainer_course);
-        number = getActivity().findViewById(R.id.add_number_course);
-        contact = getActivity().findViewById(R.id.add_contact_course);
-        addCourse = getActivity().findViewById(R.id.add_save_course);
-        loading = getActivity().findViewById(R.id.add_progress_course);
+        field = getActivity().findViewById(R.id.edit_field_course);
+        description = getActivity().findViewById(R.id.edit_description_course);
+        date = getActivity().findViewById(R.id.edit_date_course);
+        time = getActivity().findViewById(R.id.edit_time_course);
+        address = getActivity().findViewById(R.id.edit_address_course);
+        material = getActivity().findViewById(R.id.edit_material_course);
+        trainer = getActivity().findViewById(R.id.edit_trainer_course);
+        number = getActivity().findViewById(R.id.edit_number_course);
+        contact = getActivity().findViewById(R.id.edit_contact_course);
+        addCourse = getActivity().findViewById(R.id.edit_save_course);
+        loading = getActivity().findViewById(R.id.edit_progress_course);
 
         course = new Course();
-
+        child= getArguments().get("key").toString();
+        databaseReference=database.getReference("All Courses");
     }
-
-    public void uploadCourse(){
+    public void editCourse(){
         String c_field  = field.getText().toString();
         String c_description = description.getText().toString();
         String c_date = date.getText().toString();
@@ -98,10 +102,6 @@ public class Add_CourseFragment extends Fragment {
         String c_trainer = trainer.getText().toString();
         String c_number = number.getText().toString();
         String c_contact = contact.getText().toString();
-
-
-        databaseReference=database.getReference("All Courses");
-        String child=databaseReference.push().getKey();
 
 
         if (!TextUtils.isEmpty(c_field) && !TextUtils.isEmpty(c_description)&& !TextUtils.isEmpty(c_date) && !TextUtils.isEmpty(c_time) && !TextUtils.isEmpty(c_address) && !TextUtils.isEmpty(c_material) && !TextUtils.isEmpty(c_number) && !TextUtils.isEmpty(c_trainer) && !TextUtils.isEmpty(c_contact)) {
@@ -122,7 +122,7 @@ public class Add_CourseFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     loading.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getContext(), "تم إضافة الدورة", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "تم تعديل الدورة", Toast.LENGTH_SHORT).show();
                     field.setText("");
                     description.setText("");
                     address.setText("");
@@ -163,31 +163,8 @@ public class Add_CourseFragment extends Fragment {
 
 
     }
-    public void getTimeFromUser(){
 
-        time.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
-
-                        Hour= i;
-                        Minute = i1;
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.set(0,0,0,Hour,Minute);
-                        String timee = showTime(Hour,Minute);
-                        time.setText(timee);
-                    }
-                },12,0,false);
-
-                timePickerDialog.updateTime(Hour,Minute);
-                timePickerDialog.show();
-            }
-        });
-    }
-
-    public void getDateUser(){
+    public void getDateFromUser(){
         Calendar calendar = Calendar.getInstance();
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
         final int month = calendar.get(Calendar.MONTH);
@@ -212,4 +189,59 @@ public class Add_CourseFragment extends Fragment {
             }
         };
     }
+    public void getTimeFromUser(){
+
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+
+                        Hour= i;
+                        Minute = i1;
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(0,0,0,Hour,Minute);
+                        String timee = showTime(Hour,Minute);
+                        time.setText(timee);
+                    }
+                },12,0,false);
+
+                timePickerDialog.updateTime(Hour,Minute);
+                timePickerDialog.show();
+            }
+        });
+    }
+    public void getDate(){
+        databaseReference=database.getReference("All Courses");
+        databaseReference.child(child).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.getResult().exists()){
+                    String c_field  = task.getResult().child("field").getValue().toString();
+                    String c_description = task.getResult().child("description").getValue().toString();
+                    String c_date = task.getResult().child("date").getValue().toString();
+                    String c_time =task.getResult().child("time").getValue().toString();
+                    String c_address = task.getResult().child("address").getValue().toString();
+                    String c_material = task.getResult().child("courseMaterial").getValue().toString();
+                    String c_trainer = task.getResult().child("trainer").getValue().toString();
+                    String c_number = task.getResult().child("courseNumber").getValue().toString();
+                    String c_contact = task.getResult().child("contactNumber").getValue().toString();
+
+
+                    field.setText(c_field);
+                    description.setText(c_description);
+                    date.setText(c_date);
+                    time.setText(c_time);
+                    trainer.setText(c_trainer);
+                    address.setText(c_address);
+                    material.setText(c_material);
+                    number.setText(c_number);
+                    contact.setText(c_contact);
+
+                }
+            }
+        });
+    }
+
 }

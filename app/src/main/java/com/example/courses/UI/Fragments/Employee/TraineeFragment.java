@@ -92,7 +92,7 @@ public class TraineeFragment extends Fragment {
                                 trainees.add(new Trainee(snapshot.child("name").getValue().toString(),
                                         snapshot.child("email").getValue().toString(),
                                         snapshot.child("educationLevel").getValue().toString(),
-                                        Integer.parseInt(snapshot.child("age").getValue().toString()),
+                                        snapshot.child("age").getValue().toString(),
                                         snapshot.child("uid").getValue().toString()
                                 ));
 

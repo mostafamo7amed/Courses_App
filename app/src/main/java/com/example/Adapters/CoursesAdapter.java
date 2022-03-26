@@ -29,8 +29,17 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
 
     private Context context;
     private List<Course> list;
-    DatabaseReference databaseReference;
 
+
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener{
+        void onItemEdit(String key);
+        void onItemDeleted(String key);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener=listener;
+    }
     public CoursesAdapter(Context context, List<Course> list) {
         this.context = context;
         this.list = list;
@@ -57,7 +66,13 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         holder.close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteCourse(key);
+                mListener.onItemDeleted(key);
+            }
+        });
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onItemEdit(key);
             }
         });
 
@@ -69,7 +84,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView name ,trainer ,description,material,address,time,date ;
-        AppCompatButton close;
+        AppCompatButton close, edit;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -81,32 +96,9 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
             address = itemView.findViewById(R.id.address_course);
             time = itemView.findViewById(R.id.time_course);
             date = itemView.findViewById(R.id.date_course);
+            edit =itemView.findViewById(R.id.edit_course);
         }
     }
 
-
-    public void deleteCourse(String key){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("سيتم حذف الدورة !");
-        builder.setTitle("تنبيه !");
-        builder.setCancelable(false);
-        builder.setPositiveButton("تأكيد", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                databaseReference = FirebaseDatabase.getInstance().getReference("All Courses");
-                databaseReference.child(key).removeValue();
-                Toast.makeText(context, "تم حذف الدورة", Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-
-    }
 
 }

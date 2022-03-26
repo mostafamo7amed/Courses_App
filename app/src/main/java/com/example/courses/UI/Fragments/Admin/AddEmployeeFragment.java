@@ -1,5 +1,8 @@
 package com.example.courses.UI.Fragments.Admin;
 
+import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,8 +14,10 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Models.Employee;
@@ -30,13 +35,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public class AddEmployeeFragment extends Fragment {
 
-    EditText email , pass , name , age ,position , number;
+    EditText email , pass , name , position , number;
+    TextView age;
     ProgressBar loading;
     AppCompatButton addBtn;
     FirebaseDatabase database =FirebaseDatabase.getInstance();
@@ -45,6 +52,8 @@ public class AddEmployeeFragment extends Fragment {
     DocumentReference documentReference;
     Employee employee;
     FirebaseAuth firebaseAuth;
+    DatePickerDialog.OnDateSetListener mListener;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -55,6 +64,30 @@ public class AddEmployeeFragment extends Fragment {
                 createProfile();
             }
         });
+
+        Calendar calendar = Calendar.getInstance();
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+        final int month = calendar.get(Calendar.MONTH);
+        final int year = calendar.get(Calendar.YEAR);
+        age.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                        android.R.style.Theme_Holo_Dialog_MinWidth,
+                        mListener,year,month,day);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.show();
+            }
+        });
+
+        mListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                i1 = i1+1;
+                String date = i2+"/"+i1+"/"+i;
+                age.setText(date);
+            }
+        };
     }
 
     @Override
@@ -119,7 +152,7 @@ public class AddEmployeeFragment extends Fragment {
         documentReference=db.collection("Employees").document(userId);
 
         employee.setEmail(u_email);
-        employee.setAge(Integer.parseInt(u_age));
+        employee.setAge(u_age);
         employee.setName(u_name);
         employee.setNumber(Integer.parseInt(u_number));
         employee.setPosition(u_position);

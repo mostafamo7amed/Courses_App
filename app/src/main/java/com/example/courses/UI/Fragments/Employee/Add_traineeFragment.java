@@ -121,7 +121,7 @@ public class Add_traineeFragment extends Fragment {
 
         databaseReference=database.getReference("Trainees");
         documentReference=db.collection("Trainees").document(userId);
-        trainee.setAge(Integer.parseInt(u_age));
+        trainee.setAge(u_age);
         trainee.setEmail(u_email);
         trainee.setName(u_name);
         trainee.setEducationLevel(u_level);

@@ -2,13 +2,14 @@ package com.example.Models;
 
 public class Employee {
     String email , name ,position,uid;
-    int age, number;
+    int number;
+    String age;
 
 
     public Employee() {
     }
 
-    public Employee(String email, String name, String position, String uid, int age, int number) {
+    public Employee(String email, String name, String position, String uid, String age, int number) {
         this.email = email;
         this.name = name;
         this.position = position;
@@ -49,11 +50,11 @@ public class Employee {
         this.position = position;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 

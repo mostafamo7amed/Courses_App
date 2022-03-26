@@ -120,7 +120,7 @@
                 android:textColor="@color/dark_text"
                 android:textSize="16sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/edit_age_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -129,7 +129,6 @@
                 android:background="@drawable/custom_input"
                 android:gravity="top"
                 android:hint="العمر"
-                android:inputType="number"
                 android:padding="7dp"
                 android:textColor="@color/dark_text"
                 android:textColorHint="@android:color/darker_gray"

@@ -90,7 +90,7 @@
                 android:textColor="@color/dark_text"
                 android:text="العمر"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/edit_age_trainee"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -99,7 +99,6 @@
                 android:background="@drawable/custom_input"
                 android:gravity="top"
                 android:hint="العمر "
-                android:inputType="numberDecimal"
                 android:padding="5dp"
                 android:textColor="@color/dark_text"
                 android:textColorHint="@android:color/darker_gray"

@@ -1,5 +1,7 @@
 package com.example.courses.UI.Fragments.Contacts;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,12 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.Adapters.ContactPageAdapter;
 import com.example.Adapters.CoursesAdapter;
 import com.example.Models.Comments;
 import com.example.Models.Course;
 import com.example.courses.R;
+import com.example.courses.UI.Fragments.Admin.EditContactsFragment;
+import com.example.courses.UI.Fragments.Admin.EditCoursesFragment;
 import com.example.courses.UI.Fragments.Contacts.Add_CourseFragment;
 import com.example.courses.UI.Fragments.Trainer.ContactPageFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,8 +46,22 @@ public class CoursesFragment extends Fragment {
 
 
         initialization();
+        coursesAdapter = new CoursesAdapter(getContext(),courses);
+        databaseReference = FirebaseDatabase.getInstance().getReference("All Courses");
 
         getAllCourses();
+
+        coursesAdapter.setOnItemClickListener(new CoursesAdapter.OnItemClickListener() {
+            @Override
+            public void onItemEdit(String key) {
+                editCourses(key);
+            }
+
+            @Override
+            public void onItemDeleted(String key) {
+                deleteCourse(key);
+            }
+        });
 
 
         addCourse.setOnClickListener(new View.OnClickListener() {
@@ -72,8 +91,7 @@ public class CoursesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         courses = new ArrayList<>();
 
-        coursesAdapter = new CoursesAdapter(getContext(),courses);
-        databaseReference = FirebaseDatabase.getInstance().getReference("All Courses");
+
 
     }
 
@@ -124,4 +142,37 @@ public class CoursesFragment extends Fragment {
         });
     }
 
+    public void deleteCourse(String key){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("سيتم حذف الدورة !");
+        builder.setTitle("تنبيه !");
+        builder.setCancelable(false);
+        builder.setPositiveButton("تأكيد", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                databaseReference = FirebaseDatabase.getInstance().getReference("All Courses");
+                databaseReference.child(key).removeValue();
+                Toast.makeText(getContext(), "تم حذف الدورة", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
+
+    public void editCourses(String key){
+        Fragment fragment;
+        Bundle bundle = new Bundle();
+        bundle.putString("key",key);
+        bundle.putInt("frame",getArguments().getInt("frame"));
+        fragment = new EditCoursesFragment();
+        fragment.setArguments(bundle);
+        getParentFragmentManager().beginTransaction().replace(getArguments().getInt("frame"), fragment).addToBackStack(null).commitAllowingStateLoss();
+    }
 }

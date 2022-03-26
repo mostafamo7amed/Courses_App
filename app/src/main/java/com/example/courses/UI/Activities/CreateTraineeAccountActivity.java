@@ -4,12 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Models.Trainee;
@@ -25,12 +30,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CreateTraineeAccountActivity extends AppCompatActivity {
 
-    EditText name , level , age;
+    EditText name , level ;
+    TextView age;
     ProgressBar loading;
     AppCompatButton create_account;
     FirebaseDatabase database =FirebaseDatabase.getInstance();
@@ -39,6 +46,7 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
     DocumentReference documentReference;
     Trainee trainee;
     String currentUserId;
+    DatePickerDialog.OnDateSetListener mListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +60,32 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
                 createProfile();
             }
         });
+
+
+
+        Calendar calendar = Calendar.getInstance();
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+        final int month = calendar.get(Calendar.MONTH);
+        final int year = calendar.get(Calendar.YEAR);
+        age.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(CreateTraineeAccountActivity.this,
+                        android.R.style.Theme_Holo_Dialog_MinWidth,
+                        mListener,year,month,day);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.show();
+            }
+        });
+
+        mListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                i1 = i1+1;
+                String date = i2+"/"+i1+"/"+i;
+                age.setText(date);
+            }
+        };
     }
 
     public void initialization(){
@@ -69,6 +103,7 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
         documentReference=db.collection("Trainees").document(currentUserId);
         trainee = new Trainee();
 
+
     }
 
     public void createProfile(){
@@ -79,7 +114,7 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
 
         if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_level) && !TextUtils.isEmpty(u_age) && !TextUtils.isEmpty(u_email)) {
             loading.setVisibility(View.VISIBLE);
-            trainee.setAge(Integer.parseInt(u_age));
+            trainee.setAge(u_age);
             trainee.setEmail(u_email);
             trainee.setName(u_name);
             trainee.setEducationLevel(u_level);

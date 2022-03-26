@@ -4,13 +4,13 @@ public class Trainee {
     String UID;
     String Name;
     String Email, educationLevel;
-    int age;
+    String age;
 
     public Trainee() {
 
     }
 
-    public Trainee(String name, String email, String educationLevel, int age, String UID) {
+    public Trainee(String name, String email, String educationLevel, String age, String UID) {
         this.Name = name;
         this.Email = email;
         this.educationLevel = educationLevel;
@@ -50,11 +50,11 @@ public class Trainee {
         this.educationLevel = educationLevel;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 }

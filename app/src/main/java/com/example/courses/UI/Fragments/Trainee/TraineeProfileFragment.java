@@ -139,7 +139,7 @@ public class TraineeProfileFragment extends Fragment {
 
         if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_level) && !TextUtils.isEmpty(u_age) && !TextUtils.isEmpty(u_email)) {
             loading.setVisibility(View.VISIBLE);
-            trainee.setAge(Integer.parseInt(u_age));
+            trainee.setAge(u_age);
             trainee.setEmail(u_email);
             trainee.setName(u_name);
             trainee.setEducationLevel(u_level);
