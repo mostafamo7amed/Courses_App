@@ -20,7 +20,7 @@
             android:textColor="@color/white"
             android:layout_margin="10dp"/>
         <ImageButton
-            android:id="@+id/edit_profile_contact"
+            android:id="@+id/pt_edit"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_edit"
@@ -37,7 +37,7 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <FrameLayout
                 android:layout_width="40dp"
@@ -51,15 +51,17 @@
                     android:src="@drawable/ic_person"/>
             </FrameLayout>
             <EditText
+                android:id="@+id/pt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="الاسم "
                 android:textColor="@color/white"
                 android:maxLines="1"
                 android:enabled="false"
+                android:ellipsize="end"
                 android:background="@drawable/edittext_shape_profile"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:textSize="16sp"
                 />
 
@@ -74,7 +76,7 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <FrameLayout
                 android:layout_width="40dp"
@@ -88,13 +90,15 @@
                     android:src="@drawable/ic_email"/>
             </FrameLayout>
             <EditText
+                android:id="@+id/pt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="mousdddddtafa03@gmail.com"
                 android:textSize="15sp"
                 android:maxLines="1"
+                android:ellipsize="end"
                 android:background="@drawable/edittext_shape_profile"
-                android:layout_marginStart="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:enabled="false"
@@ -111,7 +115,7 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <FrameLayout
                 android:layout_width="40dp"
@@ -125,16 +129,17 @@
                     android:src="@drawable/ic_data"/>
             </FrameLayout>
             <EditText
-                android:id="@+id/pr_license"
+                android:id="@+id/pt_level"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="المنطقة "
+                android:text="المستوي التعليمي  "
                 android:textColor="@color/white"
                 android:maxLines="1"
+                android:ellipsize="end"
                 android:enabled="false"
                 android:background="@drawable/edittext_shape_profile"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:textSize="16sp"
                 />
 
@@ -148,7 +153,7 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <FrameLayout
                 android:layout_width="40dp"
@@ -162,22 +167,42 @@
                     android:src="@drawable/ic_age"/>
             </FrameLayout>
             <EditText
-                android:id="@+id/pr_date"
+                android:id="@+id/pt_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="العمر "
                 android:textColor="@color/white"
                 android:maxLines="1"
+                android:ellipsize="end"
                 android:enabled="false"
                 android:background="@drawable/edittext_shape_profile"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:textSize="16sp"
                 />
 
         </LinearLayout>
     </FrameLayout>
 
-
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/pt_edit_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:visibility="invisible"
+        android:background="@drawable/custom_btu"
+        android:text="حفظ"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+    <ProgressBar
+        android:id="@+id/pt_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/dark"
+        android:layout_marginHorizontal="10dp"
+        android:visibility="invisible"/>
 
 </LinearLayout>

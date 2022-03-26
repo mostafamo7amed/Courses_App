@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,112 +7,151 @@
     android:gravity="center"
     tools:context=".UI.Activities.CreateContactAccountActivity"
     android:orientation="vertical">
-    <TextView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="إنشاء حساب"
-        android:textSize="25sp"
-        android:layout_margin="10dp"
-        android:textColor="@color/dark_text"
-        android:textAlignment="center"/>
-    <androidx.cardview.widget.CardView
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_margin="10dp"
-        app:cardPreventCornerOverlap="false"
-        app:cardCornerRadius="75dp"
-        >
-        <ImageView
-            android:id="@+id/cp_picture"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:scaleType="fitCenter"
-            android:background="@drawable/ic_person"
-            android:layout_height="match_parent"
-            />
-        <androidx.cardview.widget.CardView
-            android:id="@+id/add_image"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="15dp"
-            android:background="@android:color/darker_gray"
-            app:cardCornerRadius="12.5dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@android:color/darker_gray"
-                android:src="@drawable/ic_add"
-                android:contentDescription="TODO" />
-        </androidx.cardview.widget.CardView>
-    </androidx.cardview.widget.CardView>
-    <EditText
-        android:id="@+id/cp_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="الاسم "
-        android:textColor="@color/black"
-        android:drawableStart="@drawable/ic_person"
-        android:drawablePadding="10dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        />
-    <EditText
-        android:id="@+id/cp_phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="الهاتف "
-        android:textColor="@color/black"
-        android:drawableStart="@drawable/ic_phone"
-        android:drawablePadding="10dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        />
-    <EditText
-        android:id="@+id/cp_region"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="المنطقة"
-        android:textColor="@color/black"
-        android:drawableStart="@drawable/ic_location"
-        android:drawablePadding="10dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        />
-    <EditText
-        android:id="@+id/cp_commerce"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="السجل التجاري"
-        android:drawableStart="@drawable/ic_contact_page"
-        android:drawablePadding="10dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        />
-    <Button
-        android:id="@+id/cp_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/dark_text"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:layout_margin="10dp"
-        android:background="@drawable/custom_btu"
-        android:text="حفظ"/>
+                android:text="إنشاء حساب"
+                android:textSize="25sp"
+                android:layout_margin="10dp"
+                android:textColor="@color/dark_text"
+                android:textAlignment="center"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_margin="10dp"
+                android:layout_gravity="center_horizontal"
+                app:cardPreventCornerOverlap="false"
+                app:cardCornerRadius="55dp"
+                >
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/cc_picture"
+                    android:layout_width="110dp"
+                    android:src="@drawable/ic_person"
+                    app:civ_border_color="@color/dark"
+                    app:civ_border_width="2dp"
+                    android:layout_height="110dp"
+                    />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/add_image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="15dp"
+                    android:background="@android:color/darker_gray"
+                    app:cardCornerRadius="12.5dp">
 
-    <ProgressBar
-        android:id="@+id/cp_progress"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:visibility="invisible" />
-</LinearLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@android:color/darker_gray"
+                        android:src="@drawable/ic_add"
+                        android:contentDescription="TODO" />
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+            <EditText
+                android:id="@+id/cc_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="الاسم "
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                />
+            <EditText
+                android:id="@+id/cc_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="رقم الجهة "
+                android:maxLines="1"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_numbers"
+                android:drawablePadding="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                />
+            <EditText
+                android:id="@+id/cc_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="الهاتف "
+                android:maxLines="1"
+                android:inputType="number|phone"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_phone"
+                android:drawablePadding="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                />
+            <EditText
+                android:id="@+id/cc_region"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="المنطقة"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_location"
+                android:drawablePadding="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                />
+            <EditText
+                android:id="@+id/cc_commerce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="السجل التجاري"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_contact_page"
+                android:drawablePadding="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cc_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:layout_margin="10dp"
+                android:background="@drawable/custom_btu"
+                android:text="حفظ"/>
+
+            <ProgressBar
+                android:id="@+id/cc_progress"
+                android:layout_width="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/dark"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -13,12 +13,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.Adapters.EmployeeAdapter;
+import com.example.Adapters.TraineeAdapter;
 import com.example.Adapters.TrainerAdapter;
 import com.example.Models.Employee;
+import com.example.Models.Trainee;
 import com.example.Models.Trainer;
 import com.example.courses.R;
 import com.example.courses.UI.Fragments.Contacts.Add_TrainerFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -36,17 +43,17 @@ public class EmployeeFragment extends Fragment {
         recyclerView = getActivity().findViewById(R.id.RecyclerEmployee);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         employees = new ArrayList<>();
-        employees.add(new Employee("ali@gamil.com","علي محمد" ,"موظف عام",23,2));
-        employees.add(new Employee("ali@gamil.com","علي محمد" ,"موظف عام",23,2));
-        employees.add(new Employee("ali@gamil.com","علي محمد" ,"موظف عام",23,2));
-        employees.add(new Employee("ali@gamil.com","علي محمد" ,"موظف عام",23,2));
-        employees.add(new Employee("ali@gamil.com","علي محمد" ,"موظف عام",23,2));
-        employees.add(new Employee("ali@gamil.com","علي محمد" ,"موظف عام",23,2));
 
 
         employeeAdapter = new EmployeeAdapter(getContext(),employees);
-        employeeAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(employeeAdapter);
+        getEmployees();
+
+        employeeAdapter.setOnItemClickListener(new EmployeeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemEdit(String position) {
+                editEmployee(position);
+            }
+        });
 
         addEmployee = getActivity().findViewById(R.id.add_Employee);
         addEmployee.setOnClickListener(new View.OnClickListener() {
@@ -64,4 +71,58 @@ public class EmployeeFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_employee, container, false);
     }
+
+    public void getEmployees(){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Employees");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                employees.clear();
+                for (DataSnapshot snapshot1 :snapshot.getChildren()){
+                    databaseReference.child(snapshot1.getKey().toString()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            if (snapshot.exists()) {
+                                employees.add(new Employee(snapshot.child("email").getValue().toString(),
+                                        snapshot.child("name").getValue().toString(),
+                                        snapshot.child("position").getValue().toString(),
+                                        snapshot.child("uid").getValue().toString(),
+                                        Integer.parseInt(snapshot.child("age").getValue().toString()),
+                                        Integer.parseInt(snapshot.child("number").getValue().toString())
+
+                                ));
+
+                            }
+                            employeeAdapter.notifyDataSetChanged();
+                            recyclerView.setAdapter(employeeAdapter);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void editEmployee(String uid){
+        Fragment fragment;
+        Bundle bundle = new Bundle();
+        bundle.putString("uid",uid);
+        fragment = new EditEmployeeFragment();
+        fragment.setArguments(bundle);
+        getParentFragmentManager().beginTransaction().replace(R.id.frame_layout, fragment).addToBackStack(null).commitAllowingStateLoss();
+    }
+
+
 }

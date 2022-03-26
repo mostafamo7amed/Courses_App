@@ -5,17 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.courses.UI.Fragments.Admin.AnalysisFragment;
 import com.example.courses.Constants;
 import com.example.courses.R;
 import com.example.courses.UI.Fragments.Admin.EmployeeFragment;
 import com.example.courses.UI.Fragments.Admin.MoreFragment;
 import com.example.courses.UI.Fragments.Contacts.CoursesFragment;
-import com.example.courses.UI.Fragments.Trainer.ContactPageTrainerFragment;
+import com.example.courses.UI.Fragments.Trainer.ContactPageFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AdminActivity extends AppCompatActivity {
@@ -56,7 +54,7 @@ public class AdminActivity extends AppCompatActivity {
                 case R.id.comments_adm:
                     Bundle bundle = new Bundle();
                     bundle.putInt("frame",R.id.frame_layout);
-                    selected = new ContactPageTrainerFragment();
+                    selected = new ContactPageFragment();
                     selected.setArguments(bundle);
                     select = 3;
                 break;

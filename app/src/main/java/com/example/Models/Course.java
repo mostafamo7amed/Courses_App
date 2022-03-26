@@ -8,6 +8,23 @@ public class Course {
     int contactNumber ,courseNumber;
     String date;
     String time;
+    String key;
+
+    public Course() {
+    }
+
+    public Course(String field, String courseMaterial, String description, String trainer, String address, int contactNumber, int courseNumber, String date, String time, String key) {
+        this.field = field;
+        this.courseMaterial = courseMaterial;
+        this.description = description;
+        this.trainer = trainer;
+        this.address = address;
+        this.contactNumber = contactNumber;
+        this.courseNumber = courseNumber;
+        this.date = date;
+        this.time = time;
+        this.key = key;
+    }
 
     public Course(String field, String courseMaterial, String description, String trainer, String address, int contactNumber, int courseNumber, String date, String time) {
         this.field = field;
@@ -91,5 +108,13 @@ public class Course {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

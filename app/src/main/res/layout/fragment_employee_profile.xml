@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".UI.Fragments.Contacts.ContactProfileFragment">
-
+    tools:context=".UI.Fragments.Employee.EmployeeProfileFragment">
     <androidx.cardview.widget.CardView
         android:id="@+id/card2"
         android:layout_width="match_parent"
@@ -21,7 +20,7 @@
             android:textColor="@color/white"
             android:layout_margin="10dp"/>
         <ImageButton
-            android:id="@+id/edit_profile_contact"
+            android:id="@+id/emb_edit_profile"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_edit"
@@ -29,90 +28,83 @@
             android:layout_gravity="end"
             android:layout_margin="10dp"/>
     </androidx.cardview.widget.CardView>
-    <LinearLayout
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
-        <androidx.cardview.widget.CardView
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardCornerRadius="45dp"
-            android:layout_gravity="center_vertical|start"
-            android:background="@color/dark"
-            android:elevation="8dp"
-            app:cardElevation="10dp"
-            >
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_contact"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@drawable/ic_person"
-                app:civ_border_color="@color/dark"
-                android:clickable="false"
-                android:focusable="false"
-                app:civ_border_width="2dp"/>
-            <androidx.cardview.widget.CardView
-                android:id="@+id/add_image"
-                android:visibility="gone"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="end|bottom"
-                android:layout_margin="10dp"
-                android:background="@android:color/darker_gray"
-                app:cardCornerRadius="12.5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@android:color/darker_gray"
-                    android:src="@drawable/ic_add"
-                    android:contentDescription="TODO" />
-            </androidx.cardview.widget.CardView>
-        </androidx.cardview.widget.CardView>
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/frameshape">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_gravity="center_vertical"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/framecircle"
+                >
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_person"/>
+            </FrameLayout>
             <EditText
-                android:id="@+id/cp_name"
-                android:layout_width="200dp"
+                android:id="@+id/emb_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textSize="18sp"
-                android:background="@drawable/edittext_shape_profile"
-                android:layout_marginBottom="2dp"
-                android:textAlignment="viewStart"
-                android:text="User name"
-                android:ellipsize="end"
+                android:text="الاسم "
+                android:textColor="@color/white"
                 android:maxLines="1"
-                android:textColor="@color/dark_text"
-                android:enabled="false"/>
-            <EditText
-                android:id="@+id/cp_number"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textSize="16sp"
-                android:background="@drawable/edittext_shape_profile"
-                android:layout_marginBottom="2dp"
-                android:textAlignment="viewStart"
-                android:text="ID : 235635638537843"
-                android:gravity="start"
                 android:enabled="false"
-                android:textColor="@android:color/darker_gray"/>
+                android:ellipsize="end"
+                android:background="@drawable/edittext_shape_profile"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                />
+
         </LinearLayout>
-    </LinearLayout>
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/frameshape">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/framecircle"
+                >
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_numbers"/>
+            </FrameLayout>
+            <EditText
+                android:id="@+id/emb_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="رقم الموظف  "
+                android:textColor="@color/white"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:enabled="false"
+                android:background="@drawable/edittext_shape_profile"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                />
+
+        </LinearLayout>
+    </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -135,7 +127,7 @@
                     android:src="@drawable/ic_email"/>
             </FrameLayout>
             <EditText
-                android:id="@+id/cp_email"
+                android:id="@+id/emb_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="mousdddddtafa03@gmail.com"
@@ -152,7 +144,6 @@
 
         </LinearLayout>
     </FrameLayout>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -172,25 +163,25 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_phone"/>
+                    android:src="@drawable/ic_data"/>
             </FrameLayout>
             <EditText
-                android:id="@+id/cp_phone"
+                android:id="@+id/emb_position"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" رقم الهاتف"
+                android:text="المنصب الوظيفي  "
                 android:textColor="@color/white"
                 android:maxLines="1"
+                android:ellipsize="end"
                 android:enabled="false"
                 android:background="@drawable/edittext_shape_profile"
-                android:textSize="16sp"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
                 />
 
         </LinearLayout>
     </FrameLayout>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -207,18 +198,19 @@
                 android:background="@drawable/framecircle"
                 >
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_location"/>
+                    android:src="@drawable/ic_age"/>
             </FrameLayout>
             <EditText
-                android:id="@+id/cp_region"
+                android:id="@+id/emb_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="المنطقة "
+                android:text="العمر "
                 android:textColor="@color/white"
                 android:maxLines="1"
+                android:ellipsize="end"
                 android:enabled="false"
                 android:background="@drawable/edittext_shape_profile"
                 android:layout_gravity="center"
@@ -228,69 +220,26 @@
 
         </LinearLayout>
     </FrameLayout>
-
-
-
-
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/frameshape">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <FrameLayout
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/framecircle"
-                >
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_contact_page"/>
-            </FrameLayout>
-            <EditText
-                android:id="@+id/cp_commerce"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="السجل التجاري"
-                android:textColor="@color/white"
-                android:maxLines="1"
-                android:enabled="false"
-                android:background="@drawable/edittext_shape_profile"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:textSize="16sp"
-                />
-
-        </LinearLayout>
-    </FrameLayout>
-
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/cp_save"
-        android:text="Save"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:visibility="invisible"
-        android:background="@drawable/button_shape"
-        android:layout_margin="10dp"/>
-    <ProgressBar
-        android:id="@+id/cp_progress"
+        android:id="@+id/emb_edit_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
         android:layout_marginHorizontal="10dp"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:visibility="invisible"
+        android:background="@drawable/custom_btu"
+        android:text="حفظ"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+    <ProgressBar
+        android:id="@+id/emb_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:layout_gravity="center_horizontal"
-        />
+        android:indeterminateTint="@color/dark"
+        android:layout_marginHorizontal="10dp"
+        android:visibility="invisible"/>
+
 </LinearLayout>

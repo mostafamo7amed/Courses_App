@@ -21,7 +21,7 @@
             android:layout_margin="10dp"/>
     </androidx.cardview.widget.CardView>
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_below="@id/card1"
@@ -29,184 +29,193 @@
         android:background="@color/white">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:orientation="vertical"
             >
             <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_margin="10dp"
-                android:textColor="@color/dark_text"
-                android:gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:text="مجال الدورة "/>
+                android:text="بيانات الدورة"
+                android:textSize="18sp"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:gravity="center_horizontal"/>
             <EditText
+                android:id="@+id/add_field_course"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:textSize="16sp"
+                android:layout_marginVertical="10dp"
                 android:textColorHint="@android:color/darker_gray"
                 android:textColor="@color/dark_text"
-                android:padding="5dp"
-                android:inputType="text"
-                android:background="@drawable/custom_input"
-                android:layout_marginHorizontal="10dp">
-            </EditText>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_margin="10dp"
-                android:textColor="@color/dark_text"
-                android:gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:text="المادة العلمية للدورة "/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:textSize="16sp"
-                android:textColorHint="@android:color/darker_gray"
-                android:textColor="@color/dark_text"
-                android:padding="5dp"
+                android:padding="7dp"
+                android:hint="مجال الدورة"
                 android:inputType="text"
                 android:background="@drawable/custom_input"
                 android:layout_marginHorizontal="10dp">
             </EditText>
 
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_margin="10dp"
-                android:textColor="@color/dark_text"
-                android:gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:text="رقم الدورة "/>
             <EditText
+                android:id="@+id/add_material_course"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:textSize="16sp"
                 android:textColorHint="@android:color/darker_gray"
                 android:textColor="@color/dark_text"
-                android:padding="5dp"
+                android:padding="7dp"
+                android:layout_marginVertical="10dp"
+                android:hint="المادة العلمية للدورة"
                 android:inputType="text"
                 android:background="@drawable/custom_input"
                 android:layout_marginHorizontal="10dp">
             </EditText>
             <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_margin="10dp"
-                android:textColor="@color/dark_text"
-                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="تاريخ بداية الدورة"
                 android:layout_marginHorizontal="10dp"
-                android:text="مدرب الدورة"/>
+                android:gravity="center_horizontal"/>
+            <DatePicker
+                android:id="@+id/add_date_course"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="16sp"
+                android:textColorHint="@android:color/darker_gray"
+                android:textColor="@color/dark_text"
+                android:padding="7dp"
+                android:layout_marginVertical="10dp"
+                android:inputType="text"
+                android:background="@drawable/custom_input"
+                android:layout_marginHorizontal="10dp">
+            </DatePicker>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="وقت الدورة"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center_horizontal"/>
+            <TimePicker
+                android:id="@+id/add_time_course"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"
+                android:textColorHint="@android:color/darker_gray"
+                android:textColor="@color/dark_text"
+                android:padding="7dp"
+                android:layout_marginVertical="10dp"
+                android:inputType="text"
+                android:background="@drawable/custom_input"
+                android:layout_marginHorizontal="10dp">
+            </TimePicker>
             <EditText
+                android:id="@+id/add_number_course"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:textSize="16sp"
+                android:layout_marginVertical="10dp"
                 android:textColorHint="@android:color/darker_gray"
                 android:textColor="@color/dark_text"
-                android:padding="5dp"
+                android:padding="7dp"
+                android:hint="رقم الدورة"
+                android:inputType="number"
+                android:background="@drawable/custom_input"
+                android:layout_marginHorizontal="10dp">
+            </EditText>
+            <EditText
+                android:id="@+id/add_contact_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textSize="16sp"
+                android:layout_marginVertical="10dp"
+                android:textColorHint="@android:color/darker_gray"
+                android:textColor="@color/dark_text"
+                android:padding="7dp"
+                android:hint="رقم الجهة "
+                android:inputType="number"
+                android:background="@drawable/custom_input"
+                android:layout_marginHorizontal="10dp">
+            </EditText>
+            <EditText
+                android:id="@+id/add_trainer_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textSize="16sp"
+                android:hint="مدرب الدورة"
+                android:textColorHint="@android:color/darker_gray"
+                android:textColor="@color/dark_text"
+                android:padding="7dp"
+                android:layout_marginVertical="10dp"
                 android:inputType="text"
                 android:background="@drawable/custom_input"
                 android:layout_marginHorizontal="10dp">
             </EditText>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_margin="10dp"
-                android:textColor="@color/dark_text"
-                android:gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:text="العنوان "/>
             <EditText
+                android:id="@+id/add_address_course"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:textSize="16sp"
+                android:layout_marginVertical="10dp"
+                android:hint="العنوان "
                 android:textColorHint="@android:color/darker_gray"
                 android:textColor="@color/dark_text"
-                android:padding="5dp"
+                android:padding="7dp"
                 android:inputType="text"
                 android:background="@drawable/custom_input"
                 android:layout_marginHorizontal="10dp">
             </EditText>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_margin="10dp"
-                android:textColor="@color/dark_text"
-                android:gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:text="الوصف "/>
             <EditText
+                android:id="@+id/add_description_course"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:textSize="16sp"
                 android:textColorHint="@android:color/darker_gray"
                 android:textColor="@color/dark_text"
-                android:padding="5dp"
-                android:inputType="textMultiLine"
-                android:background="@drawable/custom_input"
-                android:layout_marginHorizontal="10dp">
-            </EditText>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_margin="10dp"
-                android:textColor="@color/dark_text"
-                android:gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:text="تاريخ بداية الدورة"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:textSize="16sp"
-                android:textColorHint="@android:color/darker_gray"
-                android:textColor="@color/dark_text"
-                android:padding="5dp"
+                android:padding="10dp"
+                android:layout_marginVertical="10dp"
+                android:hint="الوصف"
                 android:inputType="text"
                 android:background="@drawable/custom_input"
                 android:layout_marginHorizontal="10dp">
             </EditText>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_margin="10dp"
-                android:textColor="@color/dark_text"
-                android:gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:text="وقت الدورة"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:textSize="16sp"
-                android:textColorHint="@android:color/darker_gray"
-                android:textColor="@color/dark_text"
-                android:padding="5dp"
-                android:inputType="text"
-                android:background="@drawable/custom_input"
-                android:layout_marginHorizontal="10dp">
-            </EditText>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/add_garage_info"
+                android:id="@+id/add_save_course"
                 android:layout_margin="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/custom_btu"
                 android:text="اضافة "
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                android:layout_below="@id/it_employee_problem_solve">
+                android:textSize="18sp">
             </androidx.appcompat.widget.AppCompatButton>
+
+            <ProgressBar
+                android:id="@+id/add_progress_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="5dp"
+                android:indeterminate="true"
+                android:layout_marginBottom="50dp"
+                android:indeterminateTint="@color/dark"
+                android:visibility="invisible" />
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
 
 </RelativeLayout>

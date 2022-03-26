@@ -1,11 +1,14 @@
 package com.example.Adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
@@ -14,6 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.Models.Course;
 import com.example.Models.Trainer;
 import com.example.courses.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
@@ -21,6 +29,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
 
     private Context context;
     private List<Course> list;
+    DatabaseReference databaseReference;
 
     public CoursesAdapter(Context context, List<Course> list) {
         this.context = context;
@@ -44,6 +53,14 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         holder.time.setText(list.get(position).getTime());
         holder.address.setText(list.get(position).getAddress());
 
+        String key = list.get(position).getKey();
+        holder.close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteCourse(key);
+            }
+        });
+
     }
     @Override
     public int getItemCount() {
@@ -66,4 +83,30 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
             date = itemView.findViewById(R.id.date_course);
         }
     }
+
+
+    public void deleteCourse(String key){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("سيتم حذف الدورة !");
+        builder.setTitle("تنبيه !");
+        builder.setCancelable(false);
+        builder.setPositiveButton("تأكيد", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                databaseReference = FirebaseDatabase.getInstance().getReference("All Courses");
+                databaseReference.child(key).removeValue();
+                Toast.makeText(context, "تم حذف الدورة", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
+
 }

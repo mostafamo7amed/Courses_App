@@ -7,6 +7,11 @@ public class Contacts {
     String Region;
     String Commercial_register;
     int Contact_number;
+    String uid;
+    String image;
+
+    public Contacts() {
+    }
 
     public Contacts(String name, String email, String phone, String region, String commercial_register, int contact_number) {
         Name = name;
@@ -15,6 +20,17 @@ public class Contacts {
         Region = region;
         Commercial_register = commercial_register;
         Contact_number = contact_number;
+    }
+
+    public Contacts(String name, String email, String phone, String region, String commercial_register, int contact_number, String uid, String image) {
+        Name = name;
+        Email = email;
+        this.phone = phone;
+        Region = region;
+        Commercial_register = commercial_register;
+        Contact_number = contact_number;
+        this.uid = uid;
+        this.image = image;
     }
 
     public String getName() {
@@ -63,5 +79,21 @@ public class Contacts {
 
     public void setContact_number(int contact_number) {
         Contact_number = contact_number;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

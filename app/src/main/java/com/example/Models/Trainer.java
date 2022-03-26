@@ -6,14 +6,19 @@ public class Trainer {
     String Email;
     String Specialization;
     String Nationality;
+    String uid;
     int contact_number;
 
-    public Trainer(String name, String gender, String email, String specialization, String nationality, int contact_number) {
+    public Trainer() {
+    }
+
+    public Trainer(String name, String gender, String email, String specialization, String nationality, String uid, int contact_number) {
         Name = name;
         Gender = gender;
         Email = email;
         Specialization = specialization;
         Nationality = nationality;
+        this.uid = uid;
         this.contact_number = contact_number;
     }
 
@@ -63,5 +68,13 @@ public class Trainer {
 
     public void setContact_number(int contact_number) {
         this.contact_number = contact_number;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

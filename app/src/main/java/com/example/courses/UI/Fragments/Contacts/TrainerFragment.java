@@ -12,10 +12,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.Adapters.ContactsAdapter;
 import com.example.Adapters.TrainerAdapter;
+import com.example.Models.Contacts;
 import com.example.Models.Trainer;
 import com.example.courses.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -33,15 +40,9 @@ public class TrainerFragment extends Fragment {
         recyclerView = getActivity().findViewById(R.id.RecyclerTrainer);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         trainers = new ArrayList<>();
-        trainers.add(new Trainer("علي محمود","ذكر","alia@gmail.com ","فيزياء","سعودي",2));
-        trainers.add(new Trainer("احمد محمود","ذكر","alia@gmail.com","فيزياء","سعودي",2));
-        trainers.add(new Trainer("علي محمد","ذكر","alia@gmail.com","فيزياء","سعودي",2));
-        trainers.add(new Trainer("علي محمود","ذكر","alia@gmail.com ","فيزياء","سعودي",2));
-        trainers.add(new Trainer("علي محمود","ذكر","alia@gmail.com ","فيزياء","سعودي",2));
-        trainers.add(new Trainer("علي محمود","ذكر","alia@gmail.com ","فيزياء","سعودي",2));
-        trainerAdapter = new TrainerAdapter(getContext(),trainers);
-        trainerAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(trainerAdapter);
+
+        getTrainers();
+
 
         addTrainer  = getActivity().findViewById(R.id.add_trainer);
         addTrainer.setOnClickListener(new View.OnClickListener() {
@@ -57,5 +58,46 @@ public class TrainerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_trainer, container, false);
+    }
+    public void getTrainers(){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Trainers");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snapshot1 :snapshot.getChildren()){
+                    databaseReference.child(snapshot1.getKey().toString()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            trainers.add(new Trainer(
+                                    snapshot.child("name").getValue().toString(),
+                                    snapshot.child("gender").getValue().toString(),
+                                    snapshot.child("email").getValue().toString(),
+                                    snapshot.child("specialization").getValue().toString(),
+                                    snapshot.child("nationality").getValue().toString(),
+                                    snapshot.child("uid").getValue().toString(),
+                                    Integer.parseInt(snapshot.child("contact_number").getValue().toString())
+                            ));
+                            trainerAdapter = new TrainerAdapter(getContext(),trainers);
+                            trainerAdapter.notifyDataSetChanged();
+                            recyclerView.setAdapter(trainerAdapter);
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

@@ -15,13 +15,9 @@
             android:icon="@drawable/ic_comment"
             android:title="إدارة التعليقات "
             tools:ignore="MenuTitle" />
-        <item android:id="@+id/trainee_emp"
-            android:icon="@drawable/ic_person_white"
-            android:title="إدارة المتدربين "
-            tools:ignore="MenuTitle" />
-        <item android:id="@+id/logout_emp"
-            android:title="خروج"
-            android:icon="@drawable/ic_exit"
+        <item android:id="@+id/more"
+            android:title="خيارات"
+            android:icon="@drawable/ic_menu"
             tools:ignore="MenuTitle"
             />
 

@@ -1,15 +1,28 @@
 package com.example.Models;
 
 public class Employee {
-    String email , name ,position;
+    String email , name ,position,uid;
     int age, number;
 
-    public Employee(String email, String name, String position, int age, int number) {
+
+    public Employee() {
+    }
+
+    public Employee(String email, String name, String position, String uid, int age, int number) {
         this.email = email;
         this.name = name;
         this.position = position;
+        this.uid = uid;
         this.age = age;
         this.number = number;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getEmail() {

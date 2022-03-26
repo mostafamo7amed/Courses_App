@@ -17,9 +17,11 @@ import com.example.courses.R;
 import com.example.courses.UI.Activities.LoginActivity;
 import com.example.courses.UI.Fragments.Employee.ContactsFragment;
 import com.example.courses.UI.Fragments.Employee.TraineeFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MoreFragment extends Fragment {
     TextView contact,trainee,analysis,logout;
+    FirebaseAuth auth;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class MoreFragment extends Fragment {
         trainee = getActivity().findViewById(R.id.manage_trainee);
         analysis = getActivity().findViewById(R.id.manage_analysis);
         logout = getActivity().findViewById(R.id.manage_logout);
+        auth = FirebaseAuth.getInstance();
 
         contact.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +54,7 @@ public class MoreFragment extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                auth.signOut();
                 startActivity(new Intent(getContext(), LoginActivity.class));
             }
         });

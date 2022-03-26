@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Fragments.Contacts.Add_TrainerFragment">
+    tools:context=".UI.Fragments.Admin.EditContactsFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card1"
@@ -16,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="إضافة مدرب "
+            android:text="تعديل بيانات الجهة "
             android:textSize="20sp"
             android:textColor="@color/white"
             android:layout_margin="10dp"/>
@@ -40,48 +39,27 @@
                 android:layout_margin="10dp"
                 android:layout_marginHorizontal="10dp"
                 android:gravity="center"
-                android:text="بيانات الحساب "
+                android:textSize="20sp"
+                android:text="بيانات الجهة "
                 android:textColor="@color/dark_text" />
 
-            <EditText
-                android:id="@+id/cr_email"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/custom_input"
-                android:gravity="top"
-                android:hint="البريد الالكتروني للمدرب"
-                android:inputType="textEmailAddress"
-                android:padding="7dp"
+                android:text="إسم الجهة"
                 android:textColor="@color/dark_text"
-                android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/cr_pass"
+                android:id="@+id/edit_name_con"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/custom_input"
                 android:gravity="top"
-                android:hint="كلمة المرور للمدرب"
-                android:inputType="text"
-                android:padding="7dp"
-                android:textColor="@color/dark_text"
-                android:textColorHint="@android:color/darker_gray"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/cr_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/custom_input"
-                android:gravity="top"
-                android:hint="إسم المدرب"
+                android:hint="أسم الجهة "
                 android:inputType="text"
                 android:padding="7dp"
                 android:textColor="@color/dark_text"
@@ -89,77 +67,118 @@
                 android:textSize="16sp" />
 
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="رقم الجهة"
+                android:textColor="@color/dark_text"
+                android:textSize="16sp" />
+
             <EditText
-                android:id="@+id/cr_special"
+                android:id="@+id/edit_number_con"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/custom_input"
                 android:gravity="top"
-                android:hint="تخصص المدرب"
-                android:inputType="text"
+                android:hint="رقم الجهة"
+                android:inputType="number"
                 android:padding="7dp"
                 android:textColor="@color/dark_text"
                 android:textColorHint="@android:color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="الهاتف"
+                android:textColor="@color/dark_text"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/cr_nationality"
+                android:id="@+id/edit_phone_con"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/custom_input"
+                android:drawablePadding="10dp"
+                android:hint="الهاتف "
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="7dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/dark_text" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/custom_input"
-                android:gravity="top"
-                android:hint="جنسية المدرب"
-                android:inputType="text"
-                android:padding="7dp"
+                android:text="المنطقة"
                 android:textColor="@color/dark_text"
-                android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
 
-
-            <RadioGroup
-                android:id="@+id/cr_gender"
+            <EditText
+                android:id="@+id/edit_region_con"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/custom_input"
+                android:drawablePadding="10dp"
+                android:hint="المنطقة"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="7dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/dark_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:orientation="horizontal">
+                android:text="السجل التجاري"
+                android:textColor="@color/dark_text"
+                android:textSize="16sp" />
 
-                <RadioButton
-                    android:id="@+id/male"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ذكر "
-                    android:textColor="@color/dark_text"
-                    android:textSize="16sp" />
-
-                <RadioButton
-                    android:id="@+id/female"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="أنثي"
-                    android:textColor="@color/dark_text"
-                    android:textSize="16sp" />
-            </RadioGroup>
+            <EditText
+                android:id="@+id/edit_commerce_con"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/custom_input"
+                android:drawablePadding="10dp"
+                android:hint="السجل التجاري"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="7dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/dark_text" />
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/cr_add_trainer"
+                android:id="@+id/edit_add_con"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/custom_btu"
-                android:text="اضافة "
+                android:text="حفظ التعديلات "
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
             <ProgressBar
-                android:id="@+id/cr_progress"
+                android:id="@+id/edit_progress_con"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

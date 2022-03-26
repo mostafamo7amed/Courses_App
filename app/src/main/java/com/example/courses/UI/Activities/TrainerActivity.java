@@ -11,19 +11,21 @@ import android.view.MenuItem;
 
 import com.example.courses.Constants;
 import com.example.courses.R;
-import com.example.courses.UI.Fragments.Trainee.MyCoursesTFragment;
-import com.example.courses.UI.Fragments.Trainer.ContactPageTrainerFragment;
+import com.example.courses.UI.Fragments.Trainer.ContactPageFragment;
 import com.example.courses.UI.Fragments.Trainer.CoursesTrainerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class TrainerActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainer);
         bottomNavigationView = findViewById(R.id.bottom_nav_trainer);
         bottomNavigationView.setOnItemSelectedListener(OnSelect);
+        auth = FirebaseAuth.getInstance();
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_trainer, new CoursesTrainerFragment()).commit();
         Constants.current=1;
     }
@@ -43,12 +45,13 @@ public class TrainerActivity extends AppCompatActivity {
                 case R.id.contactPage_trainer: {
                     Bundle bundle = new Bundle();
                     bundle.putInt("frame",R.id.frame_layout_trainer);
-                    selected = new ContactPageTrainerFragment();
+                    selected = new ContactPageFragment();
                     selected.setArguments(bundle);
                     select = 2;
                 }
                 break;
                 case R.id.exit_trainer: {
+                    auth.signOut();
                     startActivity(new Intent(TrainerActivity.this,LoginActivity.class));
                     finish();
                     select = 3;

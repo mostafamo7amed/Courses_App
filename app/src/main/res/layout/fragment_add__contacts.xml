@@ -30,21 +30,22 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="110dp"
-                android:layout_height="110dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_margin="10dp"
                 app:cardPreventCornerOverlap="false"
-                app:cardCornerRadius="75dp"
+                app:cardCornerRadius="45dp"
                 >
-                <ImageView
-                    android:id="@+id/cp_picture"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/cc_picture_man"
                     android:layout_width="match_parent"
-                    android:scaleType="fitCenter"
-                    android:background="@drawable/ic_person"
+                    android:src="@drawable/ic_person"
+                    app:civ_border_color="@color/dark"
+                    app:civ_border_width="2dp"
                     android:layout_height="match_parent"
                     />
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/add_image"
+                    android:id="@+id/add_image_man"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="end|bottom"
@@ -62,11 +63,13 @@
                 </androidx.cardview.widget.CardView>
             </androidx.cardview.widget.CardView>
             <EditText
-                android:id="@+id/cp_email_man"
+                android:id="@+id/cc_email_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="البريد الالكتروني "
+                android:inputType="textEmailAddress"
                 android:textColor="@color/black"
+                android:maxLines="1"
                 android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="10dp"
                 android:paddingStart="10dp"
@@ -75,7 +78,7 @@
                 android:layout_marginEnd="10dp"
                 />
             <EditText
-                android:id="@+id/cp_password_man"
+                android:id="@+id/cc_password_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="كلمة المرور "
@@ -84,14 +87,18 @@
                 android:drawablePadding="10dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
+                android:inputType="number"
+                android:maxLines="1"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 />
             <EditText
-                android:id="@+id/cp_name_man"
+                android:id="@+id/cc_name_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="الاسم "
+                android:inputType="text"
+                android:maxLines="1"
                 android:textColor="@color/black"
                 android:drawableStart="@drawable/ic_person"
                 android:drawablePadding="10dp"
@@ -101,11 +108,13 @@
                 android:layout_marginEnd="10dp"
                 />
             <EditText
-                android:id="@+id/cp_phone_man"
+                android:id="@+id/cc_phone_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="الهاتف "
                 android:textColor="@color/black"
+                android:inputType="number|phone"
+                android:maxLines="1"
                 android:drawableStart="@drawable/ic_phone"
                 android:drawablePadding="10dp"
                 android:paddingStart="10dp"
@@ -114,10 +123,12 @@
                 android:layout_marginEnd="10dp"
                 />
             <EditText
-                android:id="@+id/cp_region_man"
+                android:id="@+id/cc_region_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="المنطقة"
+                android:inputType="text"
+                android:maxLines="1"
                 android:textColor="@color/black"
                 android:drawableStart="@drawable/ic_location"
                 android:drawablePadding="10dp"
@@ -127,10 +138,12 @@
                 android:layout_marginEnd="10dp"
                 />
             <EditText
-                android:id="@+id/cp_commerce_man"
+                android:id="@+id/cc_commerce_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="السجل التجاري"
+                android:inputType="text"
+                android:maxLines="1"
                 android:drawableStart="@drawable/ic_contact_page"
                 android:drawablePadding="10dp"
                 android:paddingStart="10dp"
@@ -139,10 +152,12 @@
                 android:layout_marginEnd="10dp"
                 />
             <EditText
-                android:id="@+id/cp_number_man"
+                android:id="@+id/cc_number_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="رقم الجهة"
+                android:inputType="number"
+                android:maxLines="1"
                 android:drawableStart="@drawable/ic_contact_page"
                 android:drawablePadding="10dp"
                 android:paddingStart="10dp"
@@ -150,11 +165,11 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 />
-            <Button
-                android:id="@+id/cp_save_man"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cc_save_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_text"
+                android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:layout_margin="10dp"
@@ -162,10 +177,13 @@
                 android:text="إضافة"/>
 
             <ProgressBar
-                android:id="@+id/cp_progress_man"
-                android:layout_width="40dp"
+                android:id="@+id/cc_progress_man"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/dark"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:visibility="invisible" />
         </LinearLayout>
     </ScrollView>

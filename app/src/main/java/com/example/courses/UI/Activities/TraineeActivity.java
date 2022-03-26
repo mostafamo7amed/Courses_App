@@ -14,16 +14,19 @@ import com.example.courses.R;
 import com.example.courses.UI.Fragments.Trainee.CoursesTraineeFragment;
 import com.example.courses.UI.Fragments.Trainee.MyCoursesTFragment;
 import com.example.courses.UI.Fragments.Trainee.TraineeProfileFragment;
-import com.example.courses.UI.Fragments.Trainer.ContactPageTrainerFragment;
+import com.example.courses.UI.Fragments.Trainer.ContactPageFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class TraineeActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+    FirebaseAuth auth ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainee);
         bottomNavigationView = findViewById(R.id.bottom_nav_trainee);
+        auth = FirebaseAuth.getInstance();
         bottomNavigationView.setOnItemSelectedListener(OnSelect);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_trainee, new CoursesTraineeFragment()).commit();
         Constants.current=1;
@@ -49,7 +52,7 @@ public class TraineeActivity extends AppCompatActivity {
                 case R.id.contactPage_trainee: {
                     Bundle bundle = new Bundle();
                     bundle.putInt("frame",R.id.frame_layout_trainee);
-                    selected = new ContactPageTrainerFragment();
+                    selected = new ContactPageFragment();
                     selected.setArguments(bundle);
                     select = 3;
                 }
@@ -60,7 +63,8 @@ public class TraineeActivity extends AppCompatActivity {
                 }
                 break;
                 case R.id.exit_trainee: {
-                    startActivity(new Intent(TraineeActivity.this,LoginActivity.class));
+                    auth.signOut();
+                    startActivity(new Intent(TraineeActivity.this,StartActivity.class));
                     finish();
                     select = 5;
                 }

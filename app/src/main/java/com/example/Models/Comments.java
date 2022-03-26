@@ -6,15 +6,20 @@ public class Comments {
     String email;
     String name;
     String comment;
-    int time;
-    int date;
+    String time;
+    String date;
+    String key;
 
-    public Comments(String email, String name, String comment, int time, int date) {
+    public Comments() {
+    }
+
+    public Comments(String email, String name, String comment, String time, String date,String key) {
         this.email = email;
         this.name = name;
         this.comment = comment;
         this.time = time;
         this.date = date;
+        this.key = key;
     }
 
     public String getEmail() {
@@ -41,19 +46,27 @@ public class Comments {
         this.comment = comment;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
-    public int getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String UID) {
+        this.key = UID;
     }
 }

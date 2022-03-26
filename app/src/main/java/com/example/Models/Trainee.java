@@ -1,15 +1,29 @@
 package com.example.Models;
 
 public class Trainee {
+    String UID;
     String Name;
     String Email, educationLevel;
     int age;
 
-    public Trainee(String name, String email, String educationLevel, int age) {
-        Name = name;
-        Email = email;
+    public Trainee() {
+
+    }
+
+    public Trainee(String name, String email, String educationLevel, int age, String UID) {
+        this.Name = name;
+        this.Email = email;
         this.educationLevel = educationLevel;
         this.age = age;
+        this.UID = UID;
+    }
+
+    public String getUID() {
+        return UID;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
     }
 
     public String getName() {

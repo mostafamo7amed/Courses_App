@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Fragments.Employee.Add_traineeFragment">
-
+    tools:context=".UI.Fragments.Admin.EditEmployeeFragment">
     <androidx.cardview.widget.CardView
         android:id="@+id/card1"
         android:layout_width="match_parent"
@@ -15,7 +14,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="إضافة متدرب  "
+            android:text="تعديل بيانات الموظف "
             android:textSize="20sp"
             android:textColor="@color/white"
             android:layout_margin="10dp"/>
@@ -23,66 +22,89 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/card1">
+        android:layout_height="0dp"
+        android:layout_below="@id/card1"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:text="بيانات الموظف "
+                android:textColor="@color/dark_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="إسم الموظف"
+                android:textColor="@color/dark_text"
+                android:textSize="16sp" />
+
             <EditText
-                android:id="@+id/ct_email_man"
+                android:id="@+id/edit_name_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/custom_input"
                 android:gravity="top"
-                android:hint="البريد الالكتروني "
-                android:inputType="textEmailAddress"
+                android:hint="أسم الموظف "
+                android:inputType="text"
                 android:padding="7dp"
                 android:textColor="@color/dark_text"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="رقم الموظف"
+                android:textColor="@color/dark_text"
+                android:textSize="16sp" />
+
             <EditText
-                android:id="@+id/ct_pass_man"
+                android:id="@+id/edit_number_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/custom_input"
                 android:gravity="top"
-                android:hint="كلمة المرور "
+                android:hint="رقم الموظف"
                 android:inputType="number"
                 android:padding="7dp"
                 android:textColor="@color/dark_text"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/ct_name_man"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/custom_input"
-                android:gravity="top"
-                android:hint="الاسم "
-                android:inputType="text"
-                android:padding="7dp"
+                android:text="المنصب الوظيفي"
                 android:textColor="@color/dark_text"
-                android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/ct_level_man"
+                android:id="@+id/edit_position_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/custom_input"
                 android:gravity="top"
-                android:hint="المستوي التعليمي "
+                android:hint="المنصب الوظيفي"
                 android:inputType="text"
                 android:padding="7dp"
                 android:textColor="@color/dark_text"
@@ -90,44 +112,51 @@
                 android:textSize="16sp" />
 
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="العمر"
+                android:textColor="@color/dark_text"
+                android:textSize="16sp" />
+
             <EditText
-                android:id="@+id/ct_age_man"
+                android:id="@+id/edit_age_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/custom_input"
                 android:gravity="top"
-                android:hint="العمر "
-                android:inputType="numberDecimal"
-                android:padding="5dp"
+                android:hint="العمر"
+                android:inputType="number"
+                android:padding="7dp"
                 android:textColor="@color/dark_text"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
+
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/ct_addTrainee_man"
+                android:id="@+id/edit_add_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/custom_btu"
-                android:text="إضافة"
-                android:textAlignment="center"
+                android:text="حفظ التعديلات "
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <ProgressBar
-                android:id="@+id/ct_progress_man"
+                android:id="@+id/edit_progress_man"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:indeterminate="true"
-                android:layout_marginVertical="5dp"
-                android:indeterminateTint="@color/dark"
                 android:layout_marginHorizontal="20dp"
-                android:visibility="invisible"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
-
+                android:layout_marginVertical="5dp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/dark"
+                android:visibility="invisible" />
         </LinearLayout>
     </ScrollView>
-
 </RelativeLayout>
