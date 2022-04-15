@@ -16,6 +16,11 @@ import com.example.Adapters.CoursesTraineeRegisterAdapter;
 import com.example.Adapters.CoursesTrainerAdapter;
 import com.example.Models.Course;
 import com.example.courses.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -23,24 +28,20 @@ public class CoursesTraineeFragment extends Fragment {
     CoursesTraineeRegisterAdapter coursesRegisterAdapter;
     RecyclerView recyclerView;
     ArrayList<Course> courses;
+    DatabaseReference databaseReference;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = getActivity().findViewById(R.id.RecyclerTraineeCourses);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        databaseReference = FirebaseDatabase.getInstance().getReference("All Courses");
         courses = new ArrayList<>();
-        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
-        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
-        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
-        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
-        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
-        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
-        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
-        courses.add(new Course("علوم الحاسب","لغة برمجة 1","هذه الدورة مقدمة لطلاب علوم الحاسب.......","احمد علي","",2,1,"",""));
-
         coursesRegisterAdapter = new CoursesTraineeRegisterAdapter(getContext(),courses);
-        coursesRegisterAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(coursesRegisterAdapter);
+        getAllCourses();
+
+
+
+
     }
 
     @Override
@@ -49,4 +50,50 @@ public class CoursesTraineeFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_courses_trainee, container, false);
     }
+    public void getAllCourses(){
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                courses.clear();
+                for (DataSnapshot snapshot1 :snapshot.getChildren()){
+                    databaseReference.child(snapshot1.getKey().toString()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            if (snapshot.exists()) {
+                                courses.add(new Course(snapshot.child("field").getValue().toString(),
+                                        snapshot.child("courseMaterial").getValue().toString(),
+                                        snapshot.child("description").getValue().toString(),
+                                        snapshot.child("trainer").getValue().toString(),
+                                        snapshot.child("address").getValue().toString(),
+                                        Integer.parseInt(snapshot.child("contactNumber").getValue().toString()),
+                                        Integer.parseInt(snapshot.child("courseNumber").getValue().toString()),
+                                        snapshot.child("date").getValue().toString(),
+                                        snapshot.child("time").getValue().toString(),
+                                        snapshot.child("key").getValue().toString()
+                                ));
+                            }
+
+                            coursesRegisterAdapter.notifyDataSetChanged();
+                            recyclerView.setAdapter(coursesRegisterAdapter);
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 }

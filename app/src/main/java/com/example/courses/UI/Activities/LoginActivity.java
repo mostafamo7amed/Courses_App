@@ -22,10 +22,16 @@ import android.widget.Toast;
 
 import com.example.courses.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -41,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText username,password;
     ProgressBar loading;
     AppCompatButton login;
-    RadioGroup radioGroup;
     FirebaseAuth firebaseAuth;
     CheckBox showPass;
 
@@ -55,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               checkUser();
+              loginToSystem();
             }
         });
         showPass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -77,86 +82,19 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.pass_login);
         loading = findViewById(R.id.progress_login);
         login = findViewById(R.id.btu_login);
-        radioGroup = findViewById(R.id.radio_group_login);
         showPass = findViewById(R.id.show_pass);
         firebaseAuth= FirebaseAuth.getInstance();
     }
 
-    public void checkUser(){
-        String email= username.getText().toString();
-        String pass= password.getText().toString();
-        if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass)) {
-            if(radioGroup.getCheckedRadioButtonId() != -1) {
-                int selectedID = radioGroup.getCheckedRadioButtonId();
-                if(selectedID == R.id.radio_contact_login){
-                    checkAuth("Contacts");
-                }else if(selectedID == R.id.radio_trainee_login){
-                    checkAuth("Trainees");
-                }else if(selectedID == R.id.radio_trainer_login) {
-                    checkAuth("Trainers");
-                }else if (selectedID == R.id.radio_employee_login){
-                    checkAuth("Employees");
-                }else if (selectedID == R.id.radio_admin_login){
-                    checkAuth("Admins");
-                }
-
-            }else{
-                Toast.makeText(this, "برجاء إختيار نوع المستخدم", Toast.LENGTH_SHORT).show();
-            }
-        }
-        else {
-            loading.setVisibility(View.INVISIBLE);
-            Toast.makeText(this, "برجاء إدخال كافة العناصر", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void checkAuth(String table) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection(table).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                int state = 0;
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.v("taggg", ""+document.getData().get("email"));
-                        if(username.getText().toString().equals(document.getData().get("email"))){
-
-                            loginToSystem(table);
-                            state=1;
-                            break;
-                        }
-                    }
-                    if(state==0) {
-                        Toast.makeText(LoginActivity.this, "المستخدم غير مسجل بالنظام", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Log.v("taggg", "Error getting documents.", task.getException());
-                }
-            }
-        });
 
 
-    }
-
-    public void loginToSystem(String user) {
+    public void loginToSystem() {
         String email= username.getText().toString();
         String pass= password.getText().toString();
         if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass))
         {
             loading.setVisibility(View.VISIBLE);
-               firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            loading.setVisibility(View.INVISIBLE);
-                            howUser(user);
-                        } else {
-                            loading.setVisibility(View.INVISIBLE);
-                            String error = Objects.requireNonNull(task.getException()).getMessage();
-                            Toast.makeText(LoginActivity.this, "error :" + error, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+            signIn(email,pass);
         }
         else {
             loading.setVisibility(View.INVISIBLE);
@@ -164,30 +102,57 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void howUser(String user){
-        switch (user){
-            case "Contacts":
-                startActivity(new Intent(LoginActivity.this,ContactsActivity.class));
-                break;
-            case "Trainers":
-                startActivity(new Intent(LoginActivity.this,TrainerActivity.class));
-                break;
-            case "Trainees":
-                startActivity(new Intent(LoginActivity.this,TraineeActivity.class));
-                break;
-            case "Employees":
-                startActivity(new Intent(LoginActivity.this,EmployeeActivity.class));
-                break;
-            case "Admins":
-                startActivity(new Intent(LoginActivity.this, AdminActivity.class));
-                break;
-        }
-        finish();
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
         password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+    }
+
+
+    public void signIn(String email, String password) {
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    String uId = firebaseAuth.getCurrentUser().getUid();
+                    System.out.println(uId);
+                    if (uId != null) {
+                        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                loading.setVisibility(View.INVISIBLE);
+                                if (snapshot.child("Admins").child(uId).exists()) {
+                                    startActivity(new Intent(LoginActivity.this, AdminActivity.class)); }
+                                else if (snapshot.child("Trainees").child(uId).exists()) {
+                                    startActivity(new Intent(LoginActivity.this, TraineeActivity.class));
+                                } else if (snapshot.child("Training Provider").child(uId).exists()) {
+                                    startActivity(new Intent(LoginActivity.this, ContactsActivity.class));
+                                } else if (snapshot.child("Trainers").child(uId).exists()) {
+                                    startActivity(new Intent(LoginActivity.this, TrainerActivity.class));
+                                }else if (snapshot.child("Employees").child(uId).exists()){
+                                    startActivity(new Intent(LoginActivity.this, EmployeeActivity.class));
+                                }
+                                finish();
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
+                    } else {
+                        loading.setVisibility(View.INVISIBLE);
+
+                    }
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                loading.setVisibility(View.INVISIBLE);
+                Toast.makeText(LoginActivity.this, "تأكد من صحة البيانات", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

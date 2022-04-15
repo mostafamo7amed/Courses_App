@@ -4,14 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -24,7 +22,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -79,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
         int selectedID = radioGroup.getCheckedRadioButtonId();
         Intent intent ;
         if(selectedID == R.id.contact_radio){
-            intent = new Intent(RegisterActivity.this,CreateContactAccountActivity.class);
+            intent = new Intent(RegisterActivity.this, CreateTrainingProviderAccountActivity.class);
             intent.putExtra("email",username.getText().toString());
             startActivity(intent);
         }else if(selectedID == R.id.trainee_radio) {
@@ -103,6 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 checkUser();
                                 loading.setVisibility(View.INVISIBLE);
+                                finish();
                             } else {
                                 loading.setVisibility(View.INVISIBLE);
                                 String error = Objects.requireNonNull(task.getException()).getMessage();

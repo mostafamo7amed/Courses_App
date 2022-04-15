@@ -1,4 +1,4 @@
-package com.example.courses.UI.Fragments.Employee;
+package com.example.courses.UI.Fragments.Admin;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,19 +10,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.Adapters.ContactsAdapter;
-import com.example.Models.Contacts;
+import com.example.Models.TrainingProvider;
 import com.example.courses.R;
-import com.example.courses.UI.Activities.LoginActivity;
-import com.example.courses.UI.Fragments.Admin.EditContactsFragment;
-import com.example.courses.UI.Fragments.Admin.EditEmployeeFragment;
-import com.example.courses.UI.Fragments.Contacts.Add_TrainerFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -35,8 +30,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -46,7 +39,7 @@ import java.util.ArrayList;
 public class ContactsFragment extends Fragment {
     ContactsAdapter contactsAdapter;
     RecyclerView recyclerContacts;
-    ArrayList<Contacts> contacts;
+    ArrayList<TrainingProvider> providers;
     FloatingActionButton addContacts;
     DatabaseReference databaseReference;
     DocumentReference documentReference;
@@ -58,9 +51,9 @@ public class ContactsFragment extends Fragment {
         recyclerContacts = getActivity().findViewById(R.id.RecyclerContacts);
         recyclerContacts.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        contacts = new ArrayList<>();
+        providers = new ArrayList<>();
 
-        contactsAdapter = new ContactsAdapter(getContext(),contacts);
+        contactsAdapter = new ContactsAdapter(getContext(), providers);
         getContacts();
 
 
@@ -98,18 +91,18 @@ public class ContactsFragment extends Fragment {
     }
 
    public void getContacts(){
-       DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Contacts");
+       DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Training Provider");
        databaseReference.addValueEventListener(new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot snapshot) {
-               contacts.clear();
+               providers.clear();
                for (DataSnapshot snapshot1 :snapshot.getChildren()){
                    databaseReference.child(snapshot1.getKey().toString()).addValueEventListener(new ValueEventListener() {
                        @Override
                        public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                            if(snapshot.exists()) {
-                               contacts.add(new Contacts(snapshot.child("name").getValue().toString(),
+                               providers.add(new TrainingProvider(snapshot.child("name").getValue().toString(),
                                        snapshot.child("email").getValue().toString(),
                                        snapshot.child("phone").getValue().toString(),
                                        snapshot.child("region").getValue().toString(),
@@ -150,9 +143,9 @@ public class ContactsFragment extends Fragment {
         builder.setPositiveButton("تأكيد", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                databaseReference = FirebaseDatabase.getInstance().getReference("Contacts");
+                databaseReference = FirebaseDatabase.getInstance().getReference("Training Provider");
                 databaseReference.child(uid).removeValue();
-                documentReference = FirebaseFirestore.getInstance().collection("Contacts").document(uid);
+                documentReference = FirebaseFirestore.getInstance().collection("Training Provider").document(uid);
                 documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {

@@ -8,6 +8,7 @@ public class Trainer {
     String Nationality;
     String uid;
     int contact_number;
+    String type;
 
     public Trainer() {
     }
@@ -76,5 +77,13 @@ public class Trainer {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

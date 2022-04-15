@@ -99,8 +99,14 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
         if (user != null) {
             currentUserId=user.getUid();
         }
+
+
+
         databaseReference=database.getReference("Trainees");
         documentReference=db.collection("Trainees").document(currentUserId);
+
+
+        
         trainee = new Trainee();
 
 
@@ -119,6 +125,7 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
             trainee.setName(u_name);
             trainee.setEducationLevel(u_level);
             trainee.setUID(currentUserId);
+            trainee.setType("Trainees");
 
             Map<String ,String> profile=new HashMap<>();
             profile.put("name",u_name);
@@ -126,6 +133,7 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
             profile.put("level",u_level);
             profile.put("email",u_email);
             profile.put("uid",currentUserId);
+            profile.put("type","Trainees");
 
             documentReference.set(profile);
             databaseReference.child(currentUserId)

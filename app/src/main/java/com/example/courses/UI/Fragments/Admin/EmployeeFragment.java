@@ -13,13 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.Adapters.EmployeeAdapter;
-import com.example.Adapters.TraineeAdapter;
-import com.example.Adapters.TrainerAdapter;
 import com.example.Models.Employee;
-import com.example.Models.Trainee;
-import com.example.Models.Trainer;
 import com.example.courses.R;
-import com.example.courses.UI.Fragments.Contacts.Add_TrainerFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

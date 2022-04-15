@@ -13,9 +13,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.courses.R;
-import com.example.courses.UI.Activities.LoginActivity;
 import com.example.courses.UI.Activities.StartActivity;
-import com.example.courses.UI.Fragments.Admin.AnalysisFragment;
+import com.example.courses.UI.Fragments.Admin.TraineeFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MoreEmployeeFragment extends Fragment {
@@ -54,6 +53,7 @@ public class MoreEmployeeFragment extends Fragment {
             public void onClick(View view) {
                 auth.signOut();
                 startActivity(new Intent(getContext(), StartActivity.class));
+                getActivity().finish();
             }
         });
     }

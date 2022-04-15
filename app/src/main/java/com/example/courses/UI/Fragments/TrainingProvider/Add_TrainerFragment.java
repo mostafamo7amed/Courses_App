@@ -1,6 +1,5 @@
-package com.example.courses.UI.Fragments.Contacts;
+package com.example.courses.UI.Fragments.TrainingProvider;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,8 +18,6 @@ import android.widget.Toast;
 
 import com.example.Models.Trainer;
 import com.example.courses.R;
-import com.example.courses.UI.Activities.CreateContactAccountActivity;
-import com.example.courses.UI.Fragments.Employee.TraineeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,7 +30,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -123,9 +119,9 @@ public class Add_TrainerFragment extends Fragment {
         String u_gander;
         int selectedID = gender.getCheckedRadioButtonId();
         if (selectedID == R.id.male) {
-            u_gander = "male";
+            u_gander = "ذكر";
         }else {
-            u_gander = "female";
+            u_gander = "أنثي";
         }
 
         databaseReference=database.getReference("Trainers");
@@ -136,6 +132,7 @@ public class Add_TrainerFragment extends Fragment {
         trainer.setNationality(u_nationality);
         trainer.setSpecialization(u_special);
         trainer.setUid(userId);
+        trainer.setType("Trainers");
         trainer.setContact_number(Integer.parseInt(contactNumber));
 
         Map<String ,String> profile=new HashMap<>();
@@ -146,6 +143,7 @@ public class Add_TrainerFragment extends Fragment {
         profile.put("specialization",u_special);
         profile.put("uid",userId);
         profile.put("contact_number",contactNumber);
+        profile.put("type","Trainers");
 
         documentReference.set(profile);
         databaseReference.child(userId)

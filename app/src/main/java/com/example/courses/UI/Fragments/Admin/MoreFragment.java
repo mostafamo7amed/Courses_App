@@ -8,15 +8,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.courses.R;
 import com.example.courses.UI.Activities.LoginActivity;
-import com.example.courses.UI.Fragments.Employee.ContactsFragment;
-import com.example.courses.UI.Fragments.Employee.TraineeFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MoreFragment extends Fragment {
@@ -56,6 +53,7 @@ public class MoreFragment extends Fragment {
             public void onClick(View view) {
                 auth.signOut();
                 startActivity(new Intent(getContext(), LoginActivity.class));
+                getActivity().finish();
             }
         });
     }

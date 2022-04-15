@@ -180,6 +180,7 @@ public class EmployeeProfileFragment extends Fragment {
             employee.setEmail(u_email);
             employee.setAge(u_age);
             employee.setPosition(u_position);
+            employee.setType("Employees");
             employee.setNumber(Integer.parseInt(u_number));
 
             Map<String ,String> profile=new HashMap<>();
@@ -189,6 +190,7 @@ public class EmployeeProfileFragment extends Fragment {
             profile.put("position",u_position);
             profile.put("email",u_email);
             profile.put("uid",currentUserId);
+            profile.put("type","Employees");
 
             documentReference.set(profile);
             databaseReference.child(currentUserId)

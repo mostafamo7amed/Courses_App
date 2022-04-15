@@ -1,7 +1,6 @@
 package com.example.courses.UI.Fragments.Admin;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -23,16 +22,10 @@ import android.widget.Toast;
 
 import com.example.Models.Trainee;
 import com.example.courses.R;
-import com.example.courses.UI.Activities.CreateTraineeAccountActivity;
-import com.example.courses.UI.Activities.TraineeActivity;
-import com.example.courses.UI.Fragments.Employee.ContactsFragment;
-import com.example.courses.UI.Fragments.Employee.TraineeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
@@ -129,6 +122,7 @@ public class EditTraineeFragment extends Fragment {
             trainee.setName(u_name);
             trainee.setEducationLevel(u_level);
             trainee.setUID(currentUserId);
+            trainee.setType("Trainees");
 
             Map<String ,String> profile=new HashMap<>();
             profile.put("name",u_name);
@@ -136,6 +130,7 @@ public class EditTraineeFragment extends Fragment {
             profile.put("level",u_level);
             profile.put("email",u_email);
             profile.put("uid",currentUserId);
+            profile.put("type","Trainees");
 
             documentReference.set(profile);
             databaseReference.child(currentUserId)

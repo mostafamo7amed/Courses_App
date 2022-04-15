@@ -1,4 +1,4 @@
-package com.example.courses.UI.Fragments.Contacts;
+package com.example.courses.UI.Fragments.Admin;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -24,15 +24,12 @@ import android.widget.Toast;
 
 import com.example.Models.Course;
 import com.example.courses.R;
-import com.example.courses.UI.Activities.CreateTraineeAccountActivity;
-import com.example.courses.UI.Fragments.Trainer.ContactPageFragment;
+import com.example.courses.UI.Fragments.Admin.CoursesFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Add_CourseFragment extends Fragment {

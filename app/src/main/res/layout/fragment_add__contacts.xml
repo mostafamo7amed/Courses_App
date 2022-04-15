@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Fragments.Employee.Add_ContactsFragment"
+    tools:context=".UI.Fragments.Admin.Add_ContactsFragment"
     android:orientation="vertical">
     <androidx.cardview.widget.CardView
         android:id="@+id/card2"
@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="إضافة جهة"
+            android:text="إضافة مزود تدريب"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:layout_margin="10dp"/>
@@ -155,7 +155,7 @@
                 android:id="@+id/cc_number_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="رقم الجهة"
+                android:hint="رقم مزود التدريب"
                 android:inputType="number"
                 android:maxLines="1"
                 android:drawableStart="@drawable/ic_contact_page"

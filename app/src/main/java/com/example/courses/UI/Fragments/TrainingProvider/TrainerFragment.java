@@ -1,4 +1,4 @@
-package com.example.courses.UI.Fragments.Contacts;
+package com.example.courses.UI.Fragments.TrainingProvider;
 
 import android.os.Bundle;
 
@@ -12,9 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.Adapters.ContactsAdapter;
 import com.example.Adapters.TrainerAdapter;
-import com.example.Models.Contacts;
 import com.example.Models.Trainer;
 import com.example.courses.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

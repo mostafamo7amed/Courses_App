@@ -24,15 +24,12 @@ import android.widget.Toast;
 
 import com.example.Models.Course;
 import com.example.courses.R;
-import com.example.courses.UI.Fragments.Contacts.CoursesFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentSnapshot;
 
-import java.text.DateFormat;
 import java.util.Calendar;
 
 public class EditCoursesFragment extends Fragment {

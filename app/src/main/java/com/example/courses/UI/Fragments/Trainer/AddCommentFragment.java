@@ -1,6 +1,5 @@
 package com.example.courses.UI.Fragments.Trainer;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,8 +17,6 @@ import android.widget.Toast;
 
 import com.example.Models.Comments;
 import com.example.courses.R;
-import com.example.courses.UI.Activities.CreateContactAccountActivity;
-import com.example.courses.UI.Fragments.Employee.ContactsFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

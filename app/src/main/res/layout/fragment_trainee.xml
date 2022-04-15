@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Fragments.Employee.TraineeFragment">
+    tools:context=".UI.Fragments.Admin.TraineeFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card2"

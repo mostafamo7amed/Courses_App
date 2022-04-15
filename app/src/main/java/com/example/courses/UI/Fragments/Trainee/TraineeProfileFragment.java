@@ -144,6 +144,7 @@ public class TraineeProfileFragment extends Fragment {
             trainee.setName(u_name);
             trainee.setEducationLevel(u_level);
             trainee.setUID(currentUserId);
+            trainee.setType("Trainees");
 
             Map<String ,String> profile=new HashMap<>();
             profile.put("name",u_name);
@@ -151,6 +152,7 @@ public class TraineeProfileFragment extends Fragment {
             profile.put("level",u_level);
             profile.put("email",u_email);
             profile.put("uid",currentUserId);
+            profile.put("type","Trainees");
 
             documentReference.set(profile);
             databaseReference.child(currentUserId)

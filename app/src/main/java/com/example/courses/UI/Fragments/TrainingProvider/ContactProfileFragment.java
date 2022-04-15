@@ -1,4 +1,4 @@
-package com.example.courses.UI.Fragments.Contacts;
+package com.example.courses.UI.Fragments.TrainingProvider;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -22,11 +22,9 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.Models.Contacts;
-import com.example.Models.Trainee;
+import com.example.Models.TrainingProvider;
 import com.example.courses.R;
-import com.example.courses.UI.Activities.ContactsActivity;
-import com.example.courses.UI.Activities.CreateContactAccountActivity;
+import com.example.courses.UI.Activities.CreateTrainingProviderAccountActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -64,7 +62,7 @@ public class ContactProfileFragment extends Fragment {
     DatabaseReference databaseReference;
     FirebaseFirestore db =FirebaseFirestore.getInstance();
     DocumentReference documentReference;
-    Contacts contacts;
+    TrainingProvider provider;
     String currentUser_id , UrlDeleted ,Email ,Number;
     private static final int PICK_IMAGE=1;
 
@@ -132,7 +130,7 @@ public class ContactProfileFragment extends Fragment {
         loading = getActivity().findViewById(R.id.cp_progress);
         cardView = getActivity().findViewById(R.id.add_image);
         photo = getActivity().findViewById(R.id.image_contact);
-        contacts = new Contacts();
+        provider = new TrainingProvider();
     }
 
     public void getDate(){
@@ -145,7 +143,7 @@ public class ContactProfileFragment extends Fragment {
         FirebaseFirestore firestore=FirebaseFirestore.getInstance();
 
         if (currentUserId != null) {
-            reference = firestore.collection("Contacts").document(currentUserId);
+            reference = firestore.collection("Training Provider").document(currentUserId);
             reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -175,7 +173,7 @@ public class ContactProfileFragment extends Fragment {
 
 
                         } else {
-                            Intent intent = new Intent(getActivity(), CreateContactAccountActivity.class);
+                            Intent intent = new Intent(getActivity(), CreateTrainingProviderAccountActivity.class);
                             startActivity(intent);
                         }
                     } catch (NullPointerException nullPointerException) {
@@ -195,9 +193,9 @@ public class ContactProfileFragment extends Fragment {
         FirebaseAuth auth=FirebaseAuth.getInstance();
         currentUser_id=auth.getCurrentUser().getUid();
 
-        documentReference=db.collection("Contacts").document(currentUser_id);
+        documentReference=db.collection("Training Provider").document(currentUser_id);
         storageReference= FirebaseStorage.getInstance().getReference("Profile images");
-        databaseReference=database.getReference("Contacts");
+        databaseReference=database.getReference("Training Provider");
 
         if(!TextUtils.isEmpty(name.getText().toString()) && !TextUtils.isEmpty(phone.getText().toString()) && !TextUtils.isEmpty(commerce.getText().toString()) && !TextUtils.isEmpty(region.getText().toString()) && imageUri!=null)
         {
@@ -235,19 +233,21 @@ public class ContactProfileFragment extends Fragment {
                         profile.put("phone",phone.getText().toString());
                         profile.put("uid",currentUser_id);
                         profile.put("image",image_current);
+                        profile.put("type","Contacts");
                         profile.put("region",region.getText().toString());
 
-                        contacts.setName(name.getText().toString());
-                        contacts.setUid(currentUser_id);
-                        contacts.setContact_number(Integer.parseInt(Number));
-                        contacts.setEmail(Email);
-                        contacts.setPhone(phone.getText().toString());
-                        contacts.setRegion(region.getText().toString());
-                        contacts.setCommercial_register(commerce.getText().toString());
+                        provider.setName(name.getText().toString());
+                        provider.setUid(currentUser_id);
+                        provider.setContact_number(Integer.parseInt(Number));
+                        provider.setEmail(Email);
+                        provider.setType("Contacts");
+                        provider.setPhone(phone.getText().toString());
+                        provider.setRegion(region.getText().toString());
+                        provider.setCommercial_register(commerce.getText().toString());
                         if (downloadUri != null) {
-                            contacts.setImage(downloadUri.toString());
+                            provider.setImage(downloadUri.toString());
                         }
-                        databaseReference.child(currentUser_id).setValue(contacts)
+                        databaseReference.child(currentUser_id).setValue(provider)
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {

@@ -1,6 +1,6 @@
 package com.example.Models;
 
-public class Contacts {
+public class TrainingProvider {
     String Name;
     String Email;
     String phone;
@@ -9,11 +9,12 @@ public class Contacts {
     int Contact_number;
     String uid;
     String image;
+    String type;
 
-    public Contacts() {
+    public TrainingProvider() {
     }
 
-    public Contacts(String name, String email, String phone, String region, String commercial_register, int contact_number) {
+    public TrainingProvider(String name, String email, String phone, String region, String commercial_register, int contact_number) {
         Name = name;
         Email = email;
         this.phone = phone;
@@ -22,7 +23,7 @@ public class Contacts {
         Contact_number = contact_number;
     }
 
-    public Contacts(String name, String email, String phone, String region, String commercial_register, int contact_number, String uid, String image) {
+    public TrainingProvider(String name, String email, String phone, String region, String commercial_register, int contact_number, String uid, String image) {
         Name = name;
         Email = email;
         this.phone = phone;
@@ -95,5 +96,13 @@ public class Contacts {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -11,10 +11,9 @@ import android.view.MenuItem;
 
 import com.example.courses.Constants;
 import com.example.courses.R;
-import com.example.courses.UI.Fragments.Contacts.ContactProfileFragment;
-import com.example.courses.UI.Fragments.Contacts.CoursesFragment;
-import com.example.courses.UI.Fragments.Contacts.TrainerFragment;
-import com.example.courses.UI.Fragments.Employee.TraineeFragment;
+import com.example.courses.UI.Fragments.TrainingProvider.ContactProfileFragment;
+import com.example.courses.UI.Fragments.Admin.CoursesFragment;
+import com.example.courses.UI.Fragments.TrainingProvider.TrainerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 

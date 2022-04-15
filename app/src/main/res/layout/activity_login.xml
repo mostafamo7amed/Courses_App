@@ -62,56 +62,6 @@
             android:layout_marginEnd="10dp"
             />
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <RadioGroup
-                    android:id="@+id/radio_group_login"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="2"
-                    android:layout_marginHorizontal="10dp"
-                    android:orientation="horizontal">
-                    <RadioButton
-                        android:id="@+id/radio_admin_login"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:text=" مدير "/>
-
-                    <RadioButton
-                        android:id="@+id/radio_employee_login"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:layout_marginStart="10dp"
-                        android:text="موظف "/>
-                    <RadioButton
-                        android:id="@+id/radio_contact_login"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:text=" جهة"/>
-                    <RadioButton
-                        android:id="@+id/radio_trainer_login"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:layout_marginHorizontal="10dp"
-                        android:text=" مدرب"/>
-                    <RadioButton
-                        android:id="@+id/radio_trainee_login"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:text="متدرب "/>
-                </RadioGroup>
-            </LinearLayout>
-        </HorizontalScrollView>
 
 
 

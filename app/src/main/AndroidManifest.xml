@@ -22,7 +22,7 @@
             android:name=".UI.Activities.TrainerActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.Activities.CreateContactAccountActivity"
+            android:name=".UI.Activities.CreateTrainingProviderAccountActivity"
             android:exported="false" />
         <activity
             android:name=".UI.Activities.StartActivity"

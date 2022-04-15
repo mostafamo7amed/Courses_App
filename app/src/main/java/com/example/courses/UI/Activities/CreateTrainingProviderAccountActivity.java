@@ -12,13 +12,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.MimeTypeMap;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.Models.Contacts;
+import com.example.Models.TrainingProvider;
 import com.example.courses.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,7 +38,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class CreateContactAccountActivity extends AppCompatActivity {
+public class CreateTrainingProviderAccountActivity extends AppCompatActivity {
 
     EditText name,phone,region, commerce , number;
     ProgressBar loading;
@@ -52,14 +50,14 @@ public class CreateContactAccountActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseFirestore db =FirebaseFirestore.getInstance();
     DocumentReference documentReference;
-    Contacts contacts;
+    TrainingProvider provider;
     String currentUser_id;
     UploadTask uploadTask;
     private static final int PICK_IMAGE=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_contact_account);
+        setContentView(R.layout.activity_create_training_provider_account);
 
         initialization();
 
@@ -90,7 +88,7 @@ public class CreateContactAccountActivity extends AppCompatActivity {
         number = findViewById(R.id.cc_number);
         photo = findViewById(R.id.cc_picture);
         save = findViewById(R.id.cc_save);
-        contacts = new Contacts();
+        provider = new TrainingProvider();
         FirebaseAuth auth=FirebaseAuth.getInstance();
         currentUser_id=auth.getCurrentUser().getUid();
     }
@@ -122,9 +120,9 @@ public class CreateContactAccountActivity extends AppCompatActivity {
         String u_region=region.getText().toString();
         String u_email=getIntent().getStringExtra("email");
 
-        documentReference=db.collection("Contacts").document(currentUser_id);
+        documentReference=db.collection("Training Provider").document(currentUser_id);
         storageReference= FirebaseStorage.getInstance().getReference("Profile images");
-        databaseReference=database.getReference("Contacts");
+        databaseReference=database.getReference("Training Provider");
 
         if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_number) && !TextUtils.isEmpty(u_commerce) && !TextUtils.isEmpty(u_email) && !TextUtils.isEmpty(u_region) && !TextUtils.isEmpty(u_phone) && imageUri!=null)
         {
@@ -160,23 +158,25 @@ public class CreateContactAccountActivity extends AppCompatActivity {
                         profile.put("phone",u_phone);
                         profile.put("uid",currentUser_id);
                         profile.put("image",imageChild);
+                        profile.put("type","Contacts");
 
-                        contacts.setName(u_name);
-                        contacts.setUid(currentUser_id);
-                        contacts.setContact_number(Integer.parseInt(u_number));
-                        contacts.setEmail(u_email);
-                        contacts.setPhone(u_phone);
-                        contacts.setRegion(u_region);
-                        contacts.setCommercial_register(u_commerce);
+                        provider.setName(u_name);
+                        provider.setUid(currentUser_id);
+                        provider.setContact_number(Integer.parseInt(u_number));
+                        provider.setEmail(u_email);
+                        provider.setPhone(u_phone);
+                        provider.setRegion(u_region);
+                        provider.setType("Contacts");
+                        provider.setCommercial_register(u_commerce);
                         if (downloadUri != null) {
-                            contacts.setImage(downloadUri.toString());
+                            provider.setImage(downloadUri.toString());
                         }
-                        databaseReference.child(currentUser_id).setValue(contacts)
+                        databaseReference.child(currentUser_id).setValue(provider)
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         loading.setVisibility(View.INVISIBLE);
-                                        Toast.makeText(CreateContactAccountActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(CreateTrainingProviderAccountActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
                         documentReference.set(profile)
@@ -184,15 +184,15 @@ public class CreateContactAccountActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void unused) {
                                 loading.setVisibility(View.INVISIBLE);
-                                Toast.makeText(CreateContactAccountActivity.this, "تم إنشاء الحساب", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(CreateContactAccountActivity.this,ContactsActivity.class));
+                                Toast.makeText(CreateTrainingProviderAccountActivity.this, "تم إنشاء الحساب", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(CreateTrainingProviderAccountActivity.this,ContactsActivity.class));
                                 finish();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 loading.setVisibility(View.INVISIBLE);
-                                Toast.makeText(CreateContactAccountActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateTrainingProviderAccountActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
 

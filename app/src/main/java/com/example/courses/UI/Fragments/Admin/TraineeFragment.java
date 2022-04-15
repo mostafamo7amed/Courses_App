@@ -1,4 +1,4 @@
-package com.example.courses.UI.Fragments.Employee;
+package com.example.courses.UI.Fragments.Admin;
 
 import android.os.Bundle;
 
@@ -12,14 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.Adapters.ContactsAdapter;
 import com.example.Adapters.TraineeAdapter;
-import com.example.Models.Contacts;
 import com.example.Models.Trainee;
 import com.example.courses.R;
-import com.example.courses.UI.Fragments.Admin.EditEmployeeFragment;
-import com.example.courses.UI.Fragments.Admin.EditTraineeFragment;
-import com.example.courses.UI.Fragments.Trainer.AddCommentFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

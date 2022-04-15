@@ -1,4 +1,4 @@
-package com.example.courses.UI.Fragments.Employee;
+package com.example.courses.UI.Fragments.Admin;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -20,11 +20,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.Models.Contacts;
+import com.example.Models.TrainingProvider;
 import com.example.courses.R;
-import com.example.courses.UI.Activities.ContactsActivity;
-import com.example.courses.UI.Activities.CreateContactAccountActivity;
-import com.example.courses.UI.Activities.RegisterActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -61,7 +58,7 @@ public class Add_ContactsFragment extends Fragment {
     DatabaseReference databaseReference;
     FirebaseFirestore db =FirebaseFirestore.getInstance();
     DocumentReference documentReference;
-    Contacts contacts;
+    TrainingProvider contacts;
     UploadTask uploadTask;
     FirebaseAuth firebaseAuth;
     private static final int PICK_IMAGE=1;
@@ -107,7 +104,7 @@ public class Add_ContactsFragment extends Fragment {
         password = getActivity().findViewById(R.id.cc_password_man);
         save = getActivity().findViewById(R.id.cc_save_man);
         firebaseAuth = FirebaseAuth.getInstance();
-        contacts = new Contacts();
+        contacts = new TrainingProvider();
 
     }
 
@@ -168,9 +165,9 @@ public class Add_ContactsFragment extends Fragment {
         String u_email=email.getText().toString();
 
 
-        documentReference=db.collection("Contacts").document(userId);
+        documentReference=db.collection("Training Provider").document(userId);
         storageReference= FirebaseStorage.getInstance().getReference("Profile images");
-        databaseReference=database.getReference("Contacts");
+        databaseReference=database.getReference("Training Provider");
 
 
         String imageChild =System.currentTimeMillis()+"."+getFileExt(imageUri);
@@ -205,6 +202,7 @@ public class Add_ContactsFragment extends Fragment {
                     profile.put("phone",u_phone);
                     profile.put("uid",userId);
                     profile.put("image",imageChild);
+                    profile.put("type","Contacts");
 
                     contacts.setName(u_name);
                     contacts.setUid(userId);
@@ -212,6 +210,7 @@ public class Add_ContactsFragment extends Fragment {
                     contacts.setEmail(u_email);
                     contacts.setPhone(u_phone);
                     contacts.setRegion(u_region);
+                    contacts.setType("Contacts");
                     contacts.setCommercial_register(u_commerce);
                     if (downloadUri != null) {
                         contacts.setImage(downloadUri.toString());
@@ -229,7 +228,7 @@ public class Add_ContactsFragment extends Fragment {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     loading.setVisibility(View.INVISIBLE);
-                                    Toast.makeText(getContext(), "تم إنشاء الحساب", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "تم إنشاء الحساب مزود التدريبات", Toast.LENGTH_SHORT).show();
                                     Fragment selected = null;
                                     Bundle bundle = new Bundle();
                                     bundle.putInt("frame",getArguments().getInt("frame"));

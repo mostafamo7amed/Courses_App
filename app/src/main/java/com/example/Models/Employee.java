@@ -4,6 +4,7 @@ public class Employee {
     String email , name ,position,uid;
     int number;
     String age;
+    String type;
 
 
     public Employee() {
@@ -64,5 +65,13 @@ public class Employee {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -5,6 +5,7 @@ public class Trainee {
     String Name;
     String Email, educationLevel;
     String age;
+    String type;
 
     public Trainee() {
 
@@ -56,5 +57,13 @@ public class Trainee {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

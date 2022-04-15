@@ -1,4 +1,4 @@
-package com.example.courses.UI.Fragments.Contacts;
+package com.example.courses.UI.Fragments.Admin;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,15 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.Adapters.ContactPageAdapter;
 import com.example.Adapters.CoursesAdapter;
-import com.example.Models.Comments;
 import com.example.Models.Course;
 import com.example.courses.R;
-import com.example.courses.UI.Fragments.Admin.EditContactsFragment;
-import com.example.courses.UI.Fragments.Admin.EditCoursesFragment;
-import com.example.courses.UI.Fragments.Contacts.Add_CourseFragment;
-import com.example.courses.UI.Fragments.Trainer.ContactPageFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

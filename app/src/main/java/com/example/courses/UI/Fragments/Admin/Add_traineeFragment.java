@@ -1,6 +1,5 @@
-package com.example.courses.UI.Fragments.Employee;
+package com.example.courses.UI.Fragments.Admin;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,9 +17,7 @@ import android.widget.Toast;
 
 import com.example.Models.Trainee;
 import com.example.courses.R;
-import com.example.courses.UI.Activities.CreateTraineeAccountActivity;
-import com.example.courses.UI.Activities.TraineeActivity;
-import com.example.courses.UI.Fragments.Trainer.ContactPageFragment;
+import com.example.courses.UI.Fragments.Admin.TraineeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -126,6 +123,7 @@ public class Add_traineeFragment extends Fragment {
         trainee.setName(u_name);
         trainee.setEducationLevel(u_level);
         trainee.setUID(userId);
+        trainee.setType("Trainees");
 
         Map<String ,String> profile=new HashMap<>();
         profile.put("name",u_name);
@@ -133,6 +131,7 @@ public class Add_traineeFragment extends Fragment {
         profile.put("level",u_level);
         profile.put("email",u_email);
         profile.put("uid",userId);
+        profile.put("type","Trainees");
 
         documentReference.set(profile);
         databaseReference.child(userId)

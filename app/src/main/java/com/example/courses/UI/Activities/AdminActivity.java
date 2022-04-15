@@ -12,7 +12,7 @@ import com.example.courses.Constants;
 import com.example.courses.R;
 import com.example.courses.UI.Fragments.Admin.EmployeeFragment;
 import com.example.courses.UI.Fragments.Admin.MoreFragment;
-import com.example.courses.UI.Fragments.Contacts.CoursesFragment;
+import com.example.courses.UI.Fragments.Admin.CoursesFragment;
 import com.example.courses.UI.Fragments.Trainer.ContactPageFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

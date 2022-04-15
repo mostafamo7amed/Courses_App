@@ -37,6 +37,10 @@ public class CoursesTrainerAdapter extends RecyclerView.Adapter<CoursesTrainerAd
         holder.name.setText(list.get(position).getField());
         holder.trainer.setText(list.get(position).getTrainer());
         holder.description.setText(list.get(position).getDescription());
+        holder.material.setText(list.get(position).getCourseMaterial());
+        holder.date.setText(list.get(position).getDate());
+        holder.time.setText(list.get(position).getTime());
+        holder.address.setText(list.get(position).getAddress());
 
     }
     @Override
@@ -45,14 +49,17 @@ public class CoursesTrainerAdapter extends RecyclerView.Adapter<CoursesTrainerAd
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name ,trainer ,description ;
-        AppCompatButton edit;
+        TextView name ,trainer ,description,material,address,time,date ;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            name = itemView.findViewById(R.id.field_course_trainer);
-            trainer = itemView.findViewById(R.id.trainer_course_trainer);
-            description = itemView.findViewById(R.id.desciption_course_trainer);
+            name = itemView.findViewById(R.id.field_course_tr);
+            trainer = itemView.findViewById(R.id.trainer_course_tr);
+            description = itemView.findViewById(R.id.desciption_course_tr);
+            material = itemView.findViewById(R.id.material_course_tr);
+            address = itemView.findViewById(R.id.address_course_tr);
+            time = itemView.findViewById(R.id.time_course_tr);
+            date = itemView.findViewById(R.id.date_course_tr);
         }
     }
 }

@@ -88,7 +88,7 @@ public class AnalysisFragment extends Fragment {
             }
         });
 
-        contact = database.getReference("Contacts");
+        contact = database.getReference("Training Provider");
         contact.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

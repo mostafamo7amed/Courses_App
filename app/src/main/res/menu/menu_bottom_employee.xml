@@ -5,7 +5,7 @@
 
         <item android:id="@+id/contacts_emp"
             android:icon="@drawable/ic_manage"
-            android:title="إدارة الجهات"
+            android:title="إدارة مزود التدريب"
             tools:ignore="MenuTitle" />
         <item android:id="@+id/courses_emp"
             android:icon="@drawable/ic_menu_book"

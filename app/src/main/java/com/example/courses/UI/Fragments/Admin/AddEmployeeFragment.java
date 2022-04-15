@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import com.example.Models.Employee;
 import com.example.courses.R;
-import com.example.courses.UI.Fragments.Employee.TraineeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -157,6 +156,7 @@ public class AddEmployeeFragment extends Fragment {
         employee.setNumber(Integer.parseInt(u_number));
         employee.setPosition(u_position);
         employee.setUid(userId);
+        employee.setType("Employees");
 
 
         Map<String ,String> profile=new HashMap<>();
@@ -166,6 +166,7 @@ public class AddEmployeeFragment extends Fragment {
         profile.put("email",u_email);
         profile.put("number",u_number);
         profile.put("uid",userId);
+        profile.put("type","Employees");
 
         documentReference.set(profile);
         databaseReference.child(userId)

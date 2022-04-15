@@ -27,10 +27,9 @@
                 android:layout_marginStart="10dp"
                 android:text="المجال : "/>
             <TextView
-                android:id="@+id/field_course_trainer"
+                android:id="@+id/field_course_tr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
                 android:textSize="16sp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/dark_text"
@@ -38,8 +37,34 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/liener2"
+            android:id="@+id/liener7"
             app:layout_constraintTop_toBottomOf="@id/liner1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:text="المادة العلمية : "/>
+            <TextView
+                android:id="@+id/material_course_tr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/dark_text"
+                android:layout_marginLeft="8dp"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/liener2"
+            app:layout_constraintTop_toBottomOf="@id/liener7"
             android:layout_marginTop="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,10 +78,9 @@
                 android:layout_marginStart="10dp"
                 android:text="المدرب : "/>
             <TextView
-                android:id="@+id/trainer_course_trainer"
+                android:id="@+id/trainer_course_tr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="email"
                 android:textSize="16sp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/dark_text"
@@ -65,11 +89,40 @@
 
         </LinearLayout>
         <LinearLayout
-            app:layout_constraintTop_toBottomOf="@id/liener2"
+            android:id="@+id/liener3"
+            app:layout_constraintTop_toBottomOf="@id/liener6"
             android:layout_marginTop="3dp"
+            android:paddingVertical="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingVertical="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:text="الوصف : "/>
+            <TextView
+                android:id="@+id/desciption_course_tr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/dark_text"
+                android:layout_marginLeft="8dp"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/liener4"
+            app:layout_constraintTop_toBottomOf="@id/liener2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             android:orientation="horizontal">
             <TextView
@@ -78,17 +131,69 @@
                 android:textSize="16sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="10dp"
-                android:text="الوصف : "/>
+                android:text="العنوان : "/>
             <TextView
-                android:id="@+id/desciption_course_trainer"
+                android:id="@+id/address_course_tr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="massage"
                 android:textSize="16sp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/dark_text"
                 android:layout_marginLeft="8dp"
                 />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/liener5"
+            app:layout_constraintTop_toBottomOf="@id/liener4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:text="التاريخ : "/>
+            <TextView
+                android:id="@+id/date_course_tr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/dark_text"
+                android:layout_marginLeft="8dp"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/liener6"
+            app:layout_constraintTop_toBottomOf="@id/liener5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:text="الوقت : "/>
+            <TextView
+                android:id="@+id/time_course_tr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/dark_text"
+                android:layout_marginLeft="8dp"
+                />
+
 
         </LinearLayout>
 

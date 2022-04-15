@@ -1,13 +1,10 @@
 package com.example.courses.UI.Fragments.Admin;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
@@ -15,35 +12,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.Models.Contacts;
+import com.example.Models.TrainingProvider;
 import com.example.courses.R;
-import com.example.courses.UI.Activities.CreateContactAccountActivity;
-import com.example.courses.UI.Fragments.Employee.ContactsFragment;
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditContactsFragment extends Fragment {
     EditText name ,phone ,commerce,region,number;
@@ -53,7 +38,7 @@ public class EditContactsFragment extends Fragment {
     DatabaseReference databaseReference;
     FirebaseFirestore db =FirebaseFirestore.getInstance();
     DocumentReference documentReference;
-    Contacts contacts;
+    TrainingProvider contacts;
     String currentUser_id ,Email ,Image ,Url;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -77,7 +62,7 @@ public class EditContactsFragment extends Fragment {
         number = getActivity().findViewById(R.id.edit_number_con);
         editSave = getActivity().findViewById(R.id.edit_add_con);
         loading = getActivity().findViewById(R.id.edit_progress_con);
-        contacts = new Contacts();
+        contacts = new TrainingProvider();
         currentUser_id = getArguments().getString("uid");
     }
     @Override
@@ -93,7 +78,7 @@ public class EditContactsFragment extends Fragment {
         FirebaseFirestore firestore=FirebaseFirestore.getInstance();
 
         if (currentUserId != null) {
-            reference = firestore.collection("Contacts").document(currentUserId);
+            reference = firestore.collection("Training Provider").document(currentUserId);
             reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -130,8 +115,8 @@ public class EditContactsFragment extends Fragment {
     }
 
     public void editContact(){
-        documentReference=db.collection("Contacts").document(currentUser_id);
-        databaseReference=database.getReference("Contacts");
+        documentReference=db.collection("Training Provider").document(currentUser_id);
+        databaseReference=database.getReference("Training Provider");
 
         if(!TextUtils.isEmpty(name.getText().toString()) && !TextUtils.isEmpty(phone.getText().toString()) && !TextUtils.isEmpty(commerce.getText().toString()) && !TextUtils.isEmpty(region.getText().toString()))
         {
@@ -147,6 +132,7 @@ public class EditContactsFragment extends Fragment {
                 profile.put("uid",currentUser_id);
                 profile.put("image",Image);
                 profile.put("region",region.getText().toString());
+                profile.put("type","Training Provider");
 
                 contacts.setName(name.getText().toString());
                 contacts.setUid(currentUser_id);
@@ -156,6 +142,7 @@ public class EditContactsFragment extends Fragment {
                 contacts.setRegion(region.getText().toString());
                 contacts.setCommercial_register(commerce.getText().toString());
                 contacts.setImage(Url);
+                contacts.setType("Contacts");
                 databaseReference.child(currentUser_id).setValue(contacts)
                         .addOnFailureListener(new OnFailureListener() {
                             @Override

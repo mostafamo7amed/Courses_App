@@ -127,6 +127,7 @@ public class EditEmployeeFragment extends Fragment {
             employee.setNumber(Integer.parseInt(u_number));
             employee.setPosition(u_position);
             employee.setUid(userId);
+            employee.setType("Employees");
 
 
             Map<String, String> profile = new HashMap<>();
@@ -136,6 +137,7 @@ public class EditEmployeeFragment extends Fragment {
             profile.put("email", U_EMail);
             profile.put("number", u_number);
             profile.put("uid", userId);
+            profile.put("type","Employees");
 
             documentReference.set(profile);
             databaseReference.child(userId)
