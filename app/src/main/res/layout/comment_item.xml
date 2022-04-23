@@ -6,6 +6,7 @@
     android:layout_margin="5dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
+    android:layoutDirection="rtl"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -97,18 +98,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/comment_delete"
             android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/time_date_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:textSize="12sp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="5dp"
                 android:textColor="@android:color/darker_gray"
-                android:layout_marginLeft="8dp"
-                />
+                android:textSize="12sp" />
         </LinearLayout>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/comment_delete"
@@ -119,7 +120,7 @@
             android:textColor="@color/white"
             android:background="@drawable/custom_btu"
             app:layout_constraintTop_toBottomOf="@id/lineee3"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

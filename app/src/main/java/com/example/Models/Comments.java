@@ -9,17 +9,20 @@ public class Comments {
     String time;
     String date;
     String key;
+    String uid ,type;
 
     public Comments() {
     }
 
-    public Comments(String email, String name, String comment, String time, String date,String key) {
+    public Comments(String email, String name, String comment, String time, String date, String key, String UID, String type) {
         this.email = email;
         this.name = name;
         this.comment = comment;
         this.time = time;
         this.date = date;
         this.key = key;
+        this.uid = UID;
+        this.type = type;
     }
 
     public String getEmail() {
@@ -68,5 +71,21 @@ public class Comments {
 
     public void setKey(String UID) {
         this.key = UID;
+    }
+
+    public String getUID() {
+        return uid;
+    }
+
+    public void setUID(String UID) {
+        this.uid = UID;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

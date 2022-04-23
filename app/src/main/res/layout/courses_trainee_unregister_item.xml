@@ -6,6 +6,7 @@
     android:layout_margin="3dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
+    android:layoutDirection="rtl"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,7 +31,6 @@
                 android:id="@+id/field_course_trainee_un"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
                 android:textSize="16sp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/dark_text"
@@ -38,8 +38,34 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/liener2"
+            android:id="@+id/liener44"
             app:layout_constraintTop_toBottomOf="@id/liner1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:text="المادة العلمية : "/>
+            <TextView
+                android:id="@+id/material_course_un"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/dark_text"
+                android:layout_marginLeft="8dp"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/liener2"
+            app:layout_constraintTop_toBottomOf="@id/liener44"
             android:layout_marginTop="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,7 +82,6 @@
                 android:id="@+id/trainer_course_trainee_un"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="email"
                 android:textSize="16sp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/dark_text"
@@ -84,7 +109,6 @@
                 android:id="@+id/desciption_course_trainee_un"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="massage"
                 android:textSize="16sp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/dark_text"
@@ -111,7 +135,6 @@
                 android:id="@+id/address_course_trainee_un"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="massage"
                 android:textSize="16sp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/dark_text"
@@ -138,7 +161,6 @@
                 android:id="@+id/date_course_trainee_un"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="massage"
                 android:textSize="16sp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/dark_text"
@@ -165,7 +187,6 @@
                 android:id="@+id/time_course_trainee_un"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="massage"
                 android:textSize="16sp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/dark_text"

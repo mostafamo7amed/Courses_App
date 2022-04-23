@@ -84,7 +84,7 @@ public class EmployeeFragment extends Fragment {
                                         snapshot.child("position").getValue().toString(),
                                         snapshot.child("uid").getValue().toString(),
                                         snapshot.child("age").getValue().toString(),
-                                        Integer.parseInt(snapshot.child("number").getValue().toString())
+                                        snapshot.child("number").getValue().toString()
 
                                 ));
 

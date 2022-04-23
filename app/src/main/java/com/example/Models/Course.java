@@ -7,13 +7,14 @@ public class Course {
     String address;
     int contactNumber ,courseNumber;
     String date;
+    String end;
     String time;
     String key;
 
     public Course() {
     }
 
-    public Course(String field, String courseMaterial, String description, String trainer, String address, int contactNumber, int courseNumber, String date, String time, String key) {
+    public Course(String field, String courseMaterial, String description, String trainer, String address, int contactNumber, int courseNumber, String date, String end, String time, String key) {
         this.field = field;
         this.courseMaterial = courseMaterial;
         this.description = description;
@@ -22,6 +23,7 @@ public class Course {
         this.contactNumber = contactNumber;
         this.courseNumber = courseNumber;
         this.date = date;
+        this.end = end;
         this.time = time;
         this.key = key;
     }
@@ -116,5 +118,13 @@ public class Course {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getEnd() {
+        return end;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
     }
 }

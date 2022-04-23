@@ -48,7 +48,7 @@ public class AnalysisFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    double present = (snapshot.getChildrenCount()*100.0)/1000;
+                    double present = (snapshot.getChildrenCount()*100.0)/100;
                     courses.setText(present+" %");
                     coursesProgress.setProgress((int) present);
                 }
@@ -68,7 +68,7 @@ public class AnalysisFragment extends Fragment {
             public void onSuccess(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     traineeNumber = dataSnapshot.getChildrenCount();
-                    double present = (traineeNumber*100.0)/1000;
+                    double present = (traineeNumber*100.0)/100;
                     trainees.setText(present+" %");
                     traineeProgress.setProgress((int) present);
                 }
@@ -81,7 +81,7 @@ public class AnalysisFragment extends Fragment {
             public void onSuccess(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     trainerNumber = dataSnapshot.getChildrenCount();
-                    double present = (trainerNumber*100.0)/1000;
+                    double present = (trainerNumber*100.0)/100;
                     trainers.setText(present+" %");
                     trainerProgress.setProgress((int) present);
                 }
@@ -94,7 +94,7 @@ public class AnalysisFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     contactsNumber = snapshot.getChildrenCount();
-                    double present = (contactsNumber*100.0)/1000;
+                    double present = (contactsNumber*100.0)/100;
                     contacts.setText(present+" %");
                     contactProgress.setProgress((int) present);
                 }
@@ -112,7 +112,7 @@ public class AnalysisFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     employeeNumber = snapshot.getChildrenCount();
-                    double present = (employeeNumber*100.0)/1000;
+                    double present = (employeeNumber*100.0)/100;
                     employees.setText(present+" %");
                     employeeProgress.setProgress((int) present);
                 }

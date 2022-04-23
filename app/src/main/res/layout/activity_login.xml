@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="rtl"
     tools:context=".UI.Activities.LoginActivity"
     android:orientation="vertical">
     <LinearLayout
@@ -25,6 +26,7 @@
             android:layout_height="50dp"
             android:textColor="@color/dark_text"
             android:hint="أسم المستخدم"
+            android:textAlignment="textStart"
             android:layout_marginHorizontal="10dp"
             android:inputType="textEmailAddress"
             android:drawableStart="@drawable/ic_person"
@@ -42,6 +44,7 @@
             android:textColor="@color/dark_text"
             android:hint="كلمة المرور"
             android:inputType="text"
+            android:textAlignment="textStart"
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="10dp"
             android:paddingStart="10dp"
@@ -76,6 +79,15 @@
             android:background="@drawable/custom_btu"
             android:layout_margin="10sp"
             />
+        <TextView
+            android:id="@+id/forget_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="إستعادة كلمة المرور ؟"
+            android:layout_gravity="start"
+            android:layout_margin="10dp"
+            android:textColor="@color/dark_text"
+            android:textSize="18sp"/>
         <ProgressBar
             android:id="@+id/progress_login"
             android:layout_width="match_parent"

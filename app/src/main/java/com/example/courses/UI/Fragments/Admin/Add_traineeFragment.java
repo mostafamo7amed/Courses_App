@@ -1,5 +1,8 @@
 package com.example.courses.UI.Fragments.Admin;
 
+import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,12 +14,19 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Models.Trainee;
 import com.example.courses.R;
+import com.example.courses.SharedPref;
+import com.example.courses.UI.Activities.CreateTraineeAccountActivity;
 import com.example.courses.UI.Fragments.Admin.TraineeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,13 +40,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public class Add_traineeFragment extends Fragment {
 
-    EditText name , level , age , email , password;
+    EditText name  ,  email , password;
+    Spinner level;
+    TextView age ;
     ProgressBar loading;
     AppCompatButton create_account;
     FirebaseDatabase database =FirebaseDatabase.getInstance();
@@ -45,18 +58,44 @@ public class Add_traineeFragment extends Fragment {
     DocumentReference documentReference;
     Trainee trainee;
     FirebaseAuth firebaseAuth;
+    DatePickerDialog.OnDateSetListener mListener;
+    String eduLevel;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         initialization();
-
+        educationLevel();
         create_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createProfile();
             }
         });
+
+        Calendar calendar = Calendar.getInstance();
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+        final int month = calendar.get(Calendar.MONTH);
+        final int year = calendar.get(Calendar.YEAR);
+        age.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                        android.R.style.Theme_Holo_Dialog_MinWidth,
+                        mListener,year,month,day);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.show();
+            }
+        });
+
+        mListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                i1 = i1+1;
+                String date = i2+"/"+i1+"/"+i;
+                age.setText(date);
+            }
+        };
     }
 
     @Override
@@ -82,7 +121,7 @@ public class Add_traineeFragment extends Fragment {
     }
     public void createProfile(){
         String u_name =name.getText().toString();
-        String u_level=level.getText().toString();
+        String u_level=eduLevel;
         String u_age=age.getText().toString();
         String u_email=email.getText().toString();
         String u_password = password.getText().toString();
@@ -112,7 +151,7 @@ public class Add_traineeFragment extends Fragment {
 
     public void putTraineeData(String userId){
         String u_name =name.getText().toString();
-        String u_level=level.getText().toString();
+        String u_level=eduLevel;
         String u_age=age.getText().toString();
         String u_email=email.getText().toString();
 
@@ -139,15 +178,7 @@ public class Add_traineeFragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        loading.setVisibility(View.INVISIBLE);
-                        Toast.makeText(getContext(), "تم إنشاء الحساب", Toast.LENGTH_SHORT).show();
-                        Fragment selected;
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("frame",getArguments().getInt("frame"));
-                        selected = new TraineeFragment();
-                        selected.setArguments(bundle);
-                        getParentFragmentManager().beginTransaction().replace(getArguments().getInt("frame"),selected).commit();
-
+                        loginToSystem();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -158,5 +189,43 @@ public class Add_traineeFragment extends Fragment {
         });
     }
 
+    public void loginToSystem(){
+        SharedPref sharedPref = new SharedPref(getContext());
+        String email = sharedPref.loadEmail();
+        String pass = sharedPref.loadPassword();
+        if(!email.isEmpty() && !pass.isEmpty()){
+            firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    loading.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getContext(), "تم إنشاء الحساب", Toast.LENGTH_SHORT).show();
+                    Fragment selected;
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("frame",getArguments().getInt("frame"));
+                    selected = new TraineeFragment();
+                    selected.setArguments(bundle);
+                    getParentFragmentManager().beginTransaction().replace(getArguments().getInt("frame"),selected).commit();
+                }
+            });
+        }
 
+    }
+
+    public void educationLevel(){
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.Education_level
+                , android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        level.setAdapter(adapter);
+        level.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                eduLevel = adapterView.getItemAtPosition(i).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
 }

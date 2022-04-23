@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layoutDirection="rtl"
     android:layout_height="match_parent"
     tools:context=".UI.Fragments.TrainingProvider.Add_TrainerFragment">
 
@@ -104,19 +105,19 @@
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
 
-            <EditText
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginHorizontal="10dp"
+                android:text="جنسية المدرب"/>
+            <Spinner
                 android:id="@+id/cr_nationality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
-                android:background="@drawable/custom_input"
-                android:gravity="top"
-                android:hint="جنسية المدرب"
-                android:inputType="text"
-                android:padding="7dp"
                 android:textColor="@color/dark_text"
-                android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
 
 
@@ -141,7 +142,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="أنثي"
+                    android:text="انثى"
                     android:textColor="@color/dark_text"
                     android:textSize="16sp" />
             </RadioGroup>

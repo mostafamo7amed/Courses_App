@@ -18,9 +18,11 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.courses.R;
+import com.example.courses.SharedPref;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -45,10 +47,12 @@ import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
     EditText username,password;
+    TextView forgetPassword;
     ProgressBar loading;
     AppCompatButton login;
     FirebaseAuth firebaseAuth;
     CheckBox showPass;
+    SharedPref sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,12 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this,ForgetPassword.class));
+            }
+        });
     }
 
     public void initialization(){
@@ -84,6 +94,8 @@ public class LoginActivity extends AppCompatActivity {
         login = findViewById(R.id.btu_login);
         showPass = findViewById(R.id.show_pass);
         firebaseAuth= FirebaseAuth.getInstance();
+        forgetPassword = findViewById(R.id.forget_password);
+        sharedPref = new SharedPref(LoginActivity.this);
     }
 
 
@@ -94,6 +106,8 @@ public class LoginActivity extends AppCompatActivity {
         if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass))
         {
             loading.setVisibility(View.VISIBLE);
+            sharedPref.setEmail(email);
+            sharedPref.setPassword(pass);
             signIn(email,pass);
         }
         else {
@@ -110,10 +124,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public void signIn(String email, String password) {
+    public void signIn(String email, String pass) {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
@@ -134,8 +148,12 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity(new Intent(LoginActivity.this, TrainerActivity.class));
                                 }else if (snapshot.child("Employees").child(uId).exists()){
                                     startActivity(new Intent(LoginActivity.this, EmployeeActivity.class));
+                                }else {
+                                    loading.setVisibility(View.INVISIBLE);
+                                    username.setText("");
+                                    password.setText("");
+                                    Toast.makeText(LoginActivity.this, "لا يوجد حساب قم بالتسجيل", Toast.LENGTH_SHORT).show();
                                 }
-                                finish();
                             }
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {

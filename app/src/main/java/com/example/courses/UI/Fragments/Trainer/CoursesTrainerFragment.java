@@ -68,6 +68,7 @@ public class CoursesTrainerFragment extends Fragment {
                                         Integer.parseInt(snapshot.child("contactNumber").getValue().toString()),
                                         Integer.parseInt(snapshot.child("courseNumber").getValue().toString()),
                                         snapshot.child("date").getValue().toString(),
+                                        snapshot.child("end").getValue().toString(),
                                         snapshot.child("time").getValue().toString(),
                                         snapshot.child("key").getValue().toString()
                                 ));

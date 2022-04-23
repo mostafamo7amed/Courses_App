@@ -31,7 +31,6 @@ public class ContactPageAdminFragment extends Fragment {
         recyclerView = getActivity().findViewById(R.id.RecyclerContactPage);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         comments = new ArrayList<>();
-        comments.add(new Comments("alimahmoud@gmail.com","علي محمود","هل في شهادة في نهاية الدورة؟","3","4",""));
 
 
         contactPageAdapter = new ContactPageAdapter(getContext(),comments);

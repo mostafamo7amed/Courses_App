@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:layoutDirection="rtl"
     tools:context=".UI.Activities.CreateTrainingProviderAccountActivity"
     android:orientation="vertical">
 
@@ -92,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:hint="الهاتف "
                 android:maxLines="1"
+                android:text="+966"
                 android:inputType="number|phone"
                 android:textColor="@color/black"
                 android:drawableStart="@drawable/ic_phone"

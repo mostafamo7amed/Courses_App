@@ -14,14 +14,18 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Models.Employee;
 import com.example.courses.R;
+import com.example.courses.SharedPref;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,7 +45,8 @@ import java.util.Objects;
 
 public class AddEmployeeFragment extends Fragment {
 
-    EditText email , pass , name , position , number;
+    EditText email , pass , name ,  number;
+    Spinner position ;
     TextView age;
     ProgressBar loading;
     AppCompatButton addBtn;
@@ -52,11 +57,14 @@ public class AddEmployeeFragment extends Fragment {
     Employee employee;
     FirebaseAuth firebaseAuth;
     DatePickerDialog.OnDateSetListener mListener;
+    String embPosition;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initialization();
+
+        embPosition();
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,7 +120,7 @@ public class AddEmployeeFragment extends Fragment {
     public void createProfile(){
         String u_name =name.getText().toString();
         String u_number = number.getText().toString();
-        String u_position=position.getText().toString();
+        String u_position=embPosition;
         String u_age=age.getText().toString();
         String u_email=email.getText().toString();
         String u_password = pass.getText().toString();
@@ -143,7 +151,7 @@ public class AddEmployeeFragment extends Fragment {
     public void putEmployeeData(String userId){
         String u_name =name.getText().toString();
         String u_number = number.getText().toString();
-        String u_position=position.getText().toString();
+        String u_position=embPosition;
         String u_age=age.getText().toString();
         String u_email=email.getText().toString();
 
@@ -153,7 +161,7 @@ public class AddEmployeeFragment extends Fragment {
         employee.setEmail(u_email);
         employee.setAge(u_age);
         employee.setName(u_name);
-        employee.setNumber(Integer.parseInt(u_number));
+        employee.setNumber(u_number);
         employee.setPosition(u_position);
         employee.setUid(userId);
         employee.setType("Employees");
@@ -174,10 +182,7 @@ public class AddEmployeeFragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        loading.setVisibility(View.INVISIBLE);
-                        Toast.makeText(getContext(), "تم إضافة الموظف", Toast.LENGTH_SHORT).show();
-                        getParentFragmentManager().beginTransaction().replace(R.id.frame_layout, new EmployeeFragment()).commit();
-
+                        loginToSystem();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -187,5 +192,37 @@ public class AddEmployeeFragment extends Fragment {
             }
         });
     }
+    public void loginToSystem(){
+        SharedPref sharedPref = new SharedPref(getContext());
+        String email = sharedPref.loadEmail();
+        String pass = sharedPref.loadPassword();
+        if(!email.isEmpty() && !pass.isEmpty()){
+            firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    loading.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getContext(), "تم إضافة الموظف", Toast.LENGTH_SHORT).show();
+                    getParentFragmentManager().beginTransaction().replace(R.id.frame_layout, new EmployeeFragment()).commit();
+                }
+            });
+        }
 
+    }
+    public void embPosition(){
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.Positions
+                , android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        position.setAdapter(adapter);
+        position.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                embPosition = adapterView.getItemAtPosition(i).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
 }

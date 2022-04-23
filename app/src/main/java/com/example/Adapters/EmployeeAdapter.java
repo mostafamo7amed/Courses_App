@@ -64,6 +64,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
         holder.email.setText(list.get(position).getEmail());
         holder.age.setText(String.valueOf(list.get(position).getAge()));
         holder.position.setText(list.get(position).getPosition());
+        holder.phone.setText(String.valueOf(list.get(position).getNumber()));
 
         String uid = list.get(position).getUid();
         holder.employeeDelete.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +88,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name ,email ,age,position ;
+        TextView name ,email ,age,position ,phone ;
         ImageView employeeDelete;
         AppCompatButton edit;
         public ViewHolder(@NonNull View itemView , final OnItemClickListener listener) {
@@ -98,6 +99,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
             age = itemView.findViewById(R.id.employee_age);
             position = itemView.findViewById(R.id.employee_position);
             employeeDelete = itemView.findViewById(R.id.employee_delete);
+            phone = itemView.findViewById(R.id.phone);
             edit = itemView.findViewById(R.id.edit_employee);
 
         }

@@ -95,7 +95,9 @@ public class ContactPageFragment extends Fragment {
                                         snapshot.child("comment").getValue().toString(),
                                         snapshot.child("time").getValue().toString(),
                                         snapshot.child("date").getValue().toString(),
-                                        snapshot.child("key").getValue().toString()
+                                        snapshot.child("key").getValue().toString(),
+                                        snapshot.child("uid").getValue().toString(),
+                                        snapshot.child("type").getValue().toString()
                                 ));
 
 

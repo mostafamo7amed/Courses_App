@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layoutDirection="rtl"
     tools:context=".UI.Fragments.TrainingProvider.ContactProfileFragment">
 
     <androidx.cardview.widget.CardView
@@ -92,7 +93,6 @@
                 android:background="@drawable/edittext_shape_profile"
                 android:layout_marginBottom="2dp"
                 android:textAlignment="viewStart"
-                android:text="User name"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/dark_text"
@@ -107,7 +107,6 @@
                 android:background="@drawable/edittext_shape_profile"
                 android:layout_marginBottom="2dp"
                 android:textAlignment="viewStart"
-                android:text="ID : 235635638537843"
                 android:gravity="start"
                 android:enabled="false"
                 android:textColor="@android:color/darker_gray"/>
@@ -138,7 +137,6 @@
                 android:id="@+id/cp_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="mousdddddtafa03@gmail.com"
                 android:textSize="15sp"
                 android:maxLines="1"
                 android:ellipsize="end"
@@ -178,7 +176,6 @@
                 android:id="@+id/cp_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" رقم الهاتف"
                 android:textColor="@color/white"
                 android:maxLines="1"
                 android:enabled="false"
@@ -216,7 +213,6 @@
                 android:id="@+id/cp_region"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="المنطقة "
                 android:textColor="@color/white"
                 android:maxLines="1"
                 android:enabled="false"
@@ -258,7 +254,6 @@
                 android:id="@+id/cp_commerce"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="السجل التجاري"
                 android:textColor="@color/white"
                 android:maxLines="1"
                 android:enabled="false"

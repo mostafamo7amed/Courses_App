@@ -15,9 +15,12 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -27,23 +30,31 @@ import com.example.courses.R;
 import com.example.courses.UI.Fragments.Admin.CoursesFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 
 public class Add_CourseFragment extends Fragment {
 
-    EditText field , description , address,material,trainer,number,contact;
+    EditText  description , address,material,trainer,number;
+    Spinner field;
     AppCompatButton addCourse;
-    TextView date;
+    TextView date , dateEnd;
     TextView time;
     ProgressBar loading;
     FirebaseDatabase database =FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference,databaseReference2;
     Course course;
     int Hour ,Minute;
-    DatePickerDialog.OnDateSetListener mListener;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    DatePickerDialog.OnDateSetListener mListener,zListener;
+    String cField,contactNumber;
 
 
     @Override
@@ -56,9 +67,11 @@ public class Add_CourseFragment extends Fragment {
                 uploadCourse();
             }
         });
-
+        getDate();
+        courseField();
         getTimeFromUser();
         getDateUser();
+        getDateEndUser();
 
     }
 
@@ -72,12 +85,12 @@ public class Add_CourseFragment extends Fragment {
         field = getActivity().findViewById(R.id.add_field_course);
         description = getActivity().findViewById(R.id.add_description_course);
         date = getActivity().findViewById(R.id.add_date_course);
+        dateEnd = getActivity().findViewById(R.id.add_date_end_course);
         time = getActivity().findViewById(R.id.add_time_course);
         address = getActivity().findViewById(R.id.add_address_course);
         material = getActivity().findViewById(R.id.add_material_course);
         trainer = getActivity().findViewById(R.id.add_trainer_course);
         number = getActivity().findViewById(R.id.add_number_course);
-        contact = getActivity().findViewById(R.id.add_contact_course);
         addCourse = getActivity().findViewById(R.id.add_save_course);
         loading = getActivity().findViewById(R.id.add_progress_course);
 
@@ -86,22 +99,25 @@ public class Add_CourseFragment extends Fragment {
     }
 
     public void uploadCourse(){
-        String c_field  = field.getText().toString();
+        String currentUserId = firebaseAuth.getCurrentUser().getUid();
+        String c_field  = cField;
         String c_description = description.getText().toString();
         String c_date = date.getText().toString();
+        String c_date_end = dateEnd.getText().toString();
         String c_time =time.getText().toString();
         String c_address = address.getText().toString();
         String c_material = material.getText().toString();
         String c_trainer = trainer.getText().toString();
         String c_number = number.getText().toString();
-        String c_contact = contact.getText().toString();
+        String c_contact = contactNumber;
 
 
         databaseReference=database.getReference("All Courses");
+        databaseReference2 = database.getReference("ContactCourses").child(currentUserId);
         String child=databaseReference.push().getKey();
 
 
-        if (!TextUtils.isEmpty(c_field) && !TextUtils.isEmpty(c_description)&& !TextUtils.isEmpty(c_date) && !TextUtils.isEmpty(c_time) && !TextUtils.isEmpty(c_address) && !TextUtils.isEmpty(c_material) && !TextUtils.isEmpty(c_number) && !TextUtils.isEmpty(c_trainer) && !TextUtils.isEmpty(c_contact)) {
+        if (!TextUtils.isEmpty(c_field)&& !TextUtils.isEmpty(c_date_end) && !TextUtils.isEmpty(c_description)&& !TextUtils.isEmpty(c_date) && !TextUtils.isEmpty(c_time) && !TextUtils.isEmpty(c_address) && !TextUtils.isEmpty(c_material) && !TextUtils.isEmpty(c_number) && !TextUtils.isEmpty(c_trainer) && !TextUtils.isEmpty(c_contact)) {
 
             course.setField(c_field);
             course.setAddress(c_address);
@@ -109,23 +125,25 @@ public class Add_CourseFragment extends Fragment {
             course.setCourseNumber(Integer.parseInt(c_number));
             course.setDate(c_date);
             course.setTime(c_time);
+            course.setEnd(c_date_end);
             course.setTrainer(c_trainer);
             course.setContactNumber(Integer.parseInt(c_contact));
             course.setDescription(c_description);
             course.setKey(child);
 
-
+            int user = getArguments().getInt("frame");
+            if(user == R.id.frame_layout_cont){
+               databaseReference2.child(child).setValue(course);
+            }
             databaseReference.child(child).setValue(course).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     loading.setVisibility(View.INVISIBLE);
                     Toast.makeText(getContext(), "تم إضافة الدورة", Toast.LENGTH_SHORT).show();
-                    field.setText("");
                     description.setText("");
                     address.setText("");
                     material.setText("");
                     trainer.setText("");
-                    contact.setText("");
                     number.setText("");
                     Fragment selected;
                     Bundle bundle = new Bundle();
@@ -141,6 +159,8 @@ public class Add_CourseFragment extends Fragment {
             Toast.makeText(getContext(), "لا يمكن ان تكون بيانات الدورة فارغة", Toast.LENGTH_SHORT).show();
         }
     }
+
+
     public String showTime(int hour , int min ) {
         String format, time ;
         if(hour > 12) {
@@ -183,7 +203,6 @@ public class Add_CourseFragment extends Fragment {
             }
         });
     }
-
     public void getDateUser(){
         Calendar calendar = Calendar.getInstance();
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -209,4 +228,76 @@ public class Add_CourseFragment extends Fragment {
             }
         };
     }
+    public void getDateEndUser(){
+        Calendar calendar = Calendar.getInstance();
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+        final int month = calendar.get(Calendar.MONTH);
+        final int year = calendar.get(Calendar.YEAR);
+        dateEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                        android.R.style.Theme_Holo_Dialog_MinWidth,
+                        zListener,year,month,day);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.show();
+            }
+        });
+
+        zListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                i1 = i1+1;
+                String datee = i2+"/"+i1+"/"+i;
+                dateEnd.setText(datee);
+            }
+        };
+    }
+    public void courseField(){
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.Fields
+                , android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        field.setAdapter(adapter);
+        field.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                cField = adapterView.getItemAtPosition(i).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+    public void getDate(){
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        String currentUserId= null;
+        if (user != null) {
+            currentUserId = user.getUid();
+        }
+        DocumentReference reference;
+        FirebaseFirestore firestore=FirebaseFirestore.getInstance();
+
+        if (currentUserId != null) {
+            reference = firestore.collection("Training Provider").document(currentUserId);
+            reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    try {
+                        if (task.getResult().exists()) {
+                            contactNumber =task.getResult().getString("number");
+                        }
+                    } catch (NullPointerException nullPointerException) {
+                        Toast.makeText(getActivity(), "" + nullPointerException.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }else {
+            getActivity().finish();
+            System.exit(0);
+        }
+    }
+
+
 }

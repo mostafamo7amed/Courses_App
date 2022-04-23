@@ -11,9 +11,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +39,8 @@ import java.util.Map;
 
 public class CreateTraineeAccountActivity extends AppCompatActivity {
 
-    EditText name , level ;
+    EditText name ;
+    Spinner level ;
     TextView age;
     ProgressBar loading;
     AppCompatButton create_account;
@@ -47,6 +51,7 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
     Trainee trainee;
     String currentUserId;
     DatePickerDialog.OnDateSetListener mListener;
+    String eduLevel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +59,7 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
 
         initialization();
 
+        educationLevel();
         create_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,7 +120,7 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
 
     public void createProfile(){
         String u_name =name.getText().toString();
-        String u_level=level.getText().toString();
+        String u_level=eduLevel;
         String u_age=age.getText().toString();
         String u_email=getIntent().getStringExtra("email");
 
@@ -158,5 +164,22 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
             Toast.makeText(this, "برجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
         }
 
+    }
+    public void educationLevel(){
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(CreateTraineeAccountActivity.this,R.array.Education_level
+                , android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        level.setAdapter(adapter);
+        level.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                eduLevel = adapterView.getItemAtPosition(i).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 }

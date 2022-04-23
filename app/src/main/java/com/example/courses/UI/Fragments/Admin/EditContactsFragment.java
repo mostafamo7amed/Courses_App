@@ -178,4 +178,6 @@ public class EditContactsFragment extends Fragment {
             Toast.makeText(getContext(), "برجاء إدخال كافة البيانات", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }

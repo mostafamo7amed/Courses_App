@@ -14,9 +14,12 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +44,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public class EditEmployeeFragment extends Fragment {
-    EditText   name , position , number;
+    EditText   name ,  number;
+    Spinner position ;
     TextView age;
     ProgressBar loading;
     AppCompatButton addBtn;
@@ -52,13 +56,14 @@ public class EditEmployeeFragment extends Fragment {
     Employee employee;
     String currentUserID , U_EMail;
     DatePickerDialog.OnDateSetListener mListener;
+    String embPosition;
 
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initialization();
-
+        embPosition();
         getDate();
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +117,7 @@ public class EditEmployeeFragment extends Fragment {
     public void EditEmployeeData(String userId){
         String u_name =name.getText().toString();
         String u_number = number.getText().toString();
-        String u_position=position.getText().toString();
+        String u_position=embPosition;
         String u_age=age.getText().toString();
 
         databaseReference=database.getReference("Employees");
@@ -124,7 +129,7 @@ public class EditEmployeeFragment extends Fragment {
             employee.setEmail(U_EMail);
             employee.setAge(u_age);
             employee.setName(u_name);
-            employee.setNumber(Integer.parseInt(u_number));
+            employee.setNumber(u_number);
             employee.setPosition(u_position);
             employee.setUid(userId);
             employee.setType("Employees");
@@ -177,7 +182,6 @@ public class EditEmployeeFragment extends Fragment {
 
                             name.setText(u_name);
                             age.setText(u_age);
-                            position.setText(u_position);
                             number.setText(u_number);
                             U_EMail =u_email;
 
@@ -189,6 +193,24 @@ public class EditEmployeeFragment extends Fragment {
             });
         }
     }
+    public void embPosition(){
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.Positions
+                , android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        position.setAdapter(adapter);
+        position.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                embPosition = adapterView.getItemAtPosition(i).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
 
     @Override
     public void onStart() {

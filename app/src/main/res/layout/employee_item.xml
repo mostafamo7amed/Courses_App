@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_margin="5dp"
     app:cardCornerRadius="10dp"
+    android:layoutDirection="rtl"
     app:cardElevation="10dp"
     android:layout_height="wrap_content">
 
@@ -38,7 +39,7 @@
         </LinearLayout>
         <LinearLayout
             android:id="@+id/liner2"
-            app:layout_constraintTop_toBottomOf="@id/liner3"
+            app:layout_constraintTop_toBottomOf="@id/liner5"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="5dp"
             android:layout_width="wrap_content"
@@ -90,6 +91,33 @@
 
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/liner5"
+            app:layout_constraintTop_toBottomOf="@id/liner3"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:text=" الهاتف : "/>
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/dark_text"
+                android:layout_marginLeft="8dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/liner4"
             app:layout_constraintTop_toBottomOf="@id/liner1"
             android:layout_marginTop="3dp"
@@ -133,7 +161,7 @@
             android:layout_height="wrap_content"
             android:text="تعديل"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="60dp"
+            android:layout_marginEnd="110dp"
             android:textColor="@color/white"
             android:background="@drawable/custom_btu"
             android:layout_marginBottom="10sp"

@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="rtl"
     tools:context=".UI.Activities.RegisterActivity">
 
     <LinearLayout
@@ -26,6 +27,7 @@
             android:layout_margin="10dp"
             android:textColor="@color/dark_text"
             android:hint="أسم المستخدم"
+            android:textAlignment="textStart"
             android:inputType="textEmailAddress"
             android:drawableStart="@drawable/ic_person"
             android:drawablePadding="10dp"
@@ -41,7 +43,8 @@
             android:layout_marginHorizontal="10dp"
             android:textColor="@color/dark_text"
             android:hint="كلمة المرور"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
+            android:textAlignment="textStart"
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="10dp"
             android:paddingStart="10dp"
@@ -56,7 +59,8 @@
             android:layout_margin="10dp"
             android:textColor="@color/dark_text"
             android:hint="تأكيد كلمة المرور"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
+            android:textAlignment="textStart"
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="10dp"
             android:paddingStart="10dp"

@@ -2,6 +2,7 @@ package com.example.courses.UI.Fragments.Admin;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +19,16 @@ import android.widget.Toast;
 import com.example.Adapters.CoursesAdapter;
 import com.example.Models.Course;
 import com.example.courses.R;
+import com.example.courses.UI.Activities.AdminActivity;
+import com.example.courses.UI.Activities.ContactsActivity;
+import com.example.courses.UI.Activities.EmployeeActivity;
+import com.example.courses.UI.Activities.LoginActivity;
+import com.example.courses.UI.Activities.TraineeActivity;
+import com.example.courses.UI.Activities.TrainerActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +43,10 @@ public class CoursesFragment extends Fragment {
     CoursesAdapter coursesAdapter;
     RecyclerView recyclerView;
     ArrayList<Course> courses;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference , databaseReference2;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    String currentUserId;
+    int x = 0;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -41,9 +54,7 @@ public class CoursesFragment extends Fragment {
 
         initialization();
         coursesAdapter = new CoursesAdapter(getContext(),courses);
-        databaseReference = FirebaseDatabase.getInstance().getReference("All Courses");
-
-        getAllCourses();
+        checkUser();
 
         coursesAdapter.setOnItemClickListener(new CoursesAdapter.OnItemClickListener() {
             @Override
@@ -84,7 +95,9 @@ public class CoursesFragment extends Fragment {
         recyclerView = getActivity().findViewById(R.id.RecyclerCourses);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         courses = new ArrayList<>();
-
+        currentUserId= firebaseAuth.getCurrentUser().getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference("All Courses");
+        databaseReference2 = FirebaseDatabase.getInstance().getReference("ContactCourses").child(currentUserId);
 
 
     }
@@ -109,6 +122,73 @@ public class CoursesFragment extends Fragment {
                                         Integer.parseInt(snapshot.child("contactNumber").getValue().toString()),
                                         Integer.parseInt(snapshot.child("courseNumber").getValue().toString()),
                                         snapshot.child("date").getValue().toString(),
+                                        snapshot.child("end").getValue().toString(),
+                                        snapshot.child("time").getValue().toString(),
+                                        snapshot.child("key").getValue().toString()
+                                ));
+                            }
+
+                            coursesAdapter.notifyDataSetChanged();
+                            recyclerView.setAdapter(coursesAdapter);
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    public void getContactCourses(){
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+        databaseReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                courses.clear();
+
+                for (DataSnapshot snapshot1 :snapshot.getChildren()){
+                    x=0;
+                    RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (!snapshot.child("All Courses").child(snapshot1.getKey().toString()).exists()) {
+                                x =1;
+                                deleteUnReachableCourse(snapshot1.getKey().toString());
+                            }
+
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+                    if(x==1){
+                        continue;
+                    }
+                    databaseReference2.child(snapshot1.getKey().toString()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            if (snapshot.exists()) {
+                                courses.add(new Course(snapshot.child("field").getValue().toString(),
+                                        snapshot.child("courseMaterial").getValue().toString(),
+                                        snapshot.child("description").getValue().toString(),
+                                        snapshot.child("trainer").getValue().toString(),
+                                        snapshot.child("address").getValue().toString(),
+                                        Integer.parseInt(snapshot.child("contactNumber").getValue().toString()),
+                                        Integer.parseInt(snapshot.child("courseNumber").getValue().toString()),
+                                        snapshot.child("date").getValue().toString(),
+                                        snapshot.child("end").getValue().toString(),
                                         snapshot.child("time").getValue().toString(),
                                         snapshot.child("key").getValue().toString()
                                 ));
@@ -136,6 +216,10 @@ public class CoursesFragment extends Fragment {
         });
     }
 
+
+    public void deleteUnReachableCourse(String key){
+        databaseReference2.child(key).removeValue();
+    }
     public void deleteCourse(String key){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage("سيتم حذف الدورة !");
@@ -144,9 +228,16 @@ public class CoursesFragment extends Fragment {
         builder.setPositiveButton("تأكيد", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                databaseReference = FirebaseDatabase.getInstance().getReference("All Courses");
-                databaseReference.child(key).removeValue();
-                Toast.makeText(getContext(), "تم حذف الدورة", Toast.LENGTH_SHORT).show();
+                int user = getArguments().getInt("frame");
+                if(user == R.id.frame_layout_cont){
+                    databaseReference2.child(key).removeValue();
+                }
+                databaseReference.child(key).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(getContext(), "تم حذف الدورة", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         builder.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
@@ -159,7 +250,6 @@ public class CoursesFragment extends Fragment {
         alertDialog.show();
 
     }
-
     public void editCourses(String key){
         Fragment fragment;
         Bundle bundle = new Bundle();
@@ -169,4 +259,15 @@ public class CoursesFragment extends Fragment {
         fragment.setArguments(bundle);
         getParentFragmentManager().beginTransaction().replace(getArguments().getInt("frame"), fragment).addToBackStack(null).commitAllowingStateLoss();
     }
+    public void checkUser(){
+        int user = getArguments().getInt("frame");
+        if(user == R.id.frame_layout_cont){
+            getContactCourses();
+        }else if (user == R.id.frame_layout_employee){
+            getAllCourses();
+        }else if (user == R.id.frame_layout){
+            getAllCourses();
+        }
+    }
+
 }

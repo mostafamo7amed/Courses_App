@@ -38,7 +38,7 @@ public class AddCommentFragment extends Fragment {
     DatabaseReference databaseReference;
     FirebaseAuth auth;
     String currentUser_id;
-    String Email="",Name="";
+    String Email="",Name="", TYPE="";
     Comments comments;
 
 
@@ -83,18 +83,23 @@ public class AddCommentFragment extends Fragment {
         int user = getArguments().getInt("frame");
         if(user == R.id.frame_layout_trainer){
             table = "Trainers";
+            TYPE ="Trainers";
             getDate(table);
         }else if (user == R.id.frame_layout_trainee){
             table = "Trainees";
+            TYPE ="Trainees";
             getDate(table);
         }else if(user == R.id.frame_layout_cont){
-            table = "Contacts";
+            table = "Training Provider";
+            TYPE ="Training Provider";
             getDate(table);
         }else if (user == R.id.frame_layout_employee){
             table = "Employees";
+            TYPE="Employees";
             getDate(table);
         }else if (user == R.id.frame_layout){
             table = "Admins";
+            TYPE="Admins";
             Name = "مدير النظام";
             getDate(table);
         }
@@ -122,6 +127,8 @@ public class AddCommentFragment extends Fragment {
             comments.setDate(saveDate);
             comments.setTime(saveTime);
             comments.setKey(child);
+            comments.setUID(currentUser_id);
+            comments.setType(TYPE);
             databaseReference.child(child).setValue(comments).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {

@@ -38,7 +38,7 @@ public class CoursesTrainerAdapter extends RecyclerView.Adapter<CoursesTrainerAd
         holder.trainer.setText(list.get(position).getTrainer());
         holder.description.setText(list.get(position).getDescription());
         holder.material.setText(list.get(position).getCourseMaterial());
-        holder.date.setText(list.get(position).getDate());
+        holder.date.setText(list.get(position).getDate()+" الي "+list.get(position).getEnd());
         holder.time.setText(list.get(position).getTime());
         holder.address.setText(list.get(position).getAddress());
 

@@ -181,7 +181,7 @@ public class EmployeeProfileFragment extends Fragment {
             employee.setAge(u_age);
             employee.setPosition(u_position);
             employee.setType("Employees");
-            employee.setNumber(Integer.parseInt(u_number));
+            employee.setNumber(u_number);
 
             Map<String ,String> profile=new HashMap<>();
             profile.put("name",u_name);

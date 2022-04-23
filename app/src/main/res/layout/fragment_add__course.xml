@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layoutDirection="rtl"
     android:layout_height="match_parent"
     tools:context=".UI.Fragments.Admin.Add_CourseFragment">
 
@@ -40,21 +41,23 @@
                 android:padding="5dp"
                 android:textColor="@color/black"
                 android:gravity="center_horizontal"/>
-            <EditText
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="مجال الدورة"
+                android:textSize="18sp"
+                android:layout_marginHorizontal="10dp"
+                android:padding="5dp"
+                />
+            <Spinner
                 android:id="@+id/add_field_course"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="top"
                 android:textSize="16sp"
                 android:layout_marginVertical="10dp"
-                android:textColorHint="@android:color/darker_gray"
                 android:textColor="@color/dark_text"
-                android:padding="7dp"
-                android:hint="مجال الدورة"
-                android:inputType="text"
-                android:background="@drawable/custom_input"
                 android:layout_marginHorizontal="10dp">
-            </EditText>
+            </Spinner>
 
             <EditText
                 android:id="@+id/add_material_course"
@@ -86,6 +89,20 @@
                 android:layout_marginHorizontal="10dp">
             </TextView>
             <TextView
+                android:id="@+id/add_date_end_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="16sp"
+                android:textColorHint="@android:color/darker_gray"
+                android:textColor="@color/dark_text"
+                android:padding="7dp"
+                android:hint="تاريخ نهاية الدورة"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/custom_input"
+                android:layout_marginHorizontal="10dp">
+            </TextView>
+            <TextView
                 android:id="@+id/add_time_course"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,21 +128,6 @@
                 android:textColor="@color/dark_text"
                 android:padding="7dp"
                 android:hint="رقم الدورة"
-                android:inputType="number"
-                android:background="@drawable/custom_input"
-                android:layout_marginHorizontal="10dp">
-            </EditText>
-            <EditText
-                android:id="@+id/add_contact_course"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:textSize="16sp"
-                android:layout_marginVertical="10dp"
-                android:textColorHint="@android:color/darker_gray"
-                android:textColor="@color/dark_text"
-                android:padding="7dp"
-                android:hint="رقم مزود التدريب "
                 android:inputType="number"
                 android:background="@drawable/custom_input"
                 android:layout_marginHorizontal="10dp">

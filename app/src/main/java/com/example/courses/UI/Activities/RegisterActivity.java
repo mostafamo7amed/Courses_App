@@ -18,6 +18,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.courses.R;
+import com.example.courses.SharedPref;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -32,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     AppCompatButton register;
     FirebaseAuth firebaseAuth;
+    SharedPref sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
         radioGroup = findViewById(R.id.radio_group_register);
         register = findViewById(R.id.btu_register);
         firebaseAuth = FirebaseAuth.getInstance();
+        sharedPref = new SharedPref(RegisterActivity.this);
     }
     public void checkUser(){
         int selectedID = radioGroup.getCheckedRadioButtonId();
@@ -94,6 +97,8 @@ public class RegisterActivity extends AppCompatActivity {
             if(pass.equals(confirm_pass)) {
                 if(radioGroup.getCheckedRadioButtonId() != -1) {
                     loading.setVisibility(View.VISIBLE);
+                    sharedPref.setEmail(email);
+                    sharedPref.setPassword(pass);
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -109,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     });
                 }else{
-                    Toast.makeText(this, "برجاء إختيار نوع المستخدم(جهة - متدرب)", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "برجاء إختيار نوع المستخدم(مزود تدريبات - متدرب)", Toast.LENGTH_SHORT).show();
                 }
 
             }

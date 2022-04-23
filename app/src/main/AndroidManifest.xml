@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Courses">
         <activity
+            android:name=".UI.Activities.ForgetPassword"
+            android:exported="false" />
+        <activity
             android:name=".UI.Activities.CreateTraineeAccountActivity"
             android:exported="false" />
         <activity

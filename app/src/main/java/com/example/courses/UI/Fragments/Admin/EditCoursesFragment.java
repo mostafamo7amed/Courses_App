@@ -15,9 +15,12 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -26,6 +29,7 @@ import com.example.Models.Course;
 import com.example.courses.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,18 +37,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Calendar;
 
 public class EditCoursesFragment extends Fragment {
-    EditText field , description , address,material,trainer,number,contact;
+    EditText description , address,material,trainer,number,contact;
+    Spinner field;
     AppCompatButton addCourse;
-    TextView date;
+    TextView date,dateEnd;
     TextView time;
     ProgressBar loading;
     FirebaseDatabase database =FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference,databaseReference2;
     Course course;
     String child;
     int Hour ,Minute;
-    DatePickerDialog.OnDateSetListener mListener;
-
+    DatePickerDialog.OnDateSetListener mListener,zListener;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    String cField;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -59,8 +65,10 @@ public class EditCoursesFragment extends Fragment {
                 editCourse();
             }
         });
+        courseField();
         getDateFromUser();
         getTimeFromUser();
+        getDateEndFromUser();
 
 
 
@@ -76,6 +84,7 @@ public class EditCoursesFragment extends Fragment {
         field = getActivity().findViewById(R.id.edit_field_course);
         description = getActivity().findViewById(R.id.edit_description_course);
         date = getActivity().findViewById(R.id.edit_date_course);
+        dateEnd = getActivity().findViewById(R.id.edit_date_end_course);
         time = getActivity().findViewById(R.id.edit_time_course);
         address = getActivity().findViewById(R.id.edit_address_course);
         material = getActivity().findViewById(R.id.edit_material_course);
@@ -87,12 +96,16 @@ public class EditCoursesFragment extends Fragment {
 
         course = new Course();
         child= getArguments().get("key").toString();
+        String currentUserId = firebaseAuth.getCurrentUser().getUid();
         databaseReference=database.getReference("All Courses");
+        databaseReference2=database.getReference("ContactCourses").child(currentUserId);
+
     }
     public void editCourse(){
-        String c_field  = field.getText().toString();
+        String c_field  = cField;
         String c_description = description.getText().toString();
         String c_date = date.getText().toString();
+        String c_date_end = dateEnd.getText().toString();
         String c_time =time.getText().toString();
         String c_address = address.getText().toString();
         String c_material = material.getText().toString();
@@ -101,7 +114,7 @@ public class EditCoursesFragment extends Fragment {
         String c_contact = contact.getText().toString();
 
 
-        if (!TextUtils.isEmpty(c_field) && !TextUtils.isEmpty(c_description)&& !TextUtils.isEmpty(c_date) && !TextUtils.isEmpty(c_time) && !TextUtils.isEmpty(c_address) && !TextUtils.isEmpty(c_material) && !TextUtils.isEmpty(c_number) && !TextUtils.isEmpty(c_trainer) && !TextUtils.isEmpty(c_contact)) {
+        if (!TextUtils.isEmpty(c_field) && !TextUtils.isEmpty(c_date_end)&& !TextUtils.isEmpty(c_description)&& !TextUtils.isEmpty(c_date) && !TextUtils.isEmpty(c_time) && !TextUtils.isEmpty(c_address) && !TextUtils.isEmpty(c_material) && !TextUtils.isEmpty(c_number) && !TextUtils.isEmpty(c_trainer) && !TextUtils.isEmpty(c_contact)) {
 
             course.setField(c_field);
             course.setAddress(c_address);
@@ -109,18 +122,22 @@ public class EditCoursesFragment extends Fragment {
             course.setCourseNumber(Integer.parseInt(c_number));
             course.setDate(c_date);
             course.setTime(c_time);
+            course.setEnd(c_date_end);
             course.setTrainer(c_trainer);
             course.setContactNumber(Integer.parseInt(c_contact));
             course.setDescription(c_description);
             course.setKey(child);
 
+            int user = getArguments().getInt("frame");
+            if(user == R.id.frame_layout_cont){
+                databaseReference2.child(child).setValue(course);
+            }
 
             databaseReference.child(child).setValue(course).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     loading.setVisibility(View.INVISIBLE);
                     Toast.makeText(getContext(), "تم تعديل الدورة", Toast.LENGTH_SHORT).show();
-                    field.setText("");
                     description.setText("");
                     address.setText("");
                     material.setText("");
@@ -160,7 +177,6 @@ public class EditCoursesFragment extends Fragment {
 
 
     }
-
     public void getDateFromUser(){
         Calendar calendar = Calendar.getInstance();
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -183,6 +199,31 @@ public class EditCoursesFragment extends Fragment {
                 i1 = i1+1;
                 String datee = i2+"/"+i1+"/"+i;
                 date.setText(datee);
+            }
+        };
+    }
+    public void getDateEndFromUser(){
+        Calendar calendar = Calendar.getInstance();
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+        final int month = calendar.get(Calendar.MONTH);
+        final int year = calendar.get(Calendar.YEAR);
+        dateEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                        android.R.style.Theme_Holo_Dialog_MinWidth,
+                        zListener,year,month,day);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.show();
+            }
+        });
+
+        zListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                i1 = i1+1;
+                String datee = i2+"/"+i1+"/"+i;
+                dateEnd.setText(datee);
             }
         };
     }
@@ -218,6 +259,7 @@ public class EditCoursesFragment extends Fragment {
                     String c_field  = task.getResult().child("field").getValue().toString();
                     String c_description = task.getResult().child("description").getValue().toString();
                     String c_date = task.getResult().child("date").getValue().toString();
+                    String c_date_end = task.getResult().child("end").getValue().toString();
                     String c_time =task.getResult().child("time").getValue().toString();
                     String c_address = task.getResult().child("address").getValue().toString();
                     String c_material = task.getResult().child("courseMaterial").getValue().toString();
@@ -226,9 +268,9 @@ public class EditCoursesFragment extends Fragment {
                     String c_contact = task.getResult().child("contactNumber").getValue().toString();
 
 
-                    field.setText(c_field);
                     description.setText(c_description);
                     date.setText(c_date);
+                    dateEnd.setText(c_date_end);
                     time.setText(c_time);
                     trainer.setText(c_trainer);
                     address.setText(c_address);
@@ -240,5 +282,23 @@ public class EditCoursesFragment extends Fragment {
             }
         });
     }
+    public void courseField(){
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.Fields
+                , android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        field.setAdapter(adapter);
+        field.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                cField = adapterView.getItemAtPosition(i).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
 
 }

@@ -22,6 +22,8 @@ import android.widget.Toast;
 
 import com.example.Models.TrainingProvider;
 import com.example.courses.R;
+import com.example.courses.SharedPref;
+import com.example.courses.UI.Fragments.TrainingProvider.TrainerFragment;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -48,7 +50,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_ContactsFragment extends Fragment {
 
-    EditText name,phone,region, commerce , number ,email,password;
+    EditText name,phone,region, commerce ,email,password;
     ProgressBar loading;
     CircleImageView photo;
     Uri imageUri;
@@ -61,6 +63,7 @@ public class Add_ContactsFragment extends Fragment {
     TrainingProvider contacts;
     UploadTask uploadTask;
     FirebaseAuth firebaseAuth;
+    String numberContact;
     private static final int PICK_IMAGE=1;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -84,6 +87,8 @@ public class Add_ContactsFragment extends Fragment {
                 startActivityForResult(intent,PICK_IMAGE);
             }
         });
+
+
     }
 
     @Override
@@ -98,13 +103,13 @@ public class Add_ContactsFragment extends Fragment {
         region = getActivity().findViewById(R.id.cc_region_man);
         commerce = getActivity().findViewById(R.id.cc_commerce_man);
         loading = getActivity().findViewById(R.id.cc_progress_man);
-        number = getActivity().findViewById(R.id.cc_number_man);
         photo = getActivity().findViewById(R.id.cc_picture_man);
         email = getActivity().findViewById(R.id.cc_email_man);
         password = getActivity().findViewById(R.id.cc_password_man);
         save = getActivity().findViewById(R.id.cc_save_man);
         firebaseAuth = FirebaseAuth.getInstance();
         contacts = new TrainingProvider();
+        contactNumber();
 
     }
 
@@ -117,7 +122,7 @@ public class Add_ContactsFragment extends Fragment {
         String u_name =name.getText().toString();
         String u_phone=phone.getText().toString();
         String u_commerce=commerce.getText().toString();
-        String u_number=number.getText().toString();
+        String u_number=numberContact;
         String u_region=region.getText().toString();
         String u_email=email.getText().toString();
         String u_password = password.getText().toString();
@@ -160,7 +165,7 @@ public class Add_ContactsFragment extends Fragment {
         String u_name =name.getText().toString();
         String u_phone=phone.getText().toString();
         String u_commerce=commerce.getText().toString();
-        String u_number=number.getText().toString();
+        String u_number=numberContact;
         String u_region=region.getText().toString();
         String u_email=email.getText().toString();
 
@@ -227,15 +232,7 @@ public class Add_ContactsFragment extends Fragment {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
-                                    loading.setVisibility(View.INVISIBLE);
-                                    Toast.makeText(getContext(), "تم إنشاء الحساب مزود التدريبات", Toast.LENGTH_SHORT).show();
-                                    Fragment selected = null;
-                                    Bundle bundle = new Bundle();
-                                    bundle.putInt("frame",getArguments().getInt("frame"));
-                                    selected = new ContactsFragment();
-                                    selected.setArguments(bundle);
-                                    getParentFragmentManager().beginTransaction().replace(getArguments().getInt("frame"),selected ).addToBackStack(null).commitAllowingStateLoss();
-
+                                    loginToSystem();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -248,6 +245,32 @@ public class Add_ContactsFragment extends Fragment {
             }
         });
     }
+    public void loginToSystem(){
+        SharedPref sharedPref = new SharedPref(getContext());
+        String email = sharedPref.loadEmail();
+        String pass = sharedPref.loadPassword();
+        if(!email.isEmpty() && !pass.isEmpty()){
+            firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    loading.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getContext(), "تم إنشاء الحساب مزود التدريبات", Toast.LENGTH_SHORT).show();
+                    Fragment selected = null;
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("frame",getArguments().getInt("frame"));
+                    selected = new ContactsFragment();
+                    selected.setArguments(bundle);
+                    getParentFragmentManager().beginTransaction().replace(getArguments().getInt("frame"),selected ).addToBackStack(null).commitAllowingStateLoss();
 
+                }
+            });
+        }
+
+    }
+
+    public void contactNumber(){
+        String mill = ""+System.currentTimeMillis();
+        numberContact = mill.substring(mill.length()-4);
+    }
 
 }

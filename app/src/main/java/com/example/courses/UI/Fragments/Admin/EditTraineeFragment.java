@@ -14,14 +14,18 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Models.Trainee;
 import com.example.courses.R;
+import com.example.courses.UI.Activities.CreateTraineeAccountActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,7 +42,8 @@ import java.util.Map;
 
 public class EditTraineeFragment extends Fragment {
 
-    EditText name , level ;
+    EditText name ;
+    Spinner level ;
     TextView age;
     ProgressBar loading;
     AppCompatButton save;
@@ -49,7 +54,7 @@ public class EditTraineeFragment extends Fragment {
     Trainee trainee;
     String currentUserId,U_EMail;
     DatePickerDialog.OnDateSetListener mListener;
-
+    String eduLevel;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -62,30 +67,8 @@ public class EditTraineeFragment extends Fragment {
                 editProfile();
             }
         });
-
-        Calendar calendar = Calendar.getInstance();
-        final int day = calendar.get(Calendar.DAY_OF_MONTH);
-        final int month = calendar.get(Calendar.MONTH);
-        final int year = calendar.get(Calendar.YEAR);
-        age.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
-                        android.R.style.Theme_Holo_Dialog_MinWidth,
-                        mListener,year,month,day);
-                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                datePickerDialog.show();
-            }
-        });
-
-        mListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                i1 = i1+1;
-                String date = i2+"/"+i1+"/"+i;
-                age.setText(date);
-            }
-        };
+        educationLevel();
+        ageUser();
     }
 
     public void initialization(){
@@ -108,7 +91,7 @@ public class EditTraineeFragment extends Fragment {
     }
     public void editProfile(){
         String u_name =name.getText().toString();
-        String u_level=level.getText().toString();
+        String u_level=eduLevel;
         String u_age=age.getText().toString();
         String u_email=U_EMail;
 
@@ -177,7 +160,6 @@ public class EditTraineeFragment extends Fragment {
 
                             name.setText(u_name);
                             age.setText(u_age);
-                            level.setText(u_level);
                             U_EMail =u_email;
 
                         }
@@ -188,4 +170,49 @@ public class EditTraineeFragment extends Fragment {
             });
         }
     }
+
+    public void educationLevel(){
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.Education_level
+                , android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        level.setAdapter(adapter);
+        level.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                eduLevel = adapterView.getItemAtPosition(i).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void ageUser(){
+        Calendar calendar = Calendar.getInstance();
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+        final int month = calendar.get(Calendar.MONTH);
+        final int year = calendar.get(Calendar.YEAR);
+        age.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                        android.R.style.Theme_Holo_Dialog_MinWidth,
+                        mListener,year,month,day);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.show();
+            }
+        });
+
+        mListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                i1 = i1+1;
+                String date = i2+"/"+i1+"/"+i;
+                age.setText(date);
+            }
+        };
+    }
+
 }

@@ -2,4 +2,46 @@
     <string name="app_name">Courses</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string-array name="Nationality">
+        <item>سعودي</item>
+        <item>كويتي</item>
+        <item>بحريني</item>
+        <item>قطري</item>
+        <item>اماراتي</item>
+        <item>مصري</item>
+        <item>تونسي</item>
+    </string-array>
+    <string-array name="Education_level">
+        <item>ثانوي</item>
+        <item>جامعي</item>
+        <item>ماجستير</item>
+        <item>دكتوراه</item>
+    </string-array>
+
+    <string-array name="Positions">
+        <item>مسؤول خدمة عملاء</item>
+        <item>اخصائي دعم فني وصيانه</item>
+        <item>محاسب</item>
+        <item>مبرمج</item>
+        <item>اخصائي شبكات حاسوب</item>
+        <item>مسؤول موارد بشرية</item>
+        <item>مستشار قانوني</item>
+        <item>اخصائي امن معلومات</item>
+    </string-array>
+
+    <string-array name="Fields">
+        <item>الكمبيوتر والتكنولوجيا</item>
+        <item>ادارة الأعمال</item>
+        <item>الامن والسلامة</item>
+        <item>علم النفس</item>
+        <item>التنمية الذاتية</item>
+        <item>المالية والمحاسبة</item>
+        <item>المبيعات والتسويق</item>
+        <item>الطب</item>
+        <item>لغات</item>
+        <item>اخرى</item>
+    </string-array>
+
 </resources>

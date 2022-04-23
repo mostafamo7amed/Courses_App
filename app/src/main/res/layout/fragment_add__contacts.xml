@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="rtl"
     tools:context=".UI.Fragments.Admin.Add_ContactsFragment"
     android:orientation="vertical">
     <androidx.cardview.widget.CardView
@@ -112,6 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="الهاتف "
+                android:text="+966"
                 android:textColor="@color/black"
                 android:inputType="number|phone"
                 android:maxLines="1"
@@ -151,20 +153,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 />
-            <EditText
-                android:id="@+id/cc_number_man"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="رقم مزود التدريب"
-                android:inputType="number"
-                android:maxLines="1"
-                android:drawableStart="@drawable/ic_contact_page"
-                android:drawablePadding="10dp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/cc_save_man"
                 android:layout_width="match_parent"

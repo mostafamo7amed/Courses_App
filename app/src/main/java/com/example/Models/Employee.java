@@ -2,7 +2,7 @@ package com.example.Models;
 
 public class Employee {
     String email , name ,position,uid;
-    int number;
+    String number;
     String age;
     String type;
 
@@ -10,7 +10,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String email, String name, String position, String uid, String age, int number) {
+    public Employee(String email, String name, String position, String uid, String age, String number) {
         this.email = email;
         this.name = name;
         this.position = position;
@@ -59,11 +59,11 @@ public class Employee {
         this.age = age;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
