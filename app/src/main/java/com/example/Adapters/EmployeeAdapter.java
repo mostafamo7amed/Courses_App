@@ -36,7 +36,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
     private List<Employee> list;
     DatabaseReference databaseReference;
     DocumentReference documentReference;
-
+    private Boolean state;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener{
@@ -46,9 +46,10 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
         mListener=listener;
     }
 
-    public EmployeeAdapter(Context context, List<Employee> list) {
+    public EmployeeAdapter(Context context, List<Employee> list,Boolean state) {
         this.context = context;
         this.list = list;
+        this.state = state;
     }
 
     @NonNull
@@ -66,6 +67,10 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
         holder.position.setText(list.get(position).getPosition());
         holder.phone.setText(String.valueOf(list.get(position).getNumber()));
 
+        if (state){
+            holder.employeeDelete.setVisibility(View.INVISIBLE);
+            holder.edit.setVisibility(View.INVISIBLE);
+        }
         String uid = list.get(position).getUid();
         holder.employeeDelete.setOnClickListener(new View.OnClickListener() {
             @Override

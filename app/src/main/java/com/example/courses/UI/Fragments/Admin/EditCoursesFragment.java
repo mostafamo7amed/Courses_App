@@ -37,7 +37,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Calendar;
 
 public class EditCoursesFragment extends Fragment {
-    EditText description , address,material,trainer,number,contact;
+    EditText description , address,material,trainer,number,contact , total;
     Spinner field;
     AppCompatButton addCourse;
     TextView date,dateEnd;
@@ -47,7 +47,7 @@ public class EditCoursesFragment extends Fragment {
     DatabaseReference databaseReference,databaseReference2;
     Course course;
     String child;
-    int Hour ,Minute;
+    int Hour ,Minute , numberTrainee , currentTrainee;
     DatePickerDialog.OnDateSetListener mListener,zListener;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     String cField;
@@ -93,6 +93,7 @@ public class EditCoursesFragment extends Fragment {
         contact = getActivity().findViewById(R.id.edit_contact_course);
         addCourse = getActivity().findViewById(R.id.edit_save_course);
         loading = getActivity().findViewById(R.id.edit_progress_course);
+        total = getActivity().findViewById(R.id.edit_total_course);
 
         course = new Course();
         child= getArguments().get("key").toString();
@@ -112,51 +113,59 @@ public class EditCoursesFragment extends Fragment {
         String c_trainer = trainer.getText().toString();
         String c_number = number.getText().toString();
         String c_contact = contact.getText().toString();
+        String c_total = total.getText().toString();
 
 
-        if (!TextUtils.isEmpty(c_field) && !TextUtils.isEmpty(c_date_end)&& !TextUtils.isEmpty(c_description)&& !TextUtils.isEmpty(c_date) && !TextUtils.isEmpty(c_time) && !TextUtils.isEmpty(c_address) && !TextUtils.isEmpty(c_material) && !TextUtils.isEmpty(c_number) && !TextUtils.isEmpty(c_trainer) && !TextUtils.isEmpty(c_contact)) {
+        if (!TextUtils.isEmpty(c_total) &&!TextUtils.isEmpty(c_field) && !TextUtils.isEmpty(c_date_end)&& !TextUtils.isEmpty(c_description)&& !TextUtils.isEmpty(c_date) && !TextUtils.isEmpty(c_time) && !TextUtils.isEmpty(c_address) && !TextUtils.isEmpty(c_material) && !TextUtils.isEmpty(c_number) && !TextUtils.isEmpty(c_trainer) && !TextUtils.isEmpty(c_contact)) {
 
-            course.setField(c_field);
-            course.setAddress(c_address);
-            course.setCourseMaterial(c_material);
-            course.setCourseNumber(Integer.parseInt(c_number));
-            course.setDate(c_date);
-            course.setTime(c_time);
-            course.setEnd(c_date_end);
-            course.setTrainer(c_trainer);
-            course.setContactNumber(Integer.parseInt(c_contact));
-            course.setDescription(c_description);
-            course.setKey(child);
+            if(Integer.parseInt(c_total) >= currentTrainee) {
+                course.setField(c_field);
+                course.setAddress(c_address);
+                course.setCourseMaterial(c_material);
+                course.setCourseNumber(Integer.parseInt(c_number));
+                course.setDate(c_date);
+                course.setTime(c_time);
+                course.setEnd(c_date_end);
+                course.setTrainer(c_trainer);
+                course.setContactNumber(Integer.parseInt(c_contact));
+                course.setDescription(c_description);
+                course.setKey(child);
+                course.setCurrent(currentTrainee);
+                course.setTotal(Integer.parseInt(c_total));
 
-            int user = getArguments().getInt("frame");
-            if(user == R.id.frame_layout_cont){
-                databaseReference2.child(child).setValue(course);
-            }
-
-            databaseReference.child(child).setValue(course).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    loading.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getContext(), "تم تعديل الدورة", Toast.LENGTH_SHORT).show();
-                    description.setText("");
-                    address.setText("");
-                    material.setText("");
-                    trainer.setText("");
-                    contact.setText("");
-                    number.setText("");
-                    Fragment selected;
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("frame",getArguments().getInt("frame"));
-                    selected = new CoursesFragment();
-                    selected.setArguments(bundle);
-                    getParentFragmentManager().beginTransaction().replace(getArguments().getInt("frame"),selected).commit();
-
+                int user = getArguments().getInt("frame");
+                if (user == R.id.frame_layout_cont) {
+                    databaseReference2.child(child).setValue(course);
                 }
-            });
 
+                databaseReference.child(child).setValue(course).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        loading.setVisibility(View.INVISIBLE);
+                        Toast.makeText(getContext(), "تم تعديل الدورة", Toast.LENGTH_SHORT).show();
+                        description.setText("");
+                        address.setText("");
+                        material.setText("");
+                        trainer.setText("");
+                        contact.setText("");
+                        number.setText("");
+                        Fragment selected;
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("frame", getArguments().getInt("frame"));
+                        selected = new CoursesFragment();
+                        selected.setArguments(bundle);
+                        getParentFragmentManager().beginTransaction().replace(getArguments().getInt("frame"), selected).commit();
+
+                    }
+                });
+            }else {
+                Toast.makeText(getContext(), "عدد التسجيلات في الدورة اقل من عدد التسجيلات الفعليه", Toast.LENGTH_SHORT).show();
+
+            }
         } else {
             Toast.makeText(getContext(), "لا يمكن ان تكون بيانات الدورة فارغة", Toast.LENGTH_SHORT).show();
         }
+
     }
     public String showTime(int hour , int min ) {
         String format, time ;
@@ -266,8 +275,11 @@ public class EditCoursesFragment extends Fragment {
                     String c_trainer = task.getResult().child("trainer").getValue().toString();
                     String c_number = task.getResult().child("courseNumber").getValue().toString();
                     String c_contact = task.getResult().child("contactNumber").getValue().toString();
+                    String c_total = task.getResult().child("total").getValue().toString();
+                    String c_current = task.getResult().child("current").getValue().toString();
 
-
+                    numberTrainee = Integer.parseInt(c_total);
+                    currentTrainee = Integer.parseInt(c_current);
                     description.setText(c_description);
                     date.setText(c_date);
                     dateEnd.setText(c_date_end);
@@ -277,6 +289,7 @@ public class EditCoursesFragment extends Fragment {
                     material.setText(c_material);
                     number.setText(c_number);
                     contact.setText(c_contact);
+                    total.setText(c_total);
 
                 }
             }

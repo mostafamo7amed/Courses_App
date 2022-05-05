@@ -10,7 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,10 +48,11 @@ import java.util.Objects;
 
 public class AddEmployeeFragment extends Fragment {
 
-    EditText email , pass , name ,  number;
+    EditText email , pass , number , name1,name2;
     Spinner position ;
-    TextView age;
+    TextView age , name ;
     ProgressBar loading;
+    RadioGroup gender;
     AppCompatButton addBtn;
     FirebaseDatabase database =FirebaseDatabase.getInstance();
     DatabaseReference databaseReference;
@@ -72,6 +76,45 @@ public class AddEmployeeFragment extends Fragment {
             }
         });
 
+        name1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String n1 = name1.getText().toString();
+                String n2 = name2.getText().toString();
+
+                name.setText(n1+" "+n2);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        name2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String n1 = name1.getText().toString();
+                String n2 = name2.getText().toString();
+
+                name.setText(n1+" "+n2);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         Calendar calendar = Calendar.getInstance();
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
         final int month = calendar.get(Calendar.MONTH);
@@ -86,6 +129,7 @@ public class AddEmployeeFragment extends Fragment {
                 datePickerDialog.show();
             }
         });
+
 
         mListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -107,9 +151,12 @@ public class AddEmployeeFragment extends Fragment {
         email = getActivity().findViewById(R.id.ce_email_man);
         pass = getActivity().findViewById(R.id.ce_pass_man);
         name = getActivity().findViewById(R.id.ce_name_man);
+        name1 = getActivity().findViewById(R.id.ce_name1_man);
+        name2 = getActivity().findViewById(R.id.ce_name2_man);
         age = getActivity().findViewById(R.id.ce_age_man);
         position = getActivity().findViewById(R.id.ce_position_man);
         number = getActivity().findViewById(R.id.ce_number_man);
+        gender = getActivity().findViewById(R.id.ce_gender_man);
         addBtn = getActivity().findViewById(R.id.ce_add_btn);
         loading = getActivity().findViewById(R.id.ce_progress_man);
         employee = new Employee();
@@ -125,7 +172,7 @@ public class AddEmployeeFragment extends Fragment {
         String u_email=email.getText().toString();
         String u_password = pass.getText().toString();
 
-        if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_position) && !TextUtils.isEmpty(u_age) && !TextUtils.isEmpty(u_email) && !TextUtils.isEmpty(u_password) && !TextUtils.isEmpty(u_number)) {
+        if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_position) && !TextUtils.isEmpty(u_age) && !TextUtils.isEmpty(u_email) && !TextUtils.isEmpty(u_password) && !TextUtils.isEmpty(u_number) && gender.getCheckedRadioButtonId() != -1) {
             loading.setVisibility(View.VISIBLE);
             firebaseAuth.createUserWithEmailAndPassword(u_email,u_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -143,7 +190,7 @@ public class AddEmployeeFragment extends Fragment {
 
 
         }else {
-            Toast.makeText(getContext(), "برجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "الرجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -154,6 +201,14 @@ public class AddEmployeeFragment extends Fragment {
         String u_position=embPosition;
         String u_age=age.getText().toString();
         String u_email=email.getText().toString();
+        String u_gander;
+
+        int selectedID = gender.getCheckedRadioButtonId();
+        if (selectedID == R.id.male) {
+            u_gander = "ذكر";
+        }else {
+            u_gander = "أنثى";
+        }
 
         databaseReference=database.getReference("Employees");
         documentReference=db.collection("Employees").document(userId);
@@ -164,6 +219,7 @@ public class AddEmployeeFragment extends Fragment {
         employee.setNumber(u_number);
         employee.setPosition(u_position);
         employee.setUid(userId);
+        employee.setGender(u_gander);
         employee.setType("Employees");
 
 
@@ -174,6 +230,7 @@ public class AddEmployeeFragment extends Fragment {
         profile.put("email",u_email);
         profile.put("number",u_number);
         profile.put("uid",userId);
+        profile.put("gender",u_gander);
         profile.put("type","Employees");
 
         documentReference.set(profile);

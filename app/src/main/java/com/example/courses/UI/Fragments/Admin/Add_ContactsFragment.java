@@ -11,13 +11,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Models.TrainingProvider;
@@ -50,9 +54,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_ContactsFragment extends Fragment {
 
-    EditText name,phone,region, commerce ,email,password;
+    EditText name1,name2,phone,region, commerce ,email,password;
+    TextView name;
     ProgressBar loading;
     CircleImageView photo;
+    RadioGroup gender;
     Uri imageUri;
     AppCompatButton save;
     StorageReference storageReference;
@@ -89,6 +95,48 @@ public class Add_ContactsFragment extends Fragment {
         });
 
 
+        name1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String n1 = name1.getText().toString();
+                String n2 = name2.getText().toString();
+
+                name.setText(n1+" "+n2);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        name2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String n1 = name1.getText().toString();
+                String n2 = name2.getText().toString();
+
+                name.setText(n1+" "+n2);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
+
+
     }
 
     @Override
@@ -99,6 +147,8 @@ public class Add_ContactsFragment extends Fragment {
 
     public void initialization(){
         name = getActivity().findViewById(R.id.cc_name_man);
+        name1 = getActivity().findViewById(R.id.cc_name1_man);
+        name2 = getActivity().findViewById(R.id.cc_name2_man);
         phone = getActivity().findViewById(R.id.cc_phone_man);
         region = getActivity().findViewById(R.id.cc_region_man);
         commerce = getActivity().findViewById(R.id.cc_commerce_man);
@@ -107,6 +157,7 @@ public class Add_ContactsFragment extends Fragment {
         email = getActivity().findViewById(R.id.cc_email_man);
         password = getActivity().findViewById(R.id.cc_password_man);
         save = getActivity().findViewById(R.id.cc_save_man);
+        gender = getActivity().findViewById(R.id.cc_gender_man);
         firebaseAuth = FirebaseAuth.getInstance();
         contacts = new TrainingProvider();
         contactNumber();
@@ -126,7 +177,7 @@ public class Add_ContactsFragment extends Fragment {
         String u_region=region.getText().toString();
         String u_email=email.getText().toString();
         String u_password = password.getText().toString();
-        if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_number) && !TextUtils.isEmpty(u_commerce) && !TextUtils.isEmpty(u_email) && !TextUtils.isEmpty(u_region) && !TextUtils.isEmpty(u_phone) && !TextUtils.isEmpty(u_password) && imageUri!=null)
+        if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_number) && !TextUtils.isEmpty(u_commerce) && !TextUtils.isEmpty(u_email) && !TextUtils.isEmpty(u_region) && !TextUtils.isEmpty(u_phone) && !TextUtils.isEmpty(u_password) && imageUri!=null && gender.getCheckedRadioButtonId()!= -1)
         {
             firebaseAuth.createUserWithEmailAndPassword(u_email,u_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -144,7 +195,7 @@ public class Add_ContactsFragment extends Fragment {
 
 
         }else {
-            Toast.makeText(getContext(), "برجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "الرجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -169,6 +220,14 @@ public class Add_ContactsFragment extends Fragment {
         String u_region=region.getText().toString();
         String u_email=email.getText().toString();
 
+        String u_gander;
+
+        int selectedID = gender.getCheckedRadioButtonId();
+        if (selectedID == R.id.male) {
+            u_gander = "ذكر";
+        }else {
+            u_gander = "أنثى";
+        }
 
         documentReference=db.collection("Training Provider").document(userId);
         storageReference= FirebaseStorage.getInstance().getReference("Profile images");
@@ -206,6 +265,7 @@ public class Add_ContactsFragment extends Fragment {
                     profile.put("region",u_region);
                     profile.put("phone",u_phone);
                     profile.put("uid",userId);
+                    profile.put("gender",u_gander);
                     profile.put("image",imageChild);
                     profile.put("type","Contacts");
 
@@ -214,6 +274,7 @@ public class Add_ContactsFragment extends Fragment {
                     contacts.setContact_number(Integer.parseInt(u_number));
                     contacts.setEmail(u_email);
                     contacts.setPhone(u_phone);
+                    contacts.setGender(u_gander);
                     contacts.setRegion(u_region);
                     contacts.setType("Contacts");
                     contacts.setCommercial_register(u_commerce);

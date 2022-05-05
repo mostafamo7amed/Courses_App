@@ -40,7 +40,7 @@ public class EmployeeFragment extends Fragment {
         employees = new ArrayList<>();
 
 
-        employeeAdapter = new EmployeeAdapter(getContext(),employees);
+        employeeAdapter = new EmployeeAdapter(getContext(),employees,false);
         getEmployees();
 
         employeeAdapter.setOnItemClickListener(new EmployeeAdapter.OnItemClickListener() {

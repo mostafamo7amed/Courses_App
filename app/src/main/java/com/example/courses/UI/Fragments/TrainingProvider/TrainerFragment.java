@@ -51,7 +51,7 @@ public class TrainerFragment extends Fragment {
         currentUserID = firebaseAuth.getCurrentUser().getUid();
         databaseReference=database.getReference("ContactTrainers").child(currentUserID);
         databaseReference2=database.getReference("Trainers");
-        trainerAdapter = new TrainerAdapter(getContext(),trainers);
+        trainerAdapter = new TrainerAdapter(getContext(),trainers, false);
         getTrainers();
 
 

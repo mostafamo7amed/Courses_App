@@ -29,7 +29,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
 
     private Context context;
     private List<Course> list;
-
+    boolean  state;
 
     private OnItemClickListener mListener;
 
@@ -40,9 +40,10 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
     public void setOnItemClickListener(OnItemClickListener listener){
         mListener=listener;
     }
-    public CoursesAdapter(Context context, List<Course> list) {
+    public CoursesAdapter(Context context, List<Course> list , boolean state) {
         this.context = context;
         this.list = list;
+        this.state = state;
     }
 
     @NonNull
@@ -62,6 +63,10 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         holder.time.setText(list.get(position).getTime());
         holder.address.setText(list.get(position).getAddress());
 
+        if(state){
+            holder.close.setVisibility(View.INVISIBLE);
+            holder.edit.setVisibility(View.INVISIBLE);
+        }
         String key = list.get(position).getKey();
         holder.close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,5 +105,11 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         }
     }
 
+    public List<Course> getList() {
+        return list;
+    }
 
+    public void setList(List<Course> list) {
+        this.list = list;
+    }
 }

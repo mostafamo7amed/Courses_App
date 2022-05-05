@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.Models.TrainingProvider;
@@ -34,6 +35,7 @@ public class EditContactsFragment extends Fragment {
     EditText name ,phone ,commerce,region,number;
     AppCompatButton editSave;
     ProgressBar loading;
+    RadioGroup gender;
     FirebaseDatabase database =FirebaseDatabase.getInstance();
     DatabaseReference databaseReference;
     FirebaseFirestore db =FirebaseFirestore.getInstance();
@@ -61,6 +63,7 @@ public class EditContactsFragment extends Fragment {
         region = getActivity().findViewById(R.id.edit_region_con);
         number = getActivity().findViewById(R.id.edit_number_con);
         editSave = getActivity().findViewById(R.id.edit_add_con);
+        gender = getActivity().findViewById(R.id.edit_gender_con);
         loading = getActivity().findViewById(R.id.edit_progress_con);
         contacts = new TrainingProvider();
         currentUser_id = getArguments().getString("uid");
@@ -89,6 +92,13 @@ public class EditContactsFragment extends Fragment {
                             String u_commerce = task.getResult().getString("commerce");
                             String u_phones = task.getResult().getString("phone");
                             String u_region = task.getResult().getString("region");
+                            String u_gender = task.getResult().getString("gender");
+
+                            if(u_gender.equals("ذكر")){
+                                gender.check(R.id.male);
+                            }else {
+                                gender.check(R.id.female);
+                            }
 
                             ////
                             Email =task.getResult().getString("email");
@@ -117,8 +127,15 @@ public class EditContactsFragment extends Fragment {
     public void editContact(){
         documentReference=db.collection("Training Provider").document(currentUser_id);
         databaseReference=database.getReference("Training Provider");
+        String u_gander;
+        int selectedID = gender.getCheckedRadioButtonId();
+        if (selectedID == R.id.male) {
+            u_gander = "ذكر";
+        }else {
+            u_gander = "أنثى";
+        }
 
-        if(!TextUtils.isEmpty(name.getText().toString()) && !TextUtils.isEmpty(phone.getText().toString()) && !TextUtils.isEmpty(commerce.getText().toString()) && !TextUtils.isEmpty(region.getText().toString()))
+        if(!TextUtils.isEmpty(name.getText().toString()) && !TextUtils.isEmpty(phone.getText().toString()) && !TextUtils.isEmpty(commerce.getText().toString()) && !TextUtils.isEmpty(region.getText().toString()) && gender.getCheckedRadioButtonId()!=-1)
         {
             loading.setVisibility(View.VISIBLE);
 
@@ -126,6 +143,7 @@ public class EditContactsFragment extends Fragment {
                 profile.put("name",name.getText().toString());
                 profile.put("number",number.getText().toString());
                 profile.put("uri",Url);
+                profile.put("gender",u_gander);
                 profile.put("email",Email);
                 profile.put("commerce",commerce.getText().toString());
                 profile.put("phone",phone.getText().toString());
@@ -138,6 +156,7 @@ public class EditContactsFragment extends Fragment {
                 contacts.setUid(currentUser_id);
                 contacts.setContact_number(Integer.parseInt(number.getText().toString()));
                 contacts.setEmail(Email);
+                contacts.setGender(u_gander);
                 contacts.setPhone(phone.getText().toString());
                 contacts.setRegion(region.getText().toString());
                 contacts.setCommercial_register(commerce.getText().toString());
@@ -175,7 +194,7 @@ public class EditContactsFragment extends Fragment {
 
 
         }else {
-            Toast.makeText(getContext(), "برجاء إدخال كافة البيانات", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "الرجاء إدخال كافة البيانات", Toast.LENGTH_SHORT).show();
         }
     }
 

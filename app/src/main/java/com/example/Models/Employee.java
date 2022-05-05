@@ -3,6 +3,7 @@ package com.example.Models;
 public class Employee {
     String email , name ,position,uid;
     String number;
+    String gender;
     String age;
     String type;
 
@@ -17,6 +18,17 @@ public class Employee {
         this.uid = uid;
         this.age = age;
         this.number = number;
+    }
+
+    public Employee(String email, String name, String position, String uid, String number, String gender, String age, String type) {
+        this.email = email;
+        this.name = name;
+        this.position = position;
+        this.uid = uid;
+        this.number = number;
+        this.gender = gender;
+        this.age = age;
+        this.type = type;
     }
 
     public String getUid() {
@@ -73,5 +85,13 @@ public class Employee {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

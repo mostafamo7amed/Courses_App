@@ -132,7 +132,7 @@ public class Add_TrainerFragment extends Fragment {
 
 
         }else {
-            Toast.makeText(getContext(), "برجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "الرجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
         }
 
     }

@@ -42,13 +42,15 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
 
     private Context context;
     private List<Comments> list;
+    boolean state;
     DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
 
-    public ContactPageAdapter(Context context, List<Comments> list) {
+    public ContactPageAdapter(Context context, List<Comments> list, boolean state) {
         this.context = context;
         this.list = list;
+        this.state = state;
     }
 
     @NonNull
@@ -74,6 +76,9 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
         String uid = list.get(position).getUID();
         String type = list.get(position).getType();
 
+        if(state){
+            holder.delete.setVisibility(View.INVISIBLE);
+        }else {
             final DatabaseReference RootRef;
             RootRef = FirebaseDatabase.getInstance().getReference();
             if(currentUser!=null){
@@ -103,6 +108,7 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
                 });
 
 
+            }
         }
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override

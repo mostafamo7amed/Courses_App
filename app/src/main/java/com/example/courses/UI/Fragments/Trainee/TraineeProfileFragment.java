@@ -39,7 +39,7 @@ import java.util.Map;
 
 public class TraineeProfileFragment extends Fragment {
 
-    EditText name ,age ,level,email;
+    EditText name ,age ,level,email ,gender;
     ImageButton editProfile;
     AppCompatButton editSave;
     ProgressBar loading;
@@ -84,6 +84,7 @@ public class TraineeProfileFragment extends Fragment {
         age = getActivity().findViewById(R.id.pt_age);
         level = getActivity().findViewById(R.id.pt_level);
         email = getActivity().findViewById(R.id.pt_email);
+        gender = getActivity().findViewById(R.id.pt_gender);
         editProfile = getActivity().findViewById(R.id.pt_edit);
         editSave = getActivity().findViewById(R.id.pt_edit_save);
         loading = getActivity().findViewById(R.id.pt_progress);
@@ -114,11 +115,13 @@ public class TraineeProfileFragment extends Fragment {
                             String u_level = task.getResult().getString("level");
                             String u_age = task.getResult().getString("age");
                             String u_email = task.getResult().getString("email");
+                            String u_gender = task.getResult().getString("gender");
 
                             name.setText(u_name);
                             age.setText(u_age);
                             email.setText(u_email);
                             level.setText(u_level);
+                            gender.setText(u_gender);
 
                         }
                     } catch (NullPointerException nullPointerException) {
@@ -136,6 +139,7 @@ public class TraineeProfileFragment extends Fragment {
         String u_level=level.getText().toString();
         String u_age=age.getText().toString();
         String u_email=email.getText().toString();
+        String u_gender = gender.getText().toString();
 
         if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_level) && !TextUtils.isEmpty(u_age) && !TextUtils.isEmpty(u_email)) {
             loading.setVisibility(View.VISIBLE);
@@ -144,6 +148,7 @@ public class TraineeProfileFragment extends Fragment {
             trainee.setName(u_name);
             trainee.setEducationLevel(u_level);
             trainee.setUID(currentUserId);
+            trainee.setGender(u_gender);
             trainee.setType("Trainees");
 
             Map<String ,String> profile=new HashMap<>();
@@ -151,6 +156,7 @@ public class TraineeProfileFragment extends Fragment {
             profile.put("age",u_age);
             profile.put("level",u_level);
             profile.put("email",u_email);
+            profile.put("gender",u_gender);
             profile.put("uid",currentUserId);
             profile.put("type","Trainees");
 

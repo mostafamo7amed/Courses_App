@@ -23,7 +23,7 @@ public class TraineeAdapter extends RecyclerView.Adapter<TraineeAdapter.ViewHold
     private List<Trainee> list;
 
     private OnItemClickListener mListener;
-
+    boolean state;
     public interface OnItemClickListener{
         void onItemEdit(String UID);
     }
@@ -31,9 +31,10 @@ public class TraineeAdapter extends RecyclerView.Adapter<TraineeAdapter.ViewHold
         mListener=listener;
     }
 
-    public TraineeAdapter(Context context, List<Trainee> list) {
+    public TraineeAdapter(Context context, List<Trainee> list, boolean state) {
         this.context = context;
         this.list = list;
+        this.state = state;
     }
 
     @NonNull
@@ -49,6 +50,9 @@ public class TraineeAdapter extends RecyclerView.Adapter<TraineeAdapter.ViewHold
         holder.level.setText(list.get(position).getEducationLevel());
         holder.age.setText(String.valueOf(list.get(position).getAge()));
 
+        if(state){
+            holder.traineeEdit.setVisibility(View.INVISIBLE);
+        }
         String uid = list.get(position).getUID();
         holder.traineeEdit.setOnClickListener(new View.OnClickListener() {
             @Override

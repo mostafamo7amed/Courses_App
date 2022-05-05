@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.courses.Constants;
 import com.example.courses.R;
@@ -16,8 +17,13 @@ import com.example.courses.UI.Fragments.Employee.MoreEmployeeFragment;
 import com.example.courses.UI.Fragments.Trainer.ContactPageFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class EmployeeActivity extends AppCompatActivity {
@@ -26,10 +32,16 @@ public class EmployeeActivity extends AppCompatActivity {
     FirebaseAuth auth ;
     FirebaseDatabase database =FirebaseDatabase.getInstance();
     DatabaseReference databaseReference;
+    FirebaseAuth firebaseAuth;
+    TextView userName;
+    CircleImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee);
+
+        userName = findViewById(R.id.userNamEmp);
+        imageView = findViewById(R.id.userImageEmp);
         bottomNavigationView = findViewById(R.id.bottom_nav_employee);
         bottomNavigationView.setOnItemSelectedListener(OnSelect);
         auth = FirebaseAuth.getInstance();
@@ -40,6 +52,8 @@ public class EmployeeActivity extends AppCompatActivity {
         selected.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_employee, selected).commit();
         Constants.current=1;
+
+        getData();
     }
     private final BottomNavigationView.OnItemSelectedListener OnSelect = new BottomNavigationView.OnItemSelectedListener() {
         @SuppressLint("NonConstantResourceId")
@@ -92,7 +106,32 @@ public class EmployeeActivity extends AppCompatActivity {
             return true;
         }
     };
+    public void getData(){
+        firebaseAuth = FirebaseAuth.getInstance();
+        String userId = firebaseAuth.getCurrentUser().getUid();
+        databaseReference= database.getReference("Employees");
+        databaseReference.child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String name = snapshot.child("name").getValue().toString();
+                    userName.setText(name);
+                    String gender = snapshot.child("gender").getValue().toString();
+                    if(gender.equals("ذكر")){
+                        imageView.setImageResource(R.drawable.ic_person_men);
+                    }else {
+                        imageView.setImageResource(R.drawable.ic_person_weman);
+                    }
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
     @Override
     protected void onStart() {
         super.onStart();

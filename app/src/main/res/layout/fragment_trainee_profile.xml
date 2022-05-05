@@ -11,14 +11,15 @@
         android:id="@+id/card2"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        app:cardBackgroundColor="@color/dark"
+        app:cardBackgroundColor="@android:color/transparent"
+
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="الملف الشخصي"
             android:textSize="20sp"
-            android:textColor="@color/white"
+            android:textColor="@color/dark"
             android:layout_margin="10dp"/>
         <ImageButton
             android:id="@+id/pt_edit"
@@ -143,6 +144,44 @@
 
         </LinearLayout>
     </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/frameshape">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/framecircle"
+                >
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_gender"/>
+            </FrameLayout>
+            <EditText
+                android:id="@+id/pt_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:enabled="false"
+                android:background="@drawable/edittext_shape_profile"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                />
+
+        </LinearLayout>
+    </FrameLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

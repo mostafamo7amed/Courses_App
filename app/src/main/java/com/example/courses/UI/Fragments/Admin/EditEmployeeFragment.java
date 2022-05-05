@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +48,7 @@ public class EditEmployeeFragment extends Fragment {
     EditText   name ,  number;
     Spinner position ;
     TextView age;
+    RadioGroup gender;
     ProgressBar loading;
     AppCompatButton addBtn;
     FirebaseDatabase database =FirebaseDatabase.getInstance();
@@ -109,6 +111,7 @@ public class EditEmployeeFragment extends Fragment {
         position = getActivity().findViewById(R.id.edit_position_man);
         number = getActivity().findViewById(R.id.edit_number_man);
         addBtn = getActivity().findViewById(R.id.edit_add_btn);
+        gender = getActivity().findViewById(R.id.edit_gender_man);
         loading = getActivity().findViewById(R.id.edit_progress_man);
         employee = new Employee();
         currentUserID = getArguments().getString("uid").toString();
@@ -119,11 +122,19 @@ public class EditEmployeeFragment extends Fragment {
         String u_number = number.getText().toString();
         String u_position=embPosition;
         String u_age=age.getText().toString();
+        String u_gander;
+
+        int selectedID = gender.getCheckedRadioButtonId();
+        if (selectedID == R.id.male) {
+            u_gander = "ذكر";
+        }else {
+            u_gander = "أنثى";
+        }
 
         databaseReference=database.getReference("Employees");
         documentReference=db.collection("Employees").document(userId);
 
-        if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_position) && !TextUtils.isEmpty(u_age) && !TextUtils.isEmpty(U_EMail) && !TextUtils.isEmpty(u_number)) {
+        if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_position) && !TextUtils.isEmpty(u_age) && !TextUtils.isEmpty(U_EMail) && !TextUtils.isEmpty(u_number) && gender.getCheckedRadioButtonId() != -1) {
 
             loading.setVisibility(View.VISIBLE);
             employee.setEmail(U_EMail);
@@ -132,6 +143,7 @@ public class EditEmployeeFragment extends Fragment {
             employee.setNumber(u_number);
             employee.setPosition(u_position);
             employee.setUid(userId);
+            employee.setGender(u_gander);
             employee.setType("Employees");
 
 
@@ -142,6 +154,7 @@ public class EditEmployeeFragment extends Fragment {
             profile.put("email", U_EMail);
             profile.put("number", u_number);
             profile.put("uid", userId);
+            profile.put("gender",u_gander);
             profile.put("type","Employees");
 
             documentReference.set(profile);
@@ -163,6 +176,8 @@ public class EditEmployeeFragment extends Fragment {
                 }
             });
 
+        }else {
+            Toast.makeText(getContext(), "الرجاء إدخال كافة البيانات", Toast.LENGTH_SHORT).show();
         }
     }
     public void getDate(){
@@ -179,11 +194,17 @@ public class EditEmployeeFragment extends Fragment {
                             String u_age = task.getResult().getString("age");
                             String u_email = task.getResult().getString("email");
                             String u_number = task.getResult().getString("number");
-
+                            String u_gender = task.getResult().getString("gender");
                             name.setText(u_name);
                             age.setText(u_age);
                             number.setText(u_number);
                             U_EMail =u_email;
+
+                            if(u_gender.equals("ذكر")){
+                                gender.check(R.id.male);
+                            }else {
+                                gender.check(R.id.female);
+                            }
 
                         }
                     } catch (NullPointerException nullPointerException) {

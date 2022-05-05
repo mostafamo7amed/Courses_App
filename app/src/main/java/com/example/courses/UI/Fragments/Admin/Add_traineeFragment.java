@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +51,7 @@ public class Add_traineeFragment extends Fragment {
     EditText name  ,  email , password;
     Spinner level;
     TextView age ;
+    RadioGroup gender;
     ProgressBar loading;
     AppCompatButton create_account;
     FirebaseDatabase database =FirebaseDatabase.getInstance();
@@ -111,6 +113,7 @@ public class Add_traineeFragment extends Fragment {
         age = getActivity().findViewById(R.id.ct_age_man);
         loading = getActivity().findViewById(R.id.ct_progress_man);
         email = getActivity().findViewById(R.id.ct_email_man);
+        gender = getActivity().findViewById(R.id.ct_gender_man);
         password = getActivity().findViewById(R.id.ct_pass_man);
         create_account = getActivity().findViewById(R.id.ct_addTrainee_man);
 
@@ -126,7 +129,7 @@ public class Add_traineeFragment extends Fragment {
         String u_email=email.getText().toString();
         String u_password = password.getText().toString();
 
-        if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_level) && !TextUtils.isEmpty(u_age) && !TextUtils.isEmpty(u_email) && !TextUtils.isEmpty(u_password)) {
+        if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_level) && !TextUtils.isEmpty(u_age) && !TextUtils.isEmpty(u_email) && !TextUtils.isEmpty(u_password) && gender.getCheckedRadioButtonId() != -1) {
             loading.setVisibility(View.VISIBLE);
             firebaseAuth.createUserWithEmailAndPassword(u_email,u_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -144,7 +147,7 @@ public class Add_traineeFragment extends Fragment {
 
 
         }else {
-            Toast.makeText(getContext(), "برجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "الرجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -154,6 +157,14 @@ public class Add_traineeFragment extends Fragment {
         String u_level=eduLevel;
         String u_age=age.getText().toString();
         String u_email=email.getText().toString();
+        String u_gander;
+
+        int selectedID = gender.getCheckedRadioButtonId();
+        if (selectedID == R.id.male) {
+            u_gander = "ذكر";
+        }else {
+            u_gander = "أنثى";
+        }
 
         databaseReference=database.getReference("Trainees");
         documentReference=db.collection("Trainees").document(userId);
@@ -162,6 +173,7 @@ public class Add_traineeFragment extends Fragment {
         trainee.setName(u_name);
         trainee.setEducationLevel(u_level);
         trainee.setUID(userId);
+        trainee.setGender(u_gander);
         trainee.setType("Trainees");
 
         Map<String ,String> profile=new HashMap<>();
@@ -169,6 +181,7 @@ public class Add_traineeFragment extends Fragment {
         profile.put("age",u_age);
         profile.put("level",u_level);
         profile.put("email",u_email);
+        profile.put("gender",u_gander);
         profile.put("uid",userId);
         profile.put("type","Trainees");
 

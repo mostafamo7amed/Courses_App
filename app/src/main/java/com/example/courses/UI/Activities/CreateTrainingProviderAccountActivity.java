@@ -14,6 +14,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.Models.TrainingProvider;
@@ -43,6 +44,7 @@ public class CreateTrainingProviderAccountActivity extends AppCompatActivity {
     EditText name,phone,region, commerce , number;
     ProgressBar loading;
     CircleImageView photo;
+    RadioGroup gender;
     Uri imageUri;
     AppCompatButton save;
     StorageReference storageReference;
@@ -85,6 +87,7 @@ public class CreateTrainingProviderAccountActivity extends AppCompatActivity {
         region = findViewById(R.id.cc_region);
         commerce = findViewById(R.id.cc_commerce);
         loading = findViewById(R.id.cc_progress);
+        gender = findViewById(R.id.cc_gender);
         number = findViewById(R.id.cc_number);
         photo = findViewById(R.id.cc_picture);
         save = findViewById(R.id.cc_save);
@@ -119,12 +122,20 @@ public class CreateTrainingProviderAccountActivity extends AppCompatActivity {
         String u_number=number.getText().toString();
         String u_region=region.getText().toString();
         String u_email=getIntent().getStringExtra("email");
+        String u_gander;
+
+        int selectedID = gender.getCheckedRadioButtonId();
+        if (selectedID == R.id.male) {
+            u_gander = "ذكر";
+        }else {
+            u_gander = "أنثى";
+        }
 
         documentReference=db.collection("Training Provider").document(currentUser_id);
         storageReference= FirebaseStorage.getInstance().getReference("Profile images");
         databaseReference=database.getReference("Training Provider");
 
-        if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_number) && !TextUtils.isEmpty(u_commerce) && !TextUtils.isEmpty(u_email) && !TextUtils.isEmpty(u_region) && !TextUtils.isEmpty(u_phone) && imageUri!=null)
+        if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_number) && !TextUtils.isEmpty(u_commerce) && !TextUtils.isEmpty(u_email) && !TextUtils.isEmpty(u_region) && !TextUtils.isEmpty(u_phone) && imageUri!=null && gender.getCheckedRadioButtonId() != -1)
         {
             String imageChild =System.currentTimeMillis()+"."+getFileExt(imageUri);
             loading.setVisibility(View.VISIBLE);
@@ -156,6 +167,7 @@ public class CreateTrainingProviderAccountActivity extends AppCompatActivity {
                         profile.put("commerce",u_commerce);
                         profile.put("region",u_region);
                         profile.put("phone",u_phone);
+                        profile.put("gender",u_gander);
                         profile.put("uid",currentUser_id);
                         profile.put("image",imageChild);
                         profile.put("type","Contacts");
@@ -165,6 +177,7 @@ public class CreateTrainingProviderAccountActivity extends AppCompatActivity {
                         provider.setContact_number(Integer.parseInt(u_number));
                         provider.setEmail(u_email);
                         provider.setPhone(u_phone);
+                        provider.setGender(u_gander);
                         provider.setRegion(u_region);
                         provider.setType("Contacts");
                         provider.setCommercial_register(u_commerce);
@@ -203,7 +216,7 @@ public class CreateTrainingProviderAccountActivity extends AppCompatActivity {
             });
 
         }else {
-            Toast.makeText(this, "برجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "الرجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
         }
 
     }

@@ -10,11 +10,15 @@ public class Course {
     String end;
     String time;
     String key;
+    int total;
+    int current;
 
     public Course() {
     }
 
-    public Course(String field, String courseMaterial, String description, String trainer, String address, int contactNumber, int courseNumber, String date, String end, String time, String key) {
+
+
+    public Course(String field, String courseMaterial, String description, String trainer, String address, int contactNumber, int courseNumber, String date, String end, String time, String key, int total, int current) {
         this.field = field;
         this.courseMaterial = courseMaterial;
         this.description = description;
@@ -26,18 +30,8 @@ public class Course {
         this.end = end;
         this.time = time;
         this.key = key;
-    }
-
-    public Course(String field, String courseMaterial, String description, String trainer, String address, int contactNumber, int courseNumber, String date, String time) {
-        this.field = field;
-        this.courseMaterial = courseMaterial;
-        this.description = description;
-        this.trainer = trainer;
-        this.address = address;
-        this.contactNumber = contactNumber;
-        this.courseNumber = courseNumber;
-        this.date = date;
-        this.time = time;
+        this.total = total;
+        this.current = current;
     }
 
     public String getField() {
@@ -126,5 +120,21 @@ public class Course {
 
     public void setEnd(String end) {
         this.end = end;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public int getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(int current) {
+        this.current = current;
     }
 }

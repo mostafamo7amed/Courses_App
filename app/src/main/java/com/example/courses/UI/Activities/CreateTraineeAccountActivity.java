@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
     EditText name ;
     Spinner level ;
     TextView age;
+    RadioGroup gender;
     ProgressBar loading;
     AppCompatButton create_account;
     FirebaseDatabase database =FirebaseDatabase.getInstance();
@@ -100,6 +102,8 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
         age = findViewById(R.id.age_ca_trainee);
         loading = findViewById(R.id.progress_ca_trainee);
         create_account = findViewById(R.id.ctrainee_save);
+        gender = findViewById(R.id.gender_ca_trainee);
+
 
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -123,20 +127,30 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
         String u_level=eduLevel;
         String u_age=age.getText().toString();
         String u_email=getIntent().getStringExtra("email");
+        String u_gander;
 
-        if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_level) && !TextUtils.isEmpty(u_age) && !TextUtils.isEmpty(u_email)) {
+        int selectedID = gender.getCheckedRadioButtonId();
+        if (selectedID == R.id.male) {
+            u_gander = "ذكر";
+        }else {
+            u_gander = "أنثى";
+        }
+
+        if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_level) && !TextUtils.isEmpty(u_age) && !TextUtils.isEmpty(u_email) && gender.getCheckedRadioButtonId() != -1) {
             loading.setVisibility(View.VISIBLE);
             trainee.setAge(u_age);
             trainee.setEmail(u_email);
             trainee.setName(u_name);
             trainee.setEducationLevel(u_level);
             trainee.setUID(currentUserId);
+            trainee.setGender(u_gander);
             trainee.setType("Trainees");
 
             Map<String ,String> profile=new HashMap<>();
             profile.put("name",u_name);
             profile.put("age",u_age);
             profile.put("level",u_level);
+            profile.put("gender",u_gander);
             profile.put("email",u_email);
             profile.put("uid",currentUserId);
             profile.put("type","Trainees");
@@ -161,7 +175,7 @@ public class CreateTraineeAccountActivity extends AppCompatActivity {
 
 
         }else {
-            Toast.makeText(this, "برجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "الرجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
         }
 
     }

@@ -53,7 +53,7 @@ public class ContactsFragment extends Fragment {
 
         providers = new ArrayList<>();
 
-        contactsAdapter = new ContactsAdapter(getContext(), providers);
+        contactsAdapter = new ContactsAdapter(getContext(), providers, false);
         getContacts();
 
 

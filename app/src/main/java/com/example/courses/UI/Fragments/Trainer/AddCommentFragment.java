@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
@@ -156,21 +157,15 @@ public class AddCommentFragment extends Fragment {
         if (user != null) {
             currentUserId = user.getUid();
         }
-        DocumentReference reference;
-        FirebaseFirestore firestore=FirebaseFirestore.getInstance();
 
         if (currentUserId != null) {
-            reference = firestore.collection(table).document(currentUserId);
-            reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            databaseReference=database.getReference(table);
+            databaseReference.child(currentUserId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    try {
-                        if (task.getResult().exists()) {
-                            Email =task.getResult().getString("email");
-                            Name =task.getResult().getString("name");
-                        }
-                    } catch (NullPointerException nullPointerException) {
-                        Toast.makeText(getActivity(), "" + nullPointerException.getMessage(), Toast.LENGTH_SHORT).show();
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (task.isSuccessful()){
+                        Name = task.getResult().child("name").getValue().toString();
+                        Email = task.getResult().child("email").getValue().toString();
                     }
                 }
             });

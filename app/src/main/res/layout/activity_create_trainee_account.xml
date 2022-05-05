@@ -62,6 +62,32 @@
                 android:textSize="16sp" />
 
 
+            <RadioGroup
+                android:id="@+id/gender_ca_trainee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ذكر "
+                    android:textColor="@color/dark_text"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="انثى"
+                    android:textColor="@color/dark_text"
+                    android:textSize="16sp" />
+            </RadioGroup>
+
             <TextView
                 android:id="@+id/age_ca_trainee"
                 android:layout_width="match_parent"

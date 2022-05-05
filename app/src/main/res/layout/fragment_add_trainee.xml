@@ -11,14 +11,14 @@
         android:id="@+id/card1"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        app:cardBackgroundColor="@color/dark"
         >
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="إضافة متدرب  "
             android:textSize="20sp"
-            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textColor="@color/dark"
             android:layout_margin="10dp"/>
     </androidx.cardview.widget.CardView>
 
@@ -89,6 +89,32 @@
                 android:textColor="@color/dark_text"
                 android:textSize="16sp" />
 
+
+            <RadioGroup
+                android:id="@+id/ct_gender_man"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ذكر "
+                    android:textColor="@color/dark_text"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="انثى"
+                    android:textColor="@color/dark_text"
+                    android:textSize="16sp" />
+            </RadioGroup>
 
             <TextView
                 android:id="@+id/ct_age_man"

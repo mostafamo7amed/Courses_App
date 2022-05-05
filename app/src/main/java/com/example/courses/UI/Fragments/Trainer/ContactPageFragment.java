@@ -43,10 +43,10 @@ public class ContactPageFragment extends Fragment {
 
         initialization();
 
+
+
+        contactPageAdapter = new ContactPageAdapter(getContext(),comments, false);
         getAllComments();
-
-        contactPageAdapter = new ContactPageAdapter(getContext(),comments);
-
         addComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

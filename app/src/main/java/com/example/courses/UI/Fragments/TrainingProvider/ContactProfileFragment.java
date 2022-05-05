@@ -49,7 +49,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ContactProfileFragment extends Fragment {
 
-    EditText name ,phone ,commerce,email,region,number;
+    EditText name ,phone ,commerce,email,region,number,gender;
     ImageButton editProfile;
     AppCompatButton editSave;
     ProgressBar loading;
@@ -63,7 +63,7 @@ public class ContactProfileFragment extends Fragment {
     FirebaseFirestore db =FirebaseFirestore.getInstance();
     DocumentReference documentReference;
     TrainingProvider provider;
-    String currentUser_id , UrlDeleted ,Email ,Number;
+    String currentUser_id , UrlDeleted ,Email ,Number , GENDER;
     private static final int PICK_IMAGE=1;
 
     @Override
@@ -127,6 +127,7 @@ public class ContactProfileFragment extends Fragment {
         number = getActivity().findViewById(R.id.cp_number);
         editProfile = getActivity().findViewById(R.id.edit_profile_contact);
         editSave = getActivity().findViewById(R.id.cp_save);
+        gender = getActivity().findViewById(R.id.cp_gender);
         loading = getActivity().findViewById(R.id.cp_progress);
         cardView = getActivity().findViewById(R.id.add_image);
         photo = getActivity().findViewById(R.id.image_contact);
@@ -156,7 +157,7 @@ public class ContactProfileFragment extends Fragment {
                             String u_email = task.getResult().getString("email");
                             String urls = task.getResult().getString("uri");
                             String u_region = task.getResult().getString("region");
-
+                            String u_gender = task.getResult().getString("gender");
                             ////
                             UrlDeleted = task.getResult().getString("image");
                             Email =task.getResult().getString("email");
@@ -170,6 +171,7 @@ public class ContactProfileFragment extends Fragment {
                             commerce.setText(u_commerce);
                             phone.setText(u_phones);
                             region.setText(u_region);
+                            gender.setText(u_gender);
 
 
                         } else {
@@ -234,12 +236,14 @@ public class ContactProfileFragment extends Fragment {
                         profile.put("uid",currentUser_id);
                         profile.put("image",image_current);
                         profile.put("type","Contacts");
+                        profile.put("gender",GENDER);
                         profile.put("region",region.getText().toString());
 
                         provider.setName(name.getText().toString());
                         provider.setUid(currentUser_id);
                         provider.setContact_number(Integer.parseInt(Number));
                         provider.setEmail(Email);
+                        provider.setGender(GENDER);
                         provider.setType("Contacts");
                         provider.setPhone(phone.getText().toString());
                         provider.setRegion(region.getText().toString());
@@ -248,12 +252,9 @@ public class ContactProfileFragment extends Fragment {
                             provider.setImage(downloadUri.toString());
                         }
                         databaseReference.child(currentUser_id).setValue(provider)
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        loading.setVisibility(View.INVISIBLE);
-                                        Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
+                                .addOnFailureListener(e -> {
+                                    loading.setVisibility(View.INVISIBLE);
+                                    Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                                 });
                         documentReference.set(profile)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -271,13 +272,10 @@ public class ContactProfileFragment extends Fragment {
                                         loading.setVisibility(View.INVISIBLE);
                                         Toast.makeText(getContext(), "تم تعديل الحساب", Toast.LENGTH_SHORT).show();
                                     }
-                                }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                loading.setVisibility(View.INVISIBLE);
-                                Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                                }).addOnFailureListener(e -> {
+                                    loading.setVisibility(View.INVISIBLE);
+                                    Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
 
                     }
                 }

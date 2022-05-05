@@ -10,6 +10,7 @@ public class TrainingProvider {
     String uid;
     String image;
     String type;
+    String gender;
 
     public TrainingProvider() {
     }
@@ -21,6 +22,19 @@ public class TrainingProvider {
         Region = region;
         Commercial_register = commercial_register;
         Contact_number = contact_number;
+    }
+
+    public TrainingProvider(String name, String email, String phone, String region, String commercial_register, int contact_number, String uid, String image, String type, String gender) {
+        Name = name;
+        Email = email;
+        this.phone = phone;
+        Region = region;
+        Commercial_register = commercial_register;
+        Contact_number = contact_number;
+        this.uid = uid;
+        this.image = image;
+        this.type = type;
+        this.gender = gender;
     }
 
     public TrainingProvider(String name, String email, String phone, String region, String commercial_register, int contact_number, String uid, String image) {
@@ -104,5 +118,13 @@ public class TrainingProvider {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

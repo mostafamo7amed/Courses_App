@@ -114,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     });
                 }else{
-                    Toast.makeText(this, "برجاء إختيار نوع المستخدم(مزود تدريبات - متدرب)", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "الرجاء إختيار نوع المستخدم(مزود تدريبات - متدرب)", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -124,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
         else {
-            Toast.makeText(RegisterActivity.this,"برجاء إدخال كافة العناصر ",Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this,"الرجاء إدخال كافة العناصر ",Toast.LENGTH_SHORT).show();
         }
 
     }

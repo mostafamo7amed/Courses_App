@@ -70,7 +70,9 @@ public class CoursesTrainerFragment extends Fragment {
                                         snapshot.child("date").getValue().toString(),
                                         snapshot.child("end").getValue().toString(),
                                         snapshot.child("time").getValue().toString(),
-                                        snapshot.child("key").getValue().toString()
+                                        snapshot.child("key").getValue().toString(),
+                                        Integer.parseInt(snapshot.child("total").getValue().toString()),
+                                        Integer.parseInt(snapshot.child("current").getValue().toString())
                                 ));
                             }
 

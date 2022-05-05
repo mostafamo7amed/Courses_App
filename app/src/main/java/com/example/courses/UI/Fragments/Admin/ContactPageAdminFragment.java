@@ -33,7 +33,7 @@ public class ContactPageAdminFragment extends Fragment {
         comments = new ArrayList<>();
 
 
-        contactPageAdapter = new ContactPageAdapter(getContext(),comments);
+        contactPageAdapter = new ContactPageAdapter(getContext(),comments,false);
         contactPageAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(contactPageAdapter);
     }

@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ public class EditTraineeFragment extends Fragment {
     EditText name ;
     Spinner level ;
     TextView age;
+    RadioGroup gender;
     ProgressBar loading;
     AppCompatButton save;
     FirebaseDatabase database =FirebaseDatabase.getInstance();
@@ -52,7 +54,7 @@ public class EditTraineeFragment extends Fragment {
     FirebaseFirestore db =FirebaseFirestore.getInstance();
     DocumentReference documentReference;
     Trainee trainee;
-    String currentUserId,U_EMail;
+    String currentUserId,U_EMail , U_GENDER;
     DatePickerDialog.OnDateSetListener mListener;
     String eduLevel;
 
@@ -77,7 +79,7 @@ public class EditTraineeFragment extends Fragment {
         age = getActivity().findViewById(R.id.edit_age_trainee);
         loading = getActivity().findViewById(R.id.edit_progress_trainee);
         save = getActivity().findViewById(R.id.edit_save_trainee);
-
+        gender = getActivity().findViewById(R.id.edit_gender_trainee);
         currentUserId = getArguments().getString("uid");
         trainee = new Trainee();
 
@@ -94,15 +96,23 @@ public class EditTraineeFragment extends Fragment {
         String u_level=eduLevel;
         String u_age=age.getText().toString();
         String u_email=U_EMail;
+        String u_gander;
 
+        int selectedID = gender.getCheckedRadioButtonId();
+        if (selectedID == R.id.male) {
+            u_gander = "ذكر";
+        }else {
+            u_gander = "أنثى";
+        }
         databaseReference=database.getReference("Trainees");
         documentReference=db.collection("Trainees").document(currentUserId);
 
-        if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_level) && !TextUtils.isEmpty(u_age) && !TextUtils.isEmpty(u_email)) {
+        if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_level) && !TextUtils.isEmpty(u_age) && !TextUtils.isEmpty(u_email) && gender.getCheckedRadioButtonId() != -1) {
             loading.setVisibility(View.VISIBLE);
             trainee.setAge(u_age);
             trainee.setEmail(u_email);
             trainee.setName(u_name);
+            trainee.setGender(u_gander);
             trainee.setEducationLevel(u_level);
             trainee.setUID(currentUserId);
             trainee.setType("Trainees");
@@ -111,6 +121,7 @@ public class EditTraineeFragment extends Fragment {
             profile.put("name",u_name);
             profile.put("age",u_age);
             profile.put("level",u_level);
+            profile.put("gender",u_gander);
             profile.put("email",u_email);
             profile.put("uid",currentUserId);
             profile.put("type","Trainees");
@@ -139,7 +150,7 @@ public class EditTraineeFragment extends Fragment {
 
 
         }else {
-            Toast.makeText(getContext(), "برجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "الرجاء إدخال كافة البيانات ", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -157,10 +168,16 @@ public class EditTraineeFragment extends Fragment {
                             String u_level = task.getResult().getString("level");
                             String u_age = task.getResult().getString("age");
                             String u_email = task.getResult().getString("email");
-
+                            String u_gender = task.getResult().getString("gender");
                             name.setText(u_name);
                             age.setText(u_age);
                             U_EMail =u_email;
+                            U_GENDER = u_gender;
+                            if(u_gender.equals("ذكر")){
+                                gender.check(R.id.male);
+                            }else {
+                                gender.check(R.id.female);
+                            }
 
                         }
                     } catch (NullPointerException nullPointerException) {

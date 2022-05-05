@@ -38,7 +38,7 @@ public class TraineeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         trainees= new ArrayList<>();
 
-        traineeAdapter = new TraineeAdapter(getContext(),trainees);
+        traineeAdapter = new TraineeAdapter(getContext(),trainees,false);
         getTrainees();
 
         traineeAdapter.setOnItemClickListener(new TraineeAdapter.OnItemClickListener() {

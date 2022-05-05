@@ -41,7 +41,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EmployeeProfileFragment extends Fragment {
-    EditText name ,position,email , number;
+    EditText name ,position,email , number , gender;
     TextView age;
     ImageButton editProfile;
     AppCompatButton editSave;
@@ -117,6 +117,7 @@ public class EmployeeProfileFragment extends Fragment {
         email = getActivity().findViewById(R.id.emb_email);
         editProfile = getActivity().findViewById(R.id.emb_edit_profile);
         editSave = getActivity().findViewById(R.id.emb_edit_save);
+        gender = getActivity().findViewById(R.id.edit_gender_man);
         loading = getActivity().findViewById(R.id.emb_progress);
         number = getActivity().findViewById(R.id.emb_number);
         employee = new Employee();
@@ -147,10 +148,12 @@ public class EmployeeProfileFragment extends Fragment {
                             String u_age = task.getResult().getString("age");
                             String u_email = task.getResult().getString("email");
                             String u_number = task.getResult().getString("number");
+                            String u_gender = task.getResult().getString("gender");
 
                             name.setText(u_name);
                             age.setText(u_age);
                             email.setText(u_email);
+                            gender.setText(u_gender);
                             position.setText(u_position);
                             number.setText(u_number);
 
@@ -171,6 +174,7 @@ public class EmployeeProfileFragment extends Fragment {
         String u_age=age.getText().toString();
         String u_email=email.getText().toString();
         String u_number = number.getText().toString();
+        String u_gender = gender.getText().toString();
 
         if(!TextUtils.isEmpty(u_name) && !TextUtils.isEmpty(u_position) && !TextUtils.isEmpty(u_age) && !TextUtils.isEmpty(u_email) && !TextUtils.isEmpty(u_number)) {
             loading.setVisibility(View.VISIBLE);
@@ -180,13 +184,16 @@ public class EmployeeProfileFragment extends Fragment {
             employee.setEmail(u_email);
             employee.setAge(u_age);
             employee.setPosition(u_position);
+            employee.setGender(u_gender);
             employee.setType("Employees");
+
             employee.setNumber(u_number);
 
             Map<String ,String> profile=new HashMap<>();
             profile.put("name",u_name);
             profile.put("age",u_age);
             profile.put("number",u_number);
+            profile.put("gender",u_gender);
             profile.put("position",u_position);
             profile.put("email",u_email);
             profile.put("uid",currentUserId);

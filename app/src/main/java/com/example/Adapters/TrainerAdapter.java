@@ -20,6 +20,7 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.ViewHold
     private Context context;
     private List<Trainer> list;
     private OnItemClickListener mListener;
+    boolean state;
 
     public interface OnItemClickListener{
         void onItemDeleted(String uid);
@@ -27,9 +28,10 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.ViewHold
     public void setOnItemClickListener(OnItemClickListener listener){
         mListener=listener;
     }
-    public TrainerAdapter(Context context, List<Trainer> list) {
+    public TrainerAdapter(Context context, List<Trainer> list, boolean state) {
         this.context = context;
         this.list = list;
+        this.state = state;
     }
 
     @NonNull
@@ -47,6 +49,11 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.ViewHold
         holder.email.setText(list.get(position).getEmail());
         holder.gender.setText(list.get(position).getGender());
         String uid = list.get(position).getUid();
+
+        if(state){
+            holder.trainerBlock.setVisibility(View.INVISIBLE);
+
+        }
         holder.trainerBlock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

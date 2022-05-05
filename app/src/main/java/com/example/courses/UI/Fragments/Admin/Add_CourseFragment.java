@@ -42,7 +42,7 @@ import java.util.Calendar;
 
 public class Add_CourseFragment extends Fragment {
 
-    EditText  description , address,material,trainer,number;
+    EditText  description , address,material,trainer,number , total;
     Spinner field;
     AppCompatButton addCourse;
     TextView date , dateEnd;
@@ -93,6 +93,7 @@ public class Add_CourseFragment extends Fragment {
         number = getActivity().findViewById(R.id.add_number_course);
         addCourse = getActivity().findViewById(R.id.add_save_course);
         loading = getActivity().findViewById(R.id.add_progress_course);
+        total = getActivity().findViewById(R.id.add_total_course);
 
         course = new Course();
 
@@ -110,6 +111,7 @@ public class Add_CourseFragment extends Fragment {
         String c_trainer = trainer.getText().toString();
         String c_number = number.getText().toString();
         String c_contact = contactNumber;
+        String c_total = total.getText().toString();
 
 
         databaseReference=database.getReference("All Courses");
@@ -117,7 +119,7 @@ public class Add_CourseFragment extends Fragment {
         String child=databaseReference.push().getKey();
 
 
-        if (!TextUtils.isEmpty(c_field)&& !TextUtils.isEmpty(c_date_end) && !TextUtils.isEmpty(c_description)&& !TextUtils.isEmpty(c_date) && !TextUtils.isEmpty(c_time) && !TextUtils.isEmpty(c_address) && !TextUtils.isEmpty(c_material) && !TextUtils.isEmpty(c_number) && !TextUtils.isEmpty(c_trainer) && !TextUtils.isEmpty(c_contact)) {
+        if (!TextUtils.isEmpty(c_field)&& !TextUtils.isEmpty(c_total)&& !TextUtils.isEmpty(c_date_end) && !TextUtils.isEmpty(c_description)&& !TextUtils.isEmpty(c_date) && !TextUtils.isEmpty(c_time) && !TextUtils.isEmpty(c_address) && !TextUtils.isEmpty(c_material) && !TextUtils.isEmpty(c_number) && !TextUtils.isEmpty(c_trainer) && !TextUtils.isEmpty(c_contact)) {
 
             course.setField(c_field);
             course.setAddress(c_address);
@@ -130,6 +132,8 @@ public class Add_CourseFragment extends Fragment {
             course.setContactNumber(Integer.parseInt(c_contact));
             course.setDescription(c_description);
             course.setKey(child);
+            course.setTotal(Integer.parseInt(c_total));
+            course.setCurrent(0);
 
             int user = getArguments().getInt("frame");
             if(user == R.id.frame_layout_cont){

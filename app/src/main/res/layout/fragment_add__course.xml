@@ -7,25 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".UI.Fragments.Admin.Add_CourseFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card1"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        app:cardBackgroundColor="@color/dark"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="إضافة دورة "
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:layout_margin="10dp"/>
-    </androidx.cardview.widget.CardView>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_below="@id/card1"
+        android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:background="@color/white">
         <LinearLayout
@@ -117,6 +103,21 @@
                 android:background="@drawable/custom_input"
                 android:layout_marginHorizontal="10dp">
             </TextView>
+            <EditText
+                android:id="@+id/add_total_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textSize="16sp"
+                android:layout_marginVertical="10dp"
+                android:textColorHint="@android:color/darker_gray"
+                android:textColor="@color/dark_text"
+                android:padding="7dp"
+                android:hint="عدد المتدربين للدورة "
+                android:inputType="number"
+                android:background="@drawable/custom_input"
+                android:layout_marginHorizontal="10dp">
+            </EditText>
             <EditText
                 android:id="@+id/add_number_course"
                 android:layout_width="match_parent"

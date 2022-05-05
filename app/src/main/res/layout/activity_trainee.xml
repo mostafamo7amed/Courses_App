@@ -7,6 +7,44 @@
     android:layout_height="match_parent"
     tools:context=".UI.Activities.TraineeActivity">
 
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:cardBackgroundColor="@color/dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userImageTr"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_person_men"
+                app:civ_border_color="@color/light"
+                android:clickable="false"
+                android:focusable="false"
+                app:civ_border_width="2dp"/>
+            <TextView
+                android:id="@+id/userNameTr"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
     <FrameLayout
         android:id="@+id/frame_layout_trainee"
         android:layout_width="match_parent"
@@ -14,7 +52,7 @@
         app:layout_constraintBottom_toTopOf="@id/card2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/card1" />
 
 
     <androidx.cardview.widget.CardView

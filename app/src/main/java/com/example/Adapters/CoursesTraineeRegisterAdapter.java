@@ -50,6 +50,13 @@ public class CoursesTraineeRegisterAdapter extends RecyclerView.Adapter<CoursesT
         holder.address.setText(list.get(position).getAddress());
         holder.material.setText(list.get(position).getCourseMaterial());
         holder.description.setText(list.get(position).getDescription());
+        int x = list.get(position).getTotal()-list.get(position).getCurrent();
+        if(x==0){
+            holder.free.setText("مكتمل");
+        }else {
+            holder.free.setText(x+" ");
+        }
+
         String key = list.get(position).getKey();
         holder.register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +71,7 @@ public class CoursesTraineeRegisterAdapter extends RecyclerView.Adapter<CoursesT
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name ,trainer ,description ,date ,time ,address , material;
+        TextView name ,trainer ,description ,date ,time ,address , material , free;
         AppCompatButton register;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,7 +84,16 @@ public class CoursesTraineeRegisterAdapter extends RecyclerView.Adapter<CoursesT
             description = itemView.findViewById(R.id.desciption_course_trainee);
             register = itemView.findViewById(R.id.register_course);
             material = itemView.findViewById(R.id.material_course_trainee);
+            free = itemView.findViewById(R.id.free);
 
         }
+    }
+
+    public List<Course> getList() {
+        return list;
+    }
+
+    public void setList(List<Course> list) {
+        this.list = list;
     }
 }

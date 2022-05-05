@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         else {
             loading.setVisibility(View.INVISIBLE);
-            Toast.makeText(this, "برجاء إدخال كافة العناصر", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "الرجاء إدخال كافة العناصر", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -139,15 +139,21 @@ public class LoginActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 loading.setVisibility(View.INVISIBLE);
                                 if (snapshot.child("Admins").child(uId).exists()) {
-                                    startActivity(new Intent(LoginActivity.this, AdminActivity.class)); }
+                                    startActivity(new Intent(LoginActivity.this, AdminActivity.class));
+                                    finish();
+                                }
                                 else if (snapshot.child("Trainees").child(uId).exists()) {
                                     startActivity(new Intent(LoginActivity.this, TraineeActivity.class));
+                                    finish();
                                 } else if (snapshot.child("Training Provider").child(uId).exists()) {
                                     startActivity(new Intent(LoginActivity.this, ContactsActivity.class));
+                                    finish();
                                 } else if (snapshot.child("Trainers").child(uId).exists()) {
                                     startActivity(new Intent(LoginActivity.this, TrainerActivity.class));
+                                    finish();
                                 }else if (snapshot.child("Employees").child(uId).exists()){
                                     startActivity(new Intent(LoginActivity.this, EmployeeActivity.class));
+                                    finish();
                                 }else {
                                     loading.setVisibility(View.INVISIBLE);
                                     username.setText("");

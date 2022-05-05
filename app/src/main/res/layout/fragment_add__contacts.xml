@@ -7,20 +7,6 @@
     android:layoutDirection="rtl"
     tools:context=".UI.Fragments.Admin.Add_ContactsFragment"
     android:orientation="vertical">
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card2"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        app:cardBackgroundColor="@color/dark"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="إضافة مزود تدريب"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:layout_margin="10dp"/>
-    </androidx.cardview.widget.CardView>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -29,7 +15,14 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="إضافة مزود تدريب"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:textColor="@color/dark"
+                android:layout_margin="10dp"/>
             <androidx.cardview.widget.CardView
                 android:layout_width="90dp"
                 android:layout_height="90dp"
@@ -94,10 +87,10 @@
                 android:layout_marginEnd="10dp"
                 />
             <EditText
-                android:id="@+id/cc_name_man"
+                android:id="@+id/cc_name1_man"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="الاسم "
+                android:hint="الاسم الاول"
                 android:inputType="text"
                 android:maxLines="1"
                 android:textColor="@color/black"
@@ -108,6 +101,34 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 />
+            <EditText
+                android:id="@+id/cc_name2_man"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="الاسم الاخير "
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                />
+            <TextView
+                android:id="@+id/cc_name_man"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:drawablePadding="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="18sp"
+                 />
             <EditText
                 android:id="@+id/cc_phone_man"
                 android:layout_width="match_parent"
@@ -153,6 +174,32 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 />
+            <RadioGroup
+                android:id="@+id/cc_gender_man"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ذكر "
+                    android:textColor="@color/dark_text"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="انثى"
+                    android:textColor="@color/dark_text"
+                    android:textSize="16sp" />
+            </RadioGroup>
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/cc_save_man"

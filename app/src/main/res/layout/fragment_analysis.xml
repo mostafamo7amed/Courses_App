@@ -11,14 +11,13 @@
         android:id="@+id/card2"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        app:cardBackgroundColor="@color/dark"
        >
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="الاحصائيات"
             android:textSize="20sp"
-            android:textColor="@color/white"
+            android:textColor="@color/dark"
             android:layout_margin="10dp"/>
     </androidx.cardview.widget.CardView>
 
@@ -37,38 +36,292 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="5dp">
                 <TextView
+                    android:id="@+id/emb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
-                    android:text="عدد الموظفين"
+                    android:text="الموظفين"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     />
-                <ProgressBar
-                    android:id="@+id/employee_progress"
-                    style="@style/CircularDeterminateProgressBar"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:max="1000"
-                    android:layout_marginEnd="24dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-                <TextView
-                    android:id="@+id/employee_present"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@id/employee_progress"
-                    app:layout_constraintTop_toTopOf="@id/employee_progress"
-                    app:layout_constraintBottom_toBottomOf="@id/employee_progress"
-                    app:layout_constraintEnd_toEndOf="@id/employee_progress"
-                    />
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/emb">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/dark"
+                        app:cardCornerRadius="20dp"
+                        android:layout_margin="10dp"
+                        android:layout_height="130dp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_gravity="end|top"
+                            android:background="@android:color/transparent">
+
+                            <ProgressBar
+                                android:id="@+id/employee_progress"
+                                style="@style/CircularDeterminateProgressBar"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:max="100"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/employee_present"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:layout_gravity="start|top"
+                            android:layout_margin="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_man"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="الذكور"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            android:layout_margin="20dp"
+                            android:layout_gravity="bottom|start"/>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="20dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="@color/dark"
+                        android:layout_height="130dp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_gravity="end|top"
+                            android:background="@android:color/transparent">
+
+                            <ProgressBar
+                                android:id="@+id/employee_progress_woman"
+                                style="@style/CircularDeterminateProgressBar"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:max="100"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/employee_present_woman"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:layout_gravity="start|top"
+                            android:layout_margin="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_woman"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="الإناث"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            android:layout_margin="20dp"
+                            android:layout_gravity="bottom|start"/>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="5dp">
+                <LinearLayout
+                    android:id="@+id/contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <TextView
+                        android:id="@+id/cont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:text="مزود التدريب"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+
+                        />
+                    <TextView
+                        android:id="@+id/comm"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="التعليقات"
+                        android:textSize="18sp"
+                        android:layout_weight="2"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/contact">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/dark"
+                        app:cardCornerRadius="20dp"
+                        android:layout_margin="10dp"
+                        android:layout_height="130dp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_gravity="end|top"
+                            android:background="@android:color/transparent">
+
+                            <ProgressBar
+                                android:id="@+id/contact_progress"
+                                style="@style/CircularDeterminateProgressBar"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:max="100"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/contact_present"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:layout_gravity="start|top"
+                            android:layout_margin="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/malegraw"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="مزود التدريبات"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            android:layout_margin="20dp"
+                            android:layout_gravity="bottom|start"/>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="20dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="@color/dark"
+                        android:layout_height="130dp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_gravity="end|top"
+                            android:background="@android:color/transparent">
+
+                            <ProgressBar
+                                android:id="@+id/comments_progress"
+                                style="@style/CircularDeterminateProgressBar"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:max="100"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/comments_present"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:layout_gravity="start|top"
+                            android:layout_margin="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_commentss"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="التعليقات"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            android:layout_margin="20dp"
+                            android:layout_gravity="bottom|start"/>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,38 +332,257 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="5dp">
                 <TextView
+                    android:id="@+id/ttrainee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
-                    android:text="عدد مزود التدريب "
+                    android:text="المتدربين"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     />
-                <ProgressBar
-                    android:id="@+id/contact_progress"
-                    style="@style/CircularDeterminateProgressBar"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:max="1000"
-                    android:layout_marginEnd="24dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-                <TextView
-                    android:id="@+id/contact_present"
-                    android:layout_width="wrap_content"
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@id/contact_progress"
-                    app:layout_constraintTop_toTopOf="@id/contact_progress"
-                    app:layout_constraintBottom_toBottomOf="@id/contact_progress"
-                    app:layout_constraintEnd_toEndOf="@id/contact_progress"
-                    />
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ttrainee"
+                    android:weightSum="2">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/person"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/ic_person_men"/>
+                        <TextView
+                            android:id="@+id/tr_male_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:layout_marginEnd="15dp"
+                            app:layout_constraintEnd_toEndOf="@id/person"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@id/person"/>
+                        <ImageView
+                            android:id="@+id/person_fem"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            app:layout_constraintTop_toBottomOf="@id/person"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:src="@drawable/ic_person_weman"/>
+                        <TextView
+                            android:id="@+id/tr_women_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:layout_marginEnd="15dp"
+                            app:layout_constraintEnd_toEndOf="@id/person"
+                            app:layout_constraintTop_toBottomOf="@id/person"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@id/person_fem"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="الاعمار"
+                            android:textSize="18sp"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/tr_1520_tv"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:layout_weight="1"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/black"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text=" 15 - 20 "
+                                android:textSize="16sp"
+                                android:layout_weight="1"
+                                android:textAlignment="textEnd"
+                                android:textColor="@color/black"/>
+
+                        </LinearLayout>
+                        <ProgressBar
+                            android:id="@+id/tr_1520_progress"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:max="100"
+                            android:thicknessRatio="6"
+                            android:layout_marginBottom="7dp"
+                            android:progressDrawable="@drawable/progress"
+                            />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/tr_2035_tv"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:layout_weight="1"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/black"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text=" 20 - 35 "
+                                android:textSize="16sp"
+                                android:layout_weight="1"
+                                android:textAlignment="textEnd"
+                                android:textColor="@color/black"/>
+
+                        </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/tr_2035_progress"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:max="100"
+                            android:thicknessRatio="6"
+                            android:progressDrawable="@drawable/progress"
+
+                            />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/tr_3545_tv"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:layout_weight="1"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/black"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text=" 35 - 45 "
+                                android:textSize="16sp"
+                                android:layout_weight="1"
+                                android:textAlignment="textEnd"
+                                android:textColor="@color/black"/>
+
+                        </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/tr_3545_progress"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:max="100"
+                            android:thicknessRatio="6"
+                            android:progressDrawable="@drawable/progress"
+
+                            />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/tr_4555_tv"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:layout_weight="1"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/black"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text=" 45 - 55 "
+                                android:textSize="16sp"
+                                android:layout_weight="1"
+                                android:textAlignment="textEnd"
+                                android:textColor="@color/black"/>
+
+                        </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/tr_4555_progress"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:max="100"
+                            android:thicknessRatio="6"
+                            android:progressDrawable="@drawable/progress"
+
+                            />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/tr_5565_tv"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:layout_weight="1"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/black"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text=" 55 - 65 "
+                                android:textSize="16sp"
+                                android:layout_weight="1"
+                                android:textAlignment="textEnd"
+                                android:textColor="@color/black"/>
+
+                        </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/tr_5565_progress"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:max="100"
+                            android:thicknessRatio="6"
+                            android:layout_marginBottom="5dp"
+                            android:progressDrawable="@drawable/progress"
+
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -121,39 +593,367 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="5dp">
                 <TextView
+                    android:id="@+id/courses"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
-                    android:text="عدد المدربين"
+                    android:text="الدورات "
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     />
-                <ProgressBar
-                    android:id="@+id/trainer_progress"
-                    style="@style/CircularDeterminateProgressBar"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:max="1000"
-                    android:layout_marginEnd="24dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-                <TextView
-                    android:id="@+id/trainer_present"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@id/trainer_progress"
-                    app:layout_constraintTop_toTopOf="@id/trainer_progress"
-                    app:layout_constraintBottom_toBottomOf="@id/trainer_progress"
-                    app:layout_constraintEnd_toEndOf="@id/trainer_progress"
-                    />
+                    app:layout_constraintTop_toBottomOf="@+id/courses"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text=" الكمبيوتر والتكنولوجيا"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:id="@+id/courses_present1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+                    <ProgressBar
+                        android:id="@+id/courses_progress1"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:thicknessRatio="6"
+                        android:progressDrawable="@drawable/progress"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text=" ادارة الأعمال"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:id="@+id/courses_present2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/courses_progress2"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:thicknessRatio="6"
+                        android:progressDrawable="@drawable/progress"
+
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="الامن والسلامة"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:id="@+id/courses_present3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/courses_progress3"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:thicknessRatio="6"
+                        android:progressDrawable="@drawable/progress"
+
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="علم النفس"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:id="@+id/courses_present4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/courses_progress4"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:thicknessRatio="6"
+                        android:progressDrawable="@drawable/progress"
+
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="التنمية الذاتية"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:id="@+id/courses_present5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/courses_progress5"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:thicknessRatio="6"
+                        android:progressDrawable="@drawable/progress"
+
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="المالية والمحاسبة"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:id="@+id/courses_present6"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+                    <ProgressBar
+                        android:id="@+id/courses_progress6"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:thicknessRatio="6"
+                        android:progressDrawable="@drawable/progress"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="المبيعات والتسويق"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:id="@+id/courses_present7"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+                    <ProgressBar
+                        android:id="@+id/courses_progress7"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:thicknessRatio="6"
+                        android:progressDrawable="@drawable/progress"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="الطب"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:id="@+id/courses_present8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+                    <ProgressBar
+                        android:id="@+id/courses_progress8"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:thicknessRatio="6"
+                        android:progressDrawable="@drawable/progress"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="لغات"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:id="@+id/courses_present9"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+                    <ProgressBar
+                        android:id="@+id/courses_progress9"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:thicknessRatio="6"
+                        android:progressDrawable="@drawable/progress"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="اخرى"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:id="@+id/courses_present10"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+                    <ProgressBar
+                        android:id="@+id/courses_progress10"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:thicknessRatio="6"
+                        android:progressDrawable="@drawable/progress"
+
+                        />
+                </LinearLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -162,80 +962,136 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="5dp">
                 <TextView
+                    android:id="@+id/tainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
-                    android:text="عدد المتدربين"
+                    android:text="المدربين"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     />
-                <ProgressBar
-                    android:id="@+id/trainee_progress"
-                    style="@style/CircularDeterminateProgressBar"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:max="1000"
-                    android:layout_marginEnd="24dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-                <TextView
-                    android:id="@+id/trainee_present"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@id/trainee_progress"
-                    app:layout_constraintTop_toTopOf="@id/trainee_progress"
-                    app:layout_constraintBottom_toBottomOf="@id/trainee_progress"
-                    app:layout_constraintEnd_toEndOf="@id/trainee_progress"
-                    />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginStart="5dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="5dp"
-                    android:text="عدد الدورات "
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
-                <ProgressBar
-                    android:id="@+id/courses_progress"
-                    style="@style/CircularDeterminateProgressBar"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:max="1000"
-                    android:layout_marginEnd="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-                <TextView
-                    android:id="@+id/courses_present"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@id/courses_progress"
-                    app:layout_constraintTop_toTopOf="@id/courses_progress"
-                    app:layout_constraintBottom_toBottomOf="@id/courses_progress"
-                    app:layout_constraintEnd_toEndOf="@id/courses_progress"
-                    />
+                    app:layout_constraintTop_toBottomOf="@+id/tainer">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/dark"
+                        app:cardCornerRadius="20dp"
+                        android:layout_margin="10dp"
+                        android:layout_height="130dp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_gravity="end|top"
+                            android:background="@android:color/transparent">
+
+                            <ProgressBar
+                                android:id="@+id/trainer_progress"
+                                style="@style/CircularDeterminateProgressBar"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:max="100"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/trainer_present"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:layout_gravity="start|top"
+                            android:layout_margin="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_man"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="الذكور"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            android:layout_margin="20dp"
+                            android:layout_gravity="bottom|start"/>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="20dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="@color/dark"
+                        android:layout_height="130dp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_gravity="end|top"
+                            android:background="@android:color/transparent">
+
+                            <ProgressBar
+                                android:id="@+id/trainer_progress_woman"
+                                style="@style/CircularDeterminateProgressBar"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:max="100"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/trainer_present_woman"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:layout_gravity="start|top"
+                            android:layout_margin="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_woman"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="الإناث"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            android:layout_margin="20dp"
+                            android:layout_gravity="bottom|start"/>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
